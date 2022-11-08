@@ -110,7 +110,7 @@ def enroll_finger(location):
             socket.emit("addfinger")
         else:
             print("Place same finger again...", end="")
-            socket.emit("addfinger") 
+            socket.emit("againfinger") 
 
         while True:
             i = finger.get_image()
