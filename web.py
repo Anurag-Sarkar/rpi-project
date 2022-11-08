@@ -354,6 +354,9 @@ def allholiday():
 
 @socket.on("finger")
 def message():
+    if finger.read_templates() != adafruit_fingerprint.OK:
+          raise RuntimeError("Failed to read templates")
+    print("Fingerprint templates:", finger.templates)
     if enroll_finger(1):
         n = request.form["name"]
         p = request.form["password"]
