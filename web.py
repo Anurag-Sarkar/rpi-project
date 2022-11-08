@@ -33,7 +33,7 @@ led.direction = Direction.OUTPUT
 
 # # If using with Linux/Raspberry Pi and hardware UART:
 import serial
-uart = serial.Serial("/dev/ttyS0", baudrate=57600, timeout=1)
+uart = serial.Serial("/dev/ttyUSB0", baudrate=57600, timeout=1)
 
 finger = adafruit_fingerprint.Adafruit_Fingerprint(uart)
 
@@ -111,7 +111,7 @@ def enroll_finger(location):
         else:
             print("Place same finger again...", end="")
             socket.emit("againfinger") 
-            
+
 
         while True:
             i = finger.get_image()
