@@ -360,4 +360,4 @@ def message():
     else:
         socket.emit("fail")
 
-socket.run(app,host="0.0.0.0",port="80",debug=True)
+socket.run(app,host="192.168.29.249",port="80",debug=True)
