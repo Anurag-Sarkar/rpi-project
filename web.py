@@ -4,6 +4,7 @@ from pymongo import MongoClient,ReturnDocument
 from werkzeug.security import generate_password_hash, check_password_hash
 
 import datetime
+global id
 id = 0
 # lcd_rs        = 22  # Note this might need to be changed to 21 for older revision Pi's.
 # lcd_en        = 17
