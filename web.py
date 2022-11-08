@@ -4,7 +4,7 @@ from pymongo import MongoClient,ReturnDocument
 from werkzeug.security import generate_password_hash, check_password_hash
 
 import datetime
-
+id = 0
 # lcd_rs        = 22  # Note this might need to be changed to 21 for older revision Pi's.
 # lcd_en        = 17
 # lcd_d4        = 25
@@ -320,6 +320,7 @@ def addmember():
     # if "user" in session:
     n = request.form["name"]
     p = request.form["password"]
+    print(id)
     print(n)
     check_user = user.find_one({"name":n})
     if not check_user:
@@ -329,11 +330,12 @@ def addmember():
             "defaultedDays":0,
             "holidays":0,
             "dates":[],
-            "fingerprint":0,
+            "fingerprint":id,
             "clg":0,
             "password": password
         }
         user.insert_one(data)
+        id = 0
         session["user"] = data["name"]
         return redirect("/attendence")
     else:
@@ -362,26 +364,7 @@ def message(data):
             id = i
 
     if enroll_finger(id):
-        n = request.form["name"]
-        p = request.form["password"]
-        print(n)
-        check_user = user.find_one({"name":n})
-        if not check_user:
-            password = generate_password_hash(p)
-            data = {
-                "name":n,
-                "defaultedDays":0,
-                "holidays":0,
-                "dates":[],
-                "fingerprint":id,
-                "clg":0,
-                "password": password
-            }
-            user.insert_one(data)
-            session["user"] = data["name"]
-            print("Added fingerprint")
-            socket.emit("success",broadcast=True)
-            return redirect("/attendence")
+        id = i
     else:
         print("not Added fingerprint")
         emit("fail",broadcast=True)
