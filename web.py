@@ -110,7 +110,7 @@ def enroll_finger(location):
             SocketIO.send("addfinger")
         else:
             print("Place same finger again...", end="")
-            SocketIO.send("againfinger") 
+            SocketIO.send("againfinger",{"data":24}) 
 
 
         while True:
