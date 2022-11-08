@@ -107,10 +107,10 @@ def enroll_finger(location):
     for fingerimg in range(1, 3):
         if fingerimg == 1:
             print("Place finger on sensor...", end="")
-            send("addfinger")
+            emit("addfinger")
         else:
             print("Place same finger again...", end="")
-            send("againfinger") 
+            emit("againfinger") 
 
 
         while True:
@@ -136,7 +136,7 @@ def enroll_finger(location):
                 print("Image too messy")
             elif i == adafruit_fingerprint.FEATUREFAIL:
                 print("Could not identify features")
-                send("clean")
+                emit("clean")
             elif i == adafruit_fingerprint.INVALIDIMAGE:
                 print("Image invalid")
             else:
@@ -262,7 +262,7 @@ def loginuser():
         
         else:
             print("hellloo")
-            send("wrong")
+            emit("wrong")
             return redirect("/")
     else:
         return redirect("/")
@@ -356,8 +356,8 @@ def allholiday():
 @socket.on("finger")
 def message():
     if enroll_finger(1):
-        send("success")
+        emit("success")
     else:
-        send("fail")
+        emit("fail")
 
 socket.run(app,host="192.168.29.249",port="80",debug=True)
