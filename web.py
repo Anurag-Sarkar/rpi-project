@@ -103,11 +103,13 @@ finger = adafruit_fingerprint.Adafruit_Fingerprint(uart)
 
 # # pylint: disable=too-many-statements
 def enroll_finger(location):
+    if finger.read_templates() != adafruit_fingerprint.OK:
+          raise RuntimeError("Failed to read templates")
+    print("Fingerprint templates:", finger.templates)
     """Take a 2 finger images and template it, then store in 'location'"""
     for fingerimg in range(1, 3):
         if fingerimg == 1:
             print("Place finger on sensor...", end="")
-            print(finger.templates)
         else:
             print("Place same finger again...", end="")
 
