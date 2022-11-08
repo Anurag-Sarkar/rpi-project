@@ -107,10 +107,10 @@ def enroll_finger(location):
     for fingerimg in range(1, 3):
         if fingerimg == 1:
             print("Place finger on sensor...", end="")
-            SocketIO.send("addfinger",{"data":24})
+            socket.send("addfinger")
         else:
             print("Place same finger again...", end="")
-            SocketIO.send("againfinger",{"data":24}) 
+            socket.send("againfinger") 
 
 
         while True:
@@ -217,8 +217,7 @@ def enroll_finger(location):
 app = Flask(__name__)
 app.config["SECRTE"] = "secret"
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-
-socket = SocketIO(app,cors_allowed_origins="*")
+socket = SocketIO(app)
 print("Connection to mongodb")
 
 client = MongoClient("mongodb+srv://anurag:1@cluster0.fqzjmis.mongodb.net/?retryWrites=true&w=majority")
@@ -356,8 +355,10 @@ def allholiday():
 @socket.on("finger")
 def message():
     if enroll_finger(1):
-        socket.send("success")
+        print("Added fingerprint")
+        send("success",broadcast=True)
     else:
-        socket.emit("fail")
+        print("not Added fingerprint")
+        emit("fail",broadcast=True)
 
 socket.run(app,host="192.168.29.249",port="80",debug=True)
