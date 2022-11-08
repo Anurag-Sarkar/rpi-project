@@ -356,9 +356,9 @@ def allholiday():
 def message():
     if enroll_finger(1):
         print("Added fingerprint")
-        socket.send("success",broadcast=True)
+        emit("success",broadcast=True)
     else:
         print("not Added fingerprint")
-        socket.emit("fail",broadcast=True)
+        emit("fail",broadcast=True)
 
 socket.run(app,host="192.168.29.249",port="80",debug=True)
