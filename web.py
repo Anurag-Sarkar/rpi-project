@@ -355,8 +355,7 @@ def allholiday():
     return redirect("/holiday")
 
 @socket.on("finger")
-def message(data):
-    print(data,"data")
+def message():
     id = 0
     for i in range(1,50):
         finger.read_templates()
