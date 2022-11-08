@@ -107,6 +107,7 @@ def enroll_finger(location):
     for fingerimg in range(1, 3):
         if fingerimg == 1:
             print("Place finger on sensor...", end="")
+            print(finger.templates)
         else:
             print("Place same finger again...", end="")
 
@@ -352,8 +353,26 @@ def allholiday():
 @socket.on("finger")
 def message():
     if enroll_finger(1):
-        print("Added fingerprint")
-        emit("success",broadcast=True)
+        n = request.form["name"]
+        p = request.form["password"]
+        print(n)
+        check_user = user.find_one({"name":n})
+        if not check_user:
+            password = generate_password_hash(p)
+            data = {
+                "name":n,
+                "defaultedDays":0,
+                "holidays":0,
+                "dates":[],
+                "fingerprint":0,
+                "clg":0,
+                "password": password
+            }
+            user.insert_one(data)
+            session["user"] = data["name"]
+            print("Added fingerprint")
+            socket.emit("success",broadcast=True)
+            return redirect("/attendence")
     else:
         print("not Added fingerprint")
         emit("fail",broadcast=True)
