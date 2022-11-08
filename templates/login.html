@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style/login.css">
+
+</head>
+<body>
+    <div id="main">
+        <div id="box">
+            <h1>LOGIN</h1>
+            <form action="/loginuser" method="post">
+                <div id="username">
+                    <i class="ri-account-circle-fill"></i>
+                    <input placeholder="Name" name="name" type="text">
+                </div>
+                <div id="username">
+                    <i class="ri-lock-fill"></i>
+                    <input placeholder="Password" name="password" type="text">
+                </div>
+                <div id="button">
+                    <div id="re">
+                        <input type="checkbox">
+                        <p>Remember me</p>
+                    </div>
+                    <button type="submit">LOGIN</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js" integrity="sha512-iWPnCISAd/J+ZacwV2mbNLCaPGRrRo5OS81lKTVPtRg1wGTC20Cfmp5Us5RcbLv42QLdbAWl0MI57yox5VecQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../static/js/login.js"></script>
+
+</body>
+</html>

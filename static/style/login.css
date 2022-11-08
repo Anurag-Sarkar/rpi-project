@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&display=swap");
+* {
+  font-family: "karla";
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+#main {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0, 8, 27);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#main #box {
+  background-color: #001f3d;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#main #box h1 {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 40px;
+  font-weight: 300;
+}
+#main #box form {
+  margin-bottom: 50px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+#main #box form #username {
+  margin-top: 20px;
+  display: flex;
+  width: 90%;
+  align-items: center;
+  justify-content: space-between;
+}
+#main #box form #username i {
+  color: #51687D;
+  font-size: 35px;
+  margin-right: 20px;
+}
+#main #box form #username input {
+  font-size: 18px;
+  width: 90%;
+  padding: 13px;
+}
+#main #box form #button {
+  width: 78%;
+  align-self: flex-end;
+  margin-right: 25px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+#main #box form #button #re {
+  display: flex;
+  justify-content: space-between;
+  width: 35%;
+  color: white;
+  font-weight: 200;
+  align-items: center;
+}
+#main #box form #button button {
+  background-color: #00ff8c;
+  padding: 10px 35px;
+  border: none;
+  outline: none;
+}
+
+@media only screen and (max-width: 600px) {
+  #main #box {
+    width: 90%;
+    height: 40%;
+  }
+  #main #box h1 {
+    font-size: 25px;
+    margin-bottom: 15px;
+  }
+  #main #box form {
+    margin-bottom: 20px;
+  }
+  #main #box form #username {
+    margin-top: 10px;
+    width: 100%;
+  }
+  #main #box form #username i {
+    margin-right: 10px;
+    font-size: 20px;
+  }
+  #main #box form #username input {
+    font-size: 13px;
+    padding: 9px;
+  }
+  #main #box form #button {
+    width: 90%;
+    margin-right: 0px;
+  }
+  #main #box form #button #re {
+    width: 50%;
+    margin-left: 0px;
+    font-size: 12px;
+    justify-content: start;
+  }
+  #main #box form #button input {
+    margin-right: 5px;
+  }
+  #main #box form #button button {
+    padding: 7px 20px;
+  }
+}/*# sourceMappingURL=login.css.map */

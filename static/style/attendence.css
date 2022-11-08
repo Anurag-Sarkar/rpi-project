@@ -1,0 +1,204 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&display=swap");
+* {
+  font-family: "Karla";
+  padding: 0%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+#overlay {
+  transition: 0.4s;
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 999999999;
+}
+#overlay i {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  color: white;
+}
+
+#main {
+  padding-bottom: 200px;
+  height: 100%;
+  width: 100%;
+}
+#main #nav {
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  display: flex;
+  padding: 0pc 30px;
+  color: white;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  background-color: rgb(0, 8, 23);
+}
+#main #nav #button {
+  display: flex;
+  width: 300px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+}
+#main #nav #button a {
+  color: white;
+  text-decoration: none;
+}
+#main #nav #button a p {
+  font-size: 20px;
+  padding: 5px 10px;
+  transition: 0.3s;
+  border-radius: 50px;
+}
+#main #nav #button a p:hover {
+  background-color: royalblue;
+}
+#main #nav i {
+  display: none;
+}
+#main #time {
+  width: 100%;
+  height: 100%;
+}
+#main #time #heading {
+  z-index: 999;
+  position: fixed;
+  top: 7.3%;
+  width: 100%;
+  display: flex;
+  height: 50px;
+  background-color: #47B5FF;
+}
+#main #time #heading p {
+  width: 20%;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 23px;
+  justify-content: center;
+}
+#main #time #people {
+  margin-top: 118px;
+  width: 100%;
+  height: 100%;
+}
+#main #time #people #names {
+  width: 100%;
+  display: flex;
+  height: 70px;
+}
+#main #time #people #names p {
+  width: 20%;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  justify-content: center;
+}
+#main #time #people #names:nth-child(even) {
+  background-color: #e8f8ff;
+}
+#main #footer {
+  position: fixed;
+  bottom: 0;
+  font-size: 20px;
+  width: 100%;
+  color: rgb(190, 190, 190);
+  padding: 10px 30px;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  background-color: rgb(0, 8, 23);
+}
+#main #footer #data {
+  color: white;
+  transition: 0.3s;
+  border-radius: 30px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+#main #footer #data:hover {
+  background-color: royalblue;
+}
+
+@media only screen and (max-width: 600px) {
+  #overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #overlay #button {
+    width: 300px;
+    cursor: pointer;
+  }
+  #overlay #button p {
+    font-size: 20px;
+    transition: 0.3s;
+    width: 100%;
+    text-align: center;
+    padding: 20px 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #47B5FF;
+    color: white;
+  }
+  #main #nav {
+    height: 50px;
+    padding: 0px 15px;
+  }
+  #main #nav h1 {
+    font-size: 20px;
+  }
+  #main #nav #button {
+    display: none;
+  }
+  #main #nav i {
+    font-size: 22px;
+    display: inherit;
+  }
+  #main #time #heading {
+    height: 35px;
+    top: 50px;
+  }
+  #main #time #heading p {
+    font-size: 16px;
+  }
+  #main #time #people {
+    margin-top: 85px;
+  }
+  #main #time #people #names {
+    text-align: center;
+    height: 40px;
+    padding: 0px 10px;
+  }
+  #main #time #people #names p {
+    text-align: center;
+    font-size: 11px;
+  }
+  #main #footer {
+    padding: 10px 20px;
+  }
+  #main #footer p {
+    font-size: 13px;
+    padding: 5px 0px;
+  }
+  #main #footer #data {
+    background-color: #47B5FF;
+  }
+}/*# sourceMappingURL=attendence.css.map */

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style/attendence.css">
+</head>
+<body>
+        <div id="overlay">
+            <div id="button">
+                <a href="/add"><p id="member">Add Memeber</p></a>
+                <a href="/holiday"><p id="holiday">Add Holiday</p></a>
+            </div>
+            <i class="ri-close-fill"></i>
+        </div>
+    <div id="main">
+        <div id="nav">
+            <h1>SHERYIANS</h1>
+            <div id="button">
+            <a href="/add"><p>Add Memeber</p></a>
+            <a href="/holiday"><p>Add Holiday</p></a>
+            </div>
+            <i class="ri-menu-4-fill"></i>
+        </div>
+        <div id="time">
+
+            <div id="heading">
+                <p>Name</p>
+                <p>Entry</p>
+                <p>Exit</p>
+                <p>Date</p>
+                <p>Remark</p>
+            </div>
+            <div id="people">
+            {% for item in data%}
+                <div id="names">
+                    <p>data</p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                </div>
+            {% endfor %}    
+                
+            
+            
+        </div>
+    </div>
+        <div id="footer">
+            <p>Developed by Anurag Sarkar</p>
+            <p id="data">Older Data</p>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js" integrity="sha512-iWPnCISAd/J+ZacwV2mbNLCaPGRrRo5OS81lKTVPtRg1wGTC20Cfmp5Us5RcbLv42QLdbAWl0MI57yox5VecQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../static/js/attendence.js"></script>
+</body>
+</html>
+
