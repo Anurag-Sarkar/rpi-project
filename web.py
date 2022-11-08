@@ -354,11 +354,13 @@ def allholiday():
 
 @socket.on("finger")
 def message():
-    for i in range(1,128):
+    id = 0
+    for i in range(1,50):
         finger.read_templates()
-        print(finger.templates)
-        
-    if enroll_finger(1):
+        if i in finger.templates:
+            id = i
+
+    if enroll_finger(id):
         n = request.form["name"]
         p = request.form["password"]
         print(n)
@@ -370,7 +372,7 @@ def message():
                 "defaultedDays":0,
                 "holidays":0,
                 "dates":[],
-                "fingerprint":0,
+                "fingerprint":id,
                 "clg":0,
                 "password": password
             }
