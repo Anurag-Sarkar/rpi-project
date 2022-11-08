@@ -107,7 +107,7 @@ def enroll_finger(location):
     for fingerimg in range(1, 3):
         if fingerimg == 1:
             print("Place finger on sensor...", end="")
-            SocketIO.emit("addfinger")
+            SocketIO.emit("addfinger",{"data":24})
         else:
             print("Place same finger again...", end="")
             SocketIO.send("againfinger") 
