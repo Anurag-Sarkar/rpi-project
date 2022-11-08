@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request,redirect,url_for,session
-from flask_socketio import SocketIO,send
+from flask_socketio import SocketIO,send,emit
 from pymongo import MongoClient,ReturnDocument
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -107,10 +107,10 @@ def enroll_finger(location):
     for fingerimg in range(1, 3):
         if fingerimg == 1:
             print("Place finger on sensor...", end="")
-            socket.emit("addfinger")
+            send("addfinger")
         else:
             print("Place same finger again...", end="")
-            socket.emit("againfinger") 
+            send("againfinger") 
 
 
         while True:
@@ -136,7 +136,7 @@ def enroll_finger(location):
                 print("Image too messy")
             elif i == adafruit_fingerprint.FEATUREFAIL:
                 print("Could not identify features")
-                socket.emit("clean")
+                send("clean")
             elif i == adafruit_fingerprint.INVALIDIMAGE:
                 print("Image invalid")
             else:
@@ -262,7 +262,7 @@ def loginuser():
         
         else:
             print("hellloo")
-            socket.emit("wrong")
+            send("wrong")
             return redirect("/")
     else:
         return redirect("/")
@@ -356,8 +356,8 @@ def allholiday():
 @socket.on("finger")
 def message():
     if enroll_finger(1):
-        socket.emit("success")
+        send("success")
     else:
-        socket.emit("fail")
+        send("fail")
 
 socket.run(app,host="192.168.29.249",port="80",debug=True)
