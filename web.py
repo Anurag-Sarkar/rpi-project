@@ -107,10 +107,8 @@ def enroll_finger(location):
     for fingerimg in range(1, 3):
         if fingerimg == 1:
             print("Place finger on sensor...", end="")
-            socket.send("addfinger")
         else:
             print("Place same finger again...", end="")
-            socket.send("againfinger") 
 
 
         while True:
@@ -136,7 +134,6 @@ def enroll_finger(location):
                 print("Image too messy")
             elif i == adafruit_fingerprint.FEATUREFAIL:
                 print("Could not identify features")
-                SocketIO.emit("clean")
             elif i == adafruit_fingerprint.INVALIDIMAGE:
                 print("Image invalid")
             else:
