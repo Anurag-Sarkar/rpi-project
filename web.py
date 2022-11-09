@@ -20,6 +20,8 @@ finger = adafruit_fingerprint.Adafruit_Fingerprint(uart)
 identitiy = 0
 global identity
 #---------------LIBRAREIS--------------------
+def print_f():
+    print("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
 def enroll_finger(location):
     """Take a 2 finger images and template it, then store in 'location'"""
     for fingerimg in range(1, 3):
@@ -108,22 +110,16 @@ attendence = db["attendence"]
 @app.route("/attendence")
 def index():
 
+GPIO.add_event_detect(2, GPIO.BOTH, callback=, bouncetime=300)
+
     if "user" in session:
-        while True:
-            if GPIO.input(2) == False:
-                GPIO.output(24, True)
-                print('Button Pressed...')
-                time.sleep(0.2)
-            else:
-                print('Button lol...')
-                GPIO.output(24, False)
-            x = datetime.datetime.now()
-            date = x.strftime("%d-%m-%Y")
-            user = attendence.find({"date":date})
-            print(user)
-            for i in user:
-                print(i)
-            return render_template("attendence.html",data=user)
+        x = datetime.datetime.now()
+        date = x.strftime("%d-%m-%Y")
+        user = attendence.find({"date":date})
+        print(user)
+        for i in user:
+            print(i)
+        return render_template("attendence.html",data=user)
     else:
         return redirect("/")
 
