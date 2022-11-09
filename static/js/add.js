@@ -4,6 +4,9 @@ console.log("hello")
 document.querySelector("#finger").addEventListener("click",(data)=>{
     socket.emit("finger",{"h":"hello","a":"sex"})
 })
-socket.on('hello', function() {
-    console.log("hello from backend")
+socket.on('pass', function() {
+    console.log("added finger")
+});
+socket.on('pass', function() {
+    console.log("not finger")
 });
