@@ -16,8 +16,8 @@ socket.on('fail', function() {
     console.log("not finger")
 });
 socket.on('again', function() {
-    document.querySelector("#finger").textContent = "Place Finger Again"
-    document.querySelector("#finger").style.backgroundColor = "rgb(0, 255, 255)"
+    document.querySelector("#finger").textContent = "Place Again"
+    document.querySelector("#finger").style.backgroundColor = "rgb(255, 255, 0)"
     document.querySelector("#finger").style.color = "black"
     console.log("not finger")
 });
