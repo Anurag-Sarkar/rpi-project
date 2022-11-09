@@ -206,7 +206,7 @@ def addmember():
             "password": password
         }
         user.insert_one(data)
-        id = 0
+        identity = 0
         session["user"] = data["name"]
         return redirect("/attendence")
     else:
