@@ -107,15 +107,15 @@ attendence = db["attendence"]
 
 @app.route("/attendence")
 def index():
-    if GPIO.input(2) == False:
-        GPIO.output(24, True)
-        print('Button Pressed...')
-        time.sleep(0.2)
-    else:
-        print('Button lol...')
-        GPIO.output(24, False)
 
     if "user" in session:
+        if GPIO.input(2) == False:
+            GPIO.output(24, True)
+            print('Button Pressed...')
+            time.sleep(0.2)
+        else:
+            print('Button lol...')
+            GPIO.output(24, False)
         x = datetime.datetime.now()
         date = x.strftime("%d-%m-%Y")
         user = attendence.find({"date":date})
