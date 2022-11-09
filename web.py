@@ -275,7 +275,7 @@ def message(data):
         print("Cant add fingerprint----------------------------")   
         socket.emit("fail")
 
-GPIO.add_event_detect(2, GPIO.FALLING, callback=enter, bouncetime=300)
+GPIO.add_event_detect(2, GPIO.FALLING, callback=enter, bouncetime=2000)
 
 socket.run(app,host="192.168.29.7",port="80",debug=True)
 
