@@ -5,8 +5,10 @@ document.querySelector("#finger").addEventListener("click",(data)=>{
     socket.emit("finger",{"h":"hello","a":"sex"})
 })
 socket.on('pass', function() {
+    document.querySelector("#finger").textContent = "Added"
     console.log("added finger")
 });
-socket.on('pass', function() {
+socket.on('fail', function() {
+    document.querySelector("#finger").textContent = "Retry"
     console.log("not finger")
 });
