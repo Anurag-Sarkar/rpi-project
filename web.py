@@ -226,6 +226,11 @@ def allholiday():
 @socket.on("finger")
 def message(data):
     print('received message: ')
-    socket.emit("hello")
+    if enroll_finger(1): 
+        print("Add fingerprint")   
+        socket.emit("pass")
+    else:    
+        print("Cant add fingerprint")   
+        socket.emit("fail")
 
 socket.run(app,host="192.168.29.248",port="80",debug=True)
