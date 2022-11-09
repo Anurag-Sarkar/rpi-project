@@ -109,20 +109,21 @@ attendence = db["attendence"]
 def index():
 
     if "user" in session:
-        if GPIO.input(2) == False:
-            GPIO.output(24, True)
-            print('Button Pressed...')
-            time.sleep(0.2)
-        else:
-            print('Button lol...')
-            GPIO.output(24, False)
-        x = datetime.datetime.now()
-        date = x.strftime("%d-%m-%Y")
-        user = attendence.find({"date":date})
-        print(user)
-        for i in user:
-            print(i)
-        return render_template("attendence.html",data=user)
+        while True:
+            if GPIO.input(2) == False:
+                GPIO.output(24, True)
+                print('Button Pressed...')
+                time.sleep(0.2)
+            else:
+                print('Button lol...')
+                GPIO.output(24, False)
+            x = datetime.datetime.now()
+            date = x.strftime("%d-%m-%Y")
+            user = attendence.find({"date":date})
+            print(user)
+            for i in user:
+                print(i)
+            return render_template("attendence.html",data=user)
     else:
         return redirect("/")
 
