@@ -6,13 +6,18 @@ document.querySelector("#finger").addEventListener("click",(data)=>{
 })
 socket.on('pass', function() {
     document.querySelector("#finger").textContent = "Added"
-    console.log("added finger")
+    document.querySelector("#finger").style.backgroundColor = "rgb(0, 255, 55)"
+    document.querySelector("#finger").style.color = "black"
+    console.log("again finger")
 });
 socket.on('fail', function() {
     document.querySelector("#finger").textContent = "Retry"
+    document.querySelector("#finger").style.backgroundColor = "rgb(255, 0, 0)"
     console.log("not finger")
 });
 socket.on('again', function() {
     document.querySelector("#finger").textContent = "Place Finger Again"
+    document.querySelector("#finger").style.backgroundColor = "rgb(0, 255, 255)"
+    document.querySelector("#finger").style.color = "black"
     console.log("not finger")
 });
