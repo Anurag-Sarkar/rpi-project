@@ -229,4 +229,4 @@ def message(data):
     enroll_finger(1)
     socket.emit("hello")
 
-socket.run(app,host="0.0.0.0",port="80",debug=True)
+socket.run(app,host="192.168.29.248",port="80",debug=True)
