@@ -253,7 +253,7 @@ def message(data):
         print("Cant add fingerprint----------------------------")   
         socket.emit("fail")
 
-socket.run(app,host="192.168.29.248",port="80",debug=True)
+socket.run(app,host="192.168.29.7",port="80",debug=True)
 
 
 
