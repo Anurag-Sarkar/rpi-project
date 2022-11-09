@@ -6,10 +6,14 @@ import datetime
 import adafruit_fingerprint
 import time
 import serial
-from gpiozero import Button
+import RPi.GPIO as GPIO
+import time
 
-entry = Button(2)
-exit = Button(3)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(2, GPIO.IN, pull_up_down=GPIO.PUD_UP)#Button to GPIO23
+GPIO.setup(24, GPIO.OUT)  #LED to GPIO24
+
+
 
 uart = serial.Serial("/dev/ttyUSB0", baudrate=57600, timeout=1)
 finger = adafruit_fingerprint.Adafruit_Fingerprint(uart)
@@ -240,8 +244,18 @@ def delete():
         finger.delete_model(i)
     return redirect("/add")
      
-if entry.is_pressed:
-    print("entry")
+try:
+    while True:
+         button_state = GPIO.input(23)
+         if button_state == False:
+             GPIO.output(24, True)
+             print('Button Pressed...')
+             time.sleep(0.2)
+         else:
+             print('Button lol...')
+             GPIO.output(24, False)
+except:
+    GPIO.cleanup()
 
 @socket.on("finger")
 def message(data):
