@@ -225,7 +225,7 @@ def allholiday():
     print(session["user"])
     return redirect("/holiday")
 
-@app.route("/deleteall",methods=["POST"])
+@app.route("/deleteall")
 def delete():
     finger.read_templates()
     print(finger.templates)
