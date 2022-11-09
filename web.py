@@ -172,15 +172,13 @@ def logout():
 
 @app.route("/entry",methods=["POST"])
 def enter(pin):
-    global state
-    if state == 0:
-        print("called inside")
-        state = 1
-        print(get_fingerprint())
-        x = datetime.datetime.now()
-        date = x.strftime("%d-%m-%Y")
-        time = x.strftime("%H:%M")
-        state = 0
+    time.sleep(0.5)
+    print("called inside")
+    state = 1
+    print(get_fingerprint())
+    x = datetime.datetime.now()
+    date = x.strftime("%d-%m-%Y")
+    time = x.strftime("%H:%M")
         
     return redirect('/attendence')
 
@@ -282,7 +280,7 @@ def message(data):
         print("Cant add fingerprint----------------------------")   
         socket.emit("fail")
 
-GPIO.add_event_detect(2, GPIO.FALLING, callback=enter, bouncetime=2000)
+GPIO.add_event_detect(2, GPIO.FALLING, callback=enter, bouncetime=10000)
 
 socket.run(app,host="192.168.29.7",port="80",debug=True)
 
