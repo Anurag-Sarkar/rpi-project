@@ -6,6 +6,10 @@ import datetime
 import adafruit_fingerprint
 import time
 import serial
+from gpiozero import Button
+
+entry = Button(2)
+exit = Button(3)
 
 uart = serial.Serial("/dev/ttyUSB0", baudrate=57600, timeout=1)
 finger = adafruit_fingerprint.Adafruit_Fingerprint(uart)
@@ -236,6 +240,9 @@ def delete():
         finger.delete_model(i)
     return redirect("/add")
      
+if entry.is_pressed:
+    print("entry")
+
 @socket.on("finger")
 def message(data):
     global identity
