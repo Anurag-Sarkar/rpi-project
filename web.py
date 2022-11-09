@@ -107,7 +107,14 @@ attendence = db["attendence"]
 
 @app.route("/attendence")
 def index():
-    
+    if GPIO.input(2) == False:
+        GPIO.output(24, True)
+        print('Button Pressed...')
+        time.sleep(0.2)
+    else:
+        print('Button lol...')
+        GPIO.output(24, False)
+
     if "user" in session:
         x = datetime.datetime.now()
         date = x.strftime("%d-%m-%Y")
@@ -244,18 +251,9 @@ def delete():
         finger.delete_model(i)
     return redirect("/add")
      
-try:
-    while True:
-         button_state = GPIO.input(23)
-         if button_state == False:
-             GPIO.output(24, True)
-             print('Button Pressed...')
-             time.sleep(0.2)
-         else:
-             print('Button lol...')
-             GPIO.output(24, False)
-except:
-    GPIO.cleanup()
+
+         
+
 
 @socket.on("finger")
 def message(data):
