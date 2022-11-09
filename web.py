@@ -10,6 +10,7 @@ import serial
 uart = serial.Serial("/dev/ttyUSB0", baudrate=57600, timeout=1)
 finger = adafruit_fingerprint.Adafruit_Fingerprint(uart)
 identitiy = 0
+global identity
 #---------------LIBRAREIS--------------------
 def enroll_finger(location):
     """Take a 2 finger images and template it, then store in 'location'"""
@@ -188,6 +189,7 @@ def holiday():
 @app.route("/addmember",methods=["POST"])
 def addmember():
     # if "user" in session:
+    global identity
     print(identity)
     n = request.form["name"]
     p = request.form["password"]
