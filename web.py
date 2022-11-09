@@ -230,6 +230,7 @@ def delete():
     finger.read_templates()
     print(finger.templates)
     for i in finger.templates:
+        print(i)
         finger.delete_model(i)
     return redirect("/add")
      
