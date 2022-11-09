@@ -188,6 +188,7 @@ def holiday():
 @app.route("/addmember",methods=["POST"])
 def addmember():
     # if "user" in session:
+    print(identity)
     n = request.form["name"]
     p = request.form["password"]
     print(id)
@@ -200,7 +201,7 @@ def addmember():
             "defaultedDays":0,
             "holidays":0,
             "dates":[],
-            "fingerprint":id,
+            "fingerprint":identity,
             "clg":0,
             "password": password
         }
