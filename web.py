@@ -18,6 +18,7 @@ def enroll_finger(location):
             print("Place finger on sensor...", end="")
         else:
             print("Place same finger again...", end="")
+            socket.emit("again")
 
         while True:
             i = finger.get_image()

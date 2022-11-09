@@ -12,3 +12,7 @@ socket.on('fail', function() {
     document.querySelector("#finger").textContent = "Retry"
     console.log("not finger")
 });
+socket.on('again', function() {
+    document.querySelector("#finger").textContent = "Place Finger Again"
+    console.log("not finger")
+});
