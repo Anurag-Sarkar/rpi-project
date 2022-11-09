@@ -108,7 +108,7 @@ db = client["attendence"]
 user = db["user"]
 attendence = db["attendence"]
 
-GPIO.add_event_detect(2, GPIO.BOTH, callback=print_f, bouncetime=300)
+GPIO.add_event_detect(2, GPIO.RISING, callback=print_f, bouncetime=300)
 @app.route("/attendence")
 def index():
 
