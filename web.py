@@ -92,6 +92,20 @@ def enroll_finger(location):
         return False
 
     return True
+
+def get_fingerprint():
+    """Get a finger print image, template it, and see if it matches!"""
+    print("Waiting for image...")
+    while finger.get_image() != adafruit_fingerprint.OK:
+        pass
+    print("Templating...")
+    if finger.image_2_tz(1) != adafruit_fingerprint.OK:
+        return False
+    print("Searching...")
+    if finger.finger_search() != adafruit_fingerprint.OK:
+        return False
+    return True
+
 #---------------LIBRAREIS--------------------
 
 
@@ -108,7 +122,6 @@ db = client["attendence"]
 user = db["user"]
 attendence = db["attendence"]
 
-GPIO.add_event_detect(2, GPIO.FALLING, callback=print_f, bouncetime=300)
 @app.route("/attendence")
 def index():
 
@@ -157,23 +170,12 @@ def logout():
 
 @app.route("/entry",methods=["POST"])
 def enter():
-    n = request.form["name"]
+    print(get_fingerprint())
     x = datetime.datetime.now()
     date = x.strftime("%d-%m-%Y")
     time = x.strftime("%H:%M")
-    check = attendence.find_one({"name":n,"date":date})
-    print(check)
-    presense = user.find_one({"name":n})
-    print(presense)
-    if not check and presense:
-        data = {
-            "name":n,
-            "entry": time,
-            "exit" : "-",
-            "date" : date
-            }
-        attendence.insert_one(data)
-    return redirect('/')
+    
+    return redirect('/attendence')
 
 @app.route("/exit",methods=["POST"])
 def exit():
@@ -272,6 +274,8 @@ def message(data):
     else:    
         print("Cant add fingerprint----------------------------")   
         socket.emit("fail")
+
+GPIO.add_event_detect(2, GPIO.FALLING, callback=enter, bouncetime=300)
 
 socket.run(app,host="192.168.29.7",port="80",debug=True)
 
