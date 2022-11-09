@@ -172,7 +172,7 @@ def logout():
 @app.route("/entry",methods=["POST"])
 def enter(pin):
     print("called inside")
-    time.sleep(1)
+    print(time.time())
     # state = 1
     # print(get_fingerprint())
     # x = datetime.datetime.now()
