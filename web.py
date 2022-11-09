@@ -2,118 +2,22 @@ from flask import Flask,render_template,request,redirect,url_for,session
 from flask_socketio import SocketIO,send,emit
 from pymongo import MongoClient,ReturnDocument
 from werkzeug.security import generate_password_hash, check_password_hash
-
 import datetime
-global id
-id = 0
-# lcd_rs        = 22  # Note this might need to be changed to 21 for older revision Pi's.
-# lcd_en        = 17
-# lcd_d4        = 25
-# lcd_d5        = 24
-# lcd_d6        = 23
-# lcd_d7        = 18
-# lcd_backlight = 4
-
-# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
-# SPDX-License-Identifier: MIT
-
-import time
-import board
-# import busio
-from digitalio import DigitalInOut, Direction
 import adafruit_fingerprint
-
-led = DigitalInOut(board.D13)
-led.direction = Direction.OUTPUT
-
-# uart = busio.UART(board.TX, board.RX, baudrate=57600)
-
-# # If using with a computer such as Linux/RaspberryPi, Mac, Windows with USB/serial converter:
-# import serial
-# uart = serial.Serial("/dev/ttyUSB0", baudrate=57600, timeout=1)
-
-# # If using with Linux/Raspberry Pi and hardware UART:
+import time
 import serial
-uart = serial.Serial("/dev/ttyUSB0", baudrate=57600, timeout=1)
 
+uart = serial.Serial("/dev/ttyUSB0", baudrate=57600, timeout=1)
 finger = adafruit_fingerprint.Adafruit_Fingerprint(uart)
 
-# ##################################################
-
-
-# def get_fingerprint():
-#     """Get a finger print image, template it, and see if it matches!"""
-#     print("Waiting for image...")
-#     while finger.get_image() != adafruit_fingerprint.OK:
-#         pass
-#     print("Templating...")
-#     if finger.image_2_tz(1) != adafruit_fingerprint.OK:
-#         return False
-#     print("Searching...")
-#     if finger.finger_search() != adafruit_fingerprint.OK:
-#         return False
-#     return True
-
-
-# # pylint: disable=too-many-branches
-# def get_fingerprint_detail():
-#     """Get a finger print image, template it, and see if it matches!
-#     This time, print out each error instead of just returning on failure"""
-#     print("Getting image...", end="")
-#     i = finger.get_image()
-#     if i == adafruit_fingerprint.OK:
-#         print("Image taken")
-#     else:
-#         if i == adafruit_fingerprint.NOFINGER:
-#             print("No finger detected")
-#         elif i == adafruit_fingerprint.IMAGEFAIL:
-#             print("Imaging error")
-#         else:
-#             print("Other error")
-#         return False
-
-#     print("Templating...", end="")
-#     i = finger.image_2_tz(1)
-#     if i == adafruit_fingerprint.OK:
-#         print("Templated")
-#     else:
-#         if i == adafruit_fingerprint.IMAGEMESS:
-#             print("Image too messy")
-#         elif i == adafruit_fingerprint.FEATUREFAIL:
-#             print("Could not identify features")
-#         elif i == adafruit_fingerprint.INVALIDIMAGE:
-#             print("Image invalid")
-#         else:
-#             print("Other error")
-#         return False
-
-#     print("Searching...", end="")
-#     i = finger.finger_fast_search()
-#     # pylint: disable=no-else-return
-#     # This block needs to be refactored when it can be tested.
-#     if i == adafruit_fingerprint.OK:
-#         print("Found fingerprint!")
-#         return True
-#     else:
-#         if i == adafruit_fingerprint.NOTFOUND:
-#             print("No match found")
-#         else:
-#             print("Other error")
-#         return False
-
-
-# # pylint: disable=too-many-statements
+#---------------LIBRAREIS--------------------
 def enroll_finger(location):
-    if finger.read_templates() != adafruit_fingerprint.OK:
-          raise RuntimeError("Failed to read templates")
-    print("Fingerprint templates:", finger.templates)
     """Take a 2 finger images and template it, then store in 'location'"""
     for fingerimg in range(1, 3):
         if fingerimg == 1:
             print("Place finger on sensor...", end="")
         else:
             print("Place same finger again...", end="")
-
 
         while True:
             i = finger.get_image()
@@ -175,45 +79,9 @@ def enroll_finger(location):
         return False
 
     return True
+#---------------LIBRAREIS--------------------
 
 
-# ##################################################
-
-
-# def get_num():
-#     """Use input() to get a valid number from 1 to 127. Retry till success!"""
-#     i = 0
-#     while (i > 127) or (i < 1):
-#         try:
-#             i = int(input("Enter ID # from 1-127: "))
-#         except ValueError:
-#             pass
-#     return i
-
-
-# while True:
-#     print("----------------")
-#     if finger.read_templates() != adafruit_fingerprint.OK:
-#         raise RuntimeError("Failed to read templates")
-#     print("Fingerprint templates:", finger.templates)
-#     print("e) enroll print")
-#     print("f) find print")
-#     print("d) delete print")
-#     print("----------------")
-#     c = input("> ")
-
-#     if c == "e":
-#         enroll_finger(get_num())
-#     if c == "f":
-#         if get_fingerprint():
-#             print("Detected #", finger.finger_id, "with confidence", finger.confidence)
-#         else:
-#             print("Finger not found")
-#     if c == "d":
-#         if finger.delete_model(get_num()) == adafruit_fingerprint.OK:
-#             print("Deleted!")
-#         else:
-#             print("Failed to delete")
 
 app = Flask(__name__)
 app.config["SECRTE"] = "secret"
@@ -356,17 +224,9 @@ def allholiday():
     return redirect("/holiday")
 
 @socket.on("finger")
-def message():
-    id = 0
-    for i in range(1,50):
-        finger.read_templates()
-        if i in finger.templates:
-            id = i
+def message(data):
+    print('received message: ')
+    enroll_finger(1)
+    socket.emit("hello")
 
-    if enroll_finger(id):
-        id = i
-    else:
-        print("not Added fingerprint")
-        emit("fail",broadcast=True)
-
-socket.run(app,host="192.168.29.249",port="80",debug=True)
+socket.run(app,host="0.0.0.0",port="80",debug=True)
