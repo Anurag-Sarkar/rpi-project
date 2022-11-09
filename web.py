@@ -94,6 +94,8 @@ def enroll_finger(location):
     return True
 
 def get_fingerprint():
+    print("Called")
+    print("Called")
     """Get a finger print image, template it, and see if it matches!"""
     print("Waiting for image...")
     while finger.get_image() != adafruit_fingerprint.OK:
@@ -172,6 +174,7 @@ def logout():
 def enter(pin):
     global state
     if state == 0:
+        print("called inside")
         state = 1
         print(get_fingerprint())
         x = datetime.datetime.now()
