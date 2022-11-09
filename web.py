@@ -20,7 +20,8 @@ finger = adafruit_fingerprint.Adafruit_Fingerprint(uart)
 identitiy = 0
 global identity
 #---------------LIBRAREIS--------------------
-def print_f():
+def print_f(pin):
+    print(pin)
     print("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
 def enroll_finger(location):
     """Take a 2 finger images and template it, then store in 'location'"""
