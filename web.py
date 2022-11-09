@@ -169,7 +169,7 @@ def logout():
     return redirect("/")
 
 @app.route("/entry",methods=["POST"])
-def enter():
+def enter(pin):
     print(get_fingerprint())
     x = datetime.datetime.now()
     date = x.strftime("%d-%m-%Y")
