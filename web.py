@@ -173,12 +173,24 @@ def logout():
 def enter(pin):
     time.sleep(0.5)
     print("called inside")
-    state = 1
-    print(get_fingerprint())
-    x = datetime.datetime.now()
-    date = x.strftime("%d-%m-%Y")
-    times = x.strftime("%H:%M")
-        
+    # state = 1
+    # print(get_fingerprint())
+    # x = datetime.datetime.now()
+    # date = x.strftime("%d-%m-%Y")
+    # times = x.strftime("%H:%M")
+    # print("Called")
+    # print("Called")
+    # """Get a finger print image, template it, and see if it matches!"""
+    # print("Waiting for image...")
+    # while finger.get_image() != adafruit_fingerprint.OK:
+    #     pass
+    # print("Templating...")
+    # if finger.image_2_tz(1) != adafruit_fingerprint.OK:
+    #     return False
+    # print("Searching...")
+    # if finger.finger_search() != adafruit_fingerprint.OK:
+    #     return False
+    # return True    
     return redirect('/attendence')
 
 @app.route("/exit",methods=["POST"])
