@@ -107,10 +107,10 @@ db = client["attendence"]
 user = db["user"]
 attendence = db["attendence"]
 
+GPIO.add_event_detect(2, GPIO.BOTH, callback=print_f(), bouncetime=300)
 @app.route("/attendence")
 def index():
 
-    GPIO.add_event_detect(2, GPIO.BOTH, callback=print_f, bouncetime=300)
 
     if "user" in session:
         x = datetime.datetime.now()
