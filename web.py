@@ -7,7 +7,6 @@ import adafruit_fingerprint
 import time
 import serial
 import RPi.GPIO as GPIO
-import time
 state = 0
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(2, GPIO.IN, pull_up_down=GPIO.PUD_UP)#Button to GPIO23
@@ -178,7 +177,7 @@ def enter(pin):
     print(get_fingerprint())
     x = datetime.datetime.now()
     date = x.strftime("%d-%m-%Y")
-    time = x.strftime("%H:%M")
+    times = x.strftime("%H:%M")
         
     return redirect('/attendence')
 
