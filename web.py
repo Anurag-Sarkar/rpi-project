@@ -7,6 +7,7 @@ import adafruit_fingerprint
 import time
 import serial
 import RPi.GPIO as GPIO
+print(GPIO.VERSION)
 state = 0
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(2, GPIO.IN, pull_up_down=GPIO.PUD_UP)#Button to GPIO23
