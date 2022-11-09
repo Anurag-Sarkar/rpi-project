@@ -237,7 +237,7 @@ def message(data):
             break
     print('received message: ')
     print((identity*69)+69)
-    if enroll_finger(1): 
+    if enroll_finger(i): 
         print("Add fingerprint------------------------------")   
         socket.emit("pass")
     else:    

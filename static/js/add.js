@@ -18,6 +18,6 @@ socket.on('fail', function() {
 socket.on('again', function() {
     document.querySelector("#finger").textContent = "Place Again"
     document.querySelector("#finger").style.backgroundColor = "rgb(255, 255, 0)"
-    document.querySelector("#finger").style.color = "black"
+    document.querySelector("#finger").style.color = "white"
     console.log("not finger")
 });
