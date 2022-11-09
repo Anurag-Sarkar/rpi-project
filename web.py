@@ -244,11 +244,11 @@ def message(data):
     print(finger.templates)
     for i in list:
         if not i in finger.templates:
-            identity = i
+            identity = (i*169691)+169691
             print(i)
             break
     print('received message: ')
-    print((identity*69)+69)
+    print(identity)
     if enroll_finger(i): 
         print("Add fingerprint------------------------------")   
         socket.emit("pass")
