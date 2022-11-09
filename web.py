@@ -226,7 +226,6 @@ def allholiday():
 @socket.on("finger")
 def message(data):
     print('received message: ')
-    enroll_finger(1)
     socket.emit("hello")
 
 socket.run(app,host="192.168.29.248",port="80",debug=True)
