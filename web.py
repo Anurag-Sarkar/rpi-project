@@ -8,7 +8,7 @@ import time
 import serial
 import RPi.GPIO as GPIO
 import time
-
+state = 0
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(2, GPIO.IN, pull_up_down=GPIO.PUD_UP)#Button to GPIO23
 GPIO.setup(24, GPIO.OUT)  #LED to GPIO24
@@ -170,11 +170,15 @@ def logout():
 
 @app.route("/entry",methods=["POST"])
 def enter(pin):
-    print(get_fingerprint())
-    x = datetime.datetime.now()
-    date = x.strftime("%d-%m-%Y")
-    time = x.strftime("%H:%M")
-    
+    global state
+    if state == 0:
+        state = 1
+        print(get_fingerprint())
+        x = datetime.datetime.now()
+        date = x.strftime("%d-%m-%Y")
+        time = x.strftime("%H:%M")
+        state = 0
+        
     return redirect('/attendence')
 
 @app.route("/exit",methods=["POST"])
