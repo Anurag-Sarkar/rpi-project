@@ -1,7 +1,6 @@
 var socket = io()
 socket.connect("http://192.168.29.249/add")
 console.log("hello")
-document.querySelector("#sbmt").textContent = "submt"
 document.querySelector("#finger").addEventListener("click",(data)=>{
     socket.emit("finger",{"h":"hello","a":"sex"})
 })
@@ -9,8 +8,8 @@ socket.on('pass', function() {
     document.querySelector("#finger").textContent = "Added"
     document.querySelector("#finger").style.backgroundColor = "rgb(0, 255, 55)"
     document.querySelector("#finger").style.color = "black"
-    document.querySelector("#sbmt").backgroundColor = "rgb(0, 128, 255)"
-    document.querySelector("#sbmt").pointerEvent = "all"
+    document.querySelector("#sbmt").style.backgroundColor = "rgb(0, 128, 255)"
+    document.querySelector("#sbmt").style.pointerEvent = "all"
 
     console.log("again finger")
 });
