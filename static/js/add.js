@@ -9,7 +9,7 @@ socket.on('pass', function() {
     document.querySelector("#finger").style.backgroundColor = "rgb(0, 255, 55)"
     document.querySelector("#finger").style.color = "black"
     document.querySelector("#sbmt").style.backgroundColor = "rgb(0, 128, 255)"
-    document.querySelector("#sbmt").style.pointerEvent = "all"
+    document.querySelector("#sbmt").style.pointerEvents = "all"
 
     console.log("again finger")
 });
