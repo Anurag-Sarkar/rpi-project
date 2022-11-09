@@ -225,6 +225,14 @@ def allholiday():
     print(session["user"])
     return redirect("/holiday")
 
+@app.route("/deleteall",methods=["POST"])
+def delete():
+    finger.read_templates()
+    print(finger.templates)
+    for i in finger.templates:
+        finger.delete_model(i)
+    return redirect("/add")
+     
 @socket.on("finger")
 def message(data):
     global identity
