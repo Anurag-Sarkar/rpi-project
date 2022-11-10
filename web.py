@@ -19,14 +19,15 @@ finger = adafruit_fingerprint.Adafruit_Fingerprint(uart)
 identitiy = 0
 global identity
 #---------------LIBRAREIS--------------------
+list = []
 def print_f(pin):
-    l = []
-    l.extend([2])
-    print(l)
-    print(len(l))
-    if len(l) > 8:
+    global list
+    list.append(2)
+    print(list)
+    print(len(list))
+    if len(list) > 8:
         print("function called")
-        l = []
+        list = []
     
 def enroll_finger(location):
     """Take a 2 finger images and template it, then store in 'location'"""
