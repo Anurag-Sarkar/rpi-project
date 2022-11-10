@@ -207,11 +207,12 @@ def exit():
         x = datetime.datetime.now()
         time = x.strftime("%H:%M")    
         date = x.strftime("%d-%m-%Y")
-        check = attendence.find_one({"name":n},{"date":date},{"exit":"-"})
-        if check:
-            attendence.find_one_and_update({"name":n},{ '$set': { "exit" : time}},return_document=ReturnDocument.AFTER)
-        else:
-            print("user exited")
+        check = attendence.find_one({"name":n})
+        print(check)
+        # if check and :
+        #     attendence.find_one_and_update({"name":n},{ '$set': { "exit" : time}},return_document=ReturnDocument.AFTER)
+        # else:
+        #     print("user exited")
     else:
         print("FUCK YOU")
     return redirect('/')
