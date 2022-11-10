@@ -134,17 +134,13 @@ attendence = db["attendence"]
 def index():
 
 
-    if "user" in session:
-        x = datetime.datetime.now()
-        date = x.strftime("%d-%m-%Y")
-        user = attendence.find({"date":date})
-        print(user)
-        for i in user:
-            print(i)
-        return render_template("attendence.html",data=user)
-    else:
-        return redirect("/")
-
+    x = datetime.datetime.now()
+    date = x.strftime("%d-%m-%Y")
+    user = attendence.find({"date":date})
+    print(user)
+    for i in user:
+        print(i)
+    return render_template("attendence.html",data=user)
 
 @app.route("/",methods=["GET"])
 def login():
@@ -183,9 +179,17 @@ def enter():
         iden = (int(finger.finger_id)*169691)+169691
         cu = user.find_one({"fingerprint": iden})
         print(cu)
-        # data = {
-        #     "name":cu["name"]
-        # }
+        x = datetime.datetime.now()
+        date = x.strftime("%d-%m-%Y")
+        times = x.strftime("%H:%M")
+        data = {
+            "name":cu["name"],
+            "date":date,
+            "time":times,
+            "exit":"-",
+            "remark":"normal"
+        }
+        attendence.insert_one(data)
     else:
         print("FUCK YOU")
     # state = 1
