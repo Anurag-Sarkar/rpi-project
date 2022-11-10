@@ -21,8 +21,7 @@ identitiy = 0
 global identity
 #---------------LIBRAREIS--------------------
 def print_f(pin):
-    print(pin)
-    print("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+    print("Button Pressed........................")
 def enroll_finger(location):
     """Take a 2 finger images and template it, then store in 'location'"""
     for fingerimg in range(1, 3):
@@ -292,7 +291,7 @@ def message(data):
         print("Cant add fingerprint----------------------------")   
         socket.emit("fail")
 
-# GPIO.add_event_detect(2, GPIO.FALLING, callback=enter, bouncetime=10)
+GPIO.add_event_detect(2, GPIO.FALLING, callback=print_f, bouncetime=10)
 
 socket.run(app,host="192.168.29.7",port="80",debug=True)
 
