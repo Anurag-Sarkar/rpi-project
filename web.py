@@ -138,6 +138,7 @@ def index():
     use = []
     for i in user:
         use.append(i)
+    print(use)
     return render_template("attendence.html",data=use)
 
 @app.route("/",methods=["GET"])
