@@ -180,6 +180,12 @@ def logout():
 def enter():
     if get_fingerprint():
         print("Detected #", finger.finger_id, "with confidence", finger.confidence)
+        finger = (int(finger.finger_id)*169691)+169691
+        cu = user.find_one({"fingerprint": finger})
+        print(cu)
+        # data = {
+        #     "name":cu["name"]
+        # }
     else:
         print("FUCK YOU")
     # state = 1
