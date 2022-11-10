@@ -22,6 +22,8 @@ global identity
 def print_f(pin):
     l = []
     l.append("hello")
+    print(l)
+    print(len(l))
     if len(l) > 8:
         print("function called")
         l = []
