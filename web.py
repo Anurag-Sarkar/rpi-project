@@ -135,9 +135,10 @@ def index():
     x = datetime.datetime.now()
     date = x.strftime("%d-%m-%Y")
     user = attendence.find({"date":date})
+    use = []
     for i in user:
-        print(i)
-    return render_template("attendence.html",data=user)
+        use.append(i)
+    return render_template("attendence.html",data=use)
 
 @app.route("/",methods=["GET"])
 def login():
