@@ -108,7 +108,7 @@ def get_fingerprint():
     return True
 
 #---------------LIBRAREIS--------------------
-GPIO.add_event_detect(26, GPIO.RISING, callback=print_f, bouncetime=2000)
+GPIO.add_event_detect(26, GPIO.RISING, callback=print_f, bouncetime=300)
 
 
 
