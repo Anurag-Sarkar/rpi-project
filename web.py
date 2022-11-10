@@ -20,6 +20,7 @@ identitiy = 0
 global identity
 #---------------LIBRAREIS--------------------
 def print_f(pin):
+    global state
     if state == 0:
         state = 1
         print("state == 0")
