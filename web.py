@@ -198,7 +198,7 @@ def enter():
         print("FUCK YOU")
     return redirect('/attendence')
 
-@app.route("/exit",methods=["POST"])
+@app.route("/exit",methods=["GET"])
 def exit():
     if get_fingerprint():
         iden = (int(finger.finger_id)*169691)+169691
