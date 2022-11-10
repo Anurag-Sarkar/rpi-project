@@ -23,10 +23,10 @@ def print_f(pin):
     global state
     if state == 0:
         state = 1
-        print("state == 0")
+        print(state,"0")
     else:
         state = 0
-        print("state == 1")
+        print(state,"1")
     
 def enroll_finger(location):
     """Take a 2 finger images and template it, then store in 'location'"""
