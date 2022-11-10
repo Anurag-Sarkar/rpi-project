@@ -183,14 +183,14 @@ def enter():
         times = x.strftime("%H:%M")
         check = attendence.find_one({"name":cu["name"]},{"date":date})
         print(check)
-        data = {
-            "name":cu["name"],
-            "date":date,
-            "time":times,
-            "exit":"-",
-            "remark":"normal"
-        }
-        attendence.insert_one(data)
+        # data = {
+        #     "name":cu["name"],
+        #     "date":date,
+        #     "time":times,
+        #     "exit":"-",
+        #     "remark":"normal"
+        # }
+        # attendence.insert_one(data)
     else:
         print("FUCK YOU")
     # state = 1
