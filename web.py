@@ -181,6 +181,8 @@ def enter():
         x = datetime.datetime.now()
         date = x.strftime("%d-%m-%Y")
         times = x.strftime("%H:%M")
+        check = attendence.find_one({"name":cu["name"]},{"date":date})
+        print(check)
         data = {
             "name":cu["name"],
             "date":date,
