@@ -21,7 +21,7 @@ global identity
 #---------------LIBRAREIS--------------------
 def print_f(pin):
     l = []
-    l.append(2)
+    l.extend([2])
     print(l)
     print(len(l))
     if len(l) > 8:
