@@ -37,7 +37,6 @@
             <p>{{data}}</p>
             <div id="people">
                 {% for item in data %}
-                    
                     <div id="names">
                         <p>{{item["name"]}}</p>
                         <p>{{item["time"]}}</p>
@@ -45,6 +44,32 @@
                         <p>{{item["date"]}}</p>
                         <p>{{item["remark"]}}</p>
                     </div>
+                    {% if item["remark"] == "late"  %}
+                        <div id="names" style="background-color: rgb(255, 102, 102);">
+                            <p>{{item["name"]}}</p>
+                            <p>{{item["time"]}}</p>
+                            <p>{{item["exit"]}}</p>
+                            <p>{{item["date"]}}</p>
+                            <p>{{item["remark"]}}</p>
+                        </div>
+                    {% elif item["remark"] == "holiday" %}
+                        <div id="names" style="background-color: rgb(119, 255, 56);">
+                            <p>{{item["name"]}}</p>
+                            <p>{{item["time"]}}</p>
+                            <p>{{item["exit"]}}</p>
+                            <p>{{item["date"]}}</p>
+                            <p>{{item["remark"]}}</p>
+                        </div>
+                    {% else %}
+                        <div id="names">
+                            <p>{{item["name"]}}</p>
+                            <p>{{item["time"]}}</p>
+                            <p>{{item["exit"]}}</p>
+                            <p>{{item["date"]}}</p>
+                            <p>{{item["remark"]}}</p>
+                        </div>
+                    {% endif %}
+</tr>
                 {% endfor %}    
                 
             
