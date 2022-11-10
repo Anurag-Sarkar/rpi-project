@@ -138,7 +138,8 @@ def index():
     date = x.strftime("%d-%m-%Y")
     user = attendence.find({"date":date})
     print(user,"data")
-    
+    for i in user:
+        print(user)
     return render_template("attendence.html",data=user)
 
 @app.route("/",methods=["GET"])
