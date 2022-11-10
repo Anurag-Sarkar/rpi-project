@@ -20,6 +20,7 @@ identitiy = 0
 global identity
 #---------------LIBRAREIS--------------------
 def print_f(pin):
+    time.sleep(0.5)
     print(time.time())
     print(time.time(),"----")
     
