@@ -98,20 +98,21 @@ def enroll_finger(location):
         return False
 
     return True
-
-def get_fingerprint():
-    """Get a finger print image, template it, and see if it matches!"""
-    print("Waiting for image...")
-    while finger.get_image() != adafruit_fingerprint.OK:
-        pass
-    print("Templating...")
-    if finger.image_2_tz(1) != adafruit_fingerprint.OK:
-        return False
-    print("Searching...")
-    if finger.finger_search() != adafruit_fingerprint.OK:
-        return False
-    return True
-
+try:
+    def get_fingerprint():
+        """Get a finger print image, template it, and see if it matches!"""
+        print("Waiting for image...")
+        while finger.get_image() != adafruit_fingerprint.OK:
+            pass
+        print("Templating...")
+        if finger.image_2_tz(1) != adafruit_fingerprint.OK:
+            return False
+        print("Searching...")
+        if finger.finger_search() != adafruit_fingerprint.OK:
+            return False
+        return True
+except Exception:
+    print(Exception)
 #---------------LIBRAREIS--------------------
 GPIO.add_event_detect(26, GPIO.FALLING, callback=print_f, bouncetime=300)
 
