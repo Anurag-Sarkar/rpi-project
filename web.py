@@ -187,8 +187,8 @@ def enter():
             today = now.replace(hour=10, minute=30, second=0, microsecond=0)
             if x > today:
                 print("Came late")
-                defaultedDays += cu["defaultedDays"]
-                user.find_one_and_update({"name":cu["name"]},{ '$set': { "defaultedDays" : defaultedDays}},return_document=ReturnDocument.AFTER)
+                # defaultedDays += cu["defaultedDays"]
+                # user.find_one_and_update({"name":cu["name"]},{ '$set': { "defaultedDays" : defaultedDays}},return_document=ReturnDocument.AFTER)
                 remark = "late"
             if not check:
                 print("found user")
