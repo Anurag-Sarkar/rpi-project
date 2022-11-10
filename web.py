@@ -94,8 +94,6 @@ def enroll_finger(location):
     return True
 
 def get_fingerprint():
-    print("Called")
-    print("Called")
     """Get a finger print image, template it, and see if it matches!"""
     print("Waiting for image...")
     while finger.get_image() != adafruit_fingerprint.OK:
@@ -172,7 +170,10 @@ def logout():
 
 @app.route("/entry",methods=["GET"])
 def enter():
-    get_fingerprint()
+    if get_fingerprint():
+        print("Detected #", finger.finger_id, "with confidence", finger.confidence)
+    else:
+        print("FUCK YOU")
     # state = 1
     # print(get_fingerprint())
     # x = datetime.datetime.now()
