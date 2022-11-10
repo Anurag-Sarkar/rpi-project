@@ -44,7 +44,7 @@
                         <p>{{item["date"]}}</p>
                         <p>{{item["remark"]}}</p>
                     </div>
-                {% elif %}
+                {% elif item["remark"] == 'holiday' %}
                     <div id="names" style="background-color: rgb(112, 255, 121);">
                         <p>{{item["name"]}}</p>
                         <p>{{item["time"]}}</p>
