@@ -10,8 +10,7 @@ import RPi.GPIO as GPIO
 print(GPIO.VERSION)
 state = 0
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(2, GPIO.IN, pull_up_down=GPIO.PUD_UP)#Button to GPIO23
-GPIO.setup(24, GPIO.OUT)  #LED to GPIO24
+GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_UP)#Button to GPIO23
 
 
 
@@ -292,8 +291,8 @@ def message(data):
         print("Cant add fingerprint----------------------------")   
         socket.emit("fail")
 
-GPIO.add_event_detect(26, GPIO.FALLING, callback=print_f, bouncetime=10)
-
+GPIO.add_event_detect(26, GPIO.FALLING, callback=print_f, bouncetime=1000)
+GPIO.cleanup()
 socket.run(app,host="192.168.29.7",port="80",debug=True)
 
 
