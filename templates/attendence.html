@@ -34,16 +34,17 @@
                 <p>Date</p>
                 <p>Remark</p>
             </div>
+            <p>{{data}}</p>
             <div id="people">
-            {% for item in data%}
-                <div id="names">
-                    <p>{{item}}</p>
-                    <p>{{item["time"]}}</p>
-                    <p>{{item["exit"]}}</p>
-                    <p>{{item["date"]}}</p>
-                    <p>{{item["remark"]}}</p>
-                </div>
-            {% endfor %}    
+                {% for item in data %}
+                    <div id="names">
+                        <p>{{item}}</p>
+                        <p>{{item["time"]}}</p>
+                        <p>{{item["exit"]}}</p>
+                        <p>{{item["date"]}}</p>
+                        <p>{{item["remark"]}}</p>
+                    </div>
+                {% endfor %}    
                 
             
             
