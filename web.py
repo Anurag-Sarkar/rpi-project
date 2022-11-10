@@ -177,27 +177,30 @@ def enter():
         print("Detected #", finger.finger_id, "with confidence", finger.confidence)
         iden = (int(finger.finger_id)*169691)+169691
         cu = user.find_one({"fingerprint": iden})
-        print(cu)
-        x = datetime.datetime.now()
-        date = x.strftime("%d-%m-%Y")
-        times = x.strftime("%H:%M")
-        check = attendence.find_one({"name":cu["name"]},{"date":date})
-        now = datetime.datetime.now()
-        today = now.replace(hour=10, minute=30, second=0, microsecond=0)
-        if x > today:
-            print("Came late")
-        if not check:
-            print("found user")
-            data = {
-                "name":cu["name"],
-                "date":date,
-                "time":times,
-                "exit":"-",
-                "remark":"normal"
-            }
-            attendence.insert_one(data)
+        print(cu,"user found")
+        if cu:
+            x = datetime.datetime.now()
+            date = x.strftime("%d-%m-%Y")
+            times = x.strftime("%H:%M")
+            check = attendence.find_one({"name":cu["name"]},{"date":date})
+            now = datetime.datetime.now()
+            today = now.replace(hour=10, minute=30, second=0, microsecond=0)
+            if x > today:
+                print("Came late")
+            if not check:
+                print("found user")
+                data = {
+                    "name":cu["name"],
+                    "date":date,
+                    "time":times,
+                    "exit":"-",
+                    "remark":"normal"
+                }
+                attendence.insert_one(data)
+            else:
+                print("already entered")
         else:
-            print("already entered")
+            print("user not found")
     else:
         print("FUCK YOU")
     return redirect('/attendence')
