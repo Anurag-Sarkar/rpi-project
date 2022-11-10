@@ -184,46 +184,32 @@ def enter():
         check = attendence.find_one({"name":cu["name"]},{"date":date})
         if check:
             print("found user")
+            data = {
+                "name":cu["name"],
+                "date":date,
+                "time":times,
+                "exit":"-",
+                "remark":"normal"
+            }
+            attendence.insert_one(data)
         else:
-            print("not found user")
-        # data = {
-        #     "name":cu["name"],
-        #     "date":date,
-        #     "time":times,
-        #     "exit":"-",
-        #     "remark":"normal"
-        # }
-        # attendence.insert_one(data)
+            print("already entered")
     else:
         print("FUCK YOU")
-    # state = 1
-    # print(get_fingerprint())
-    # x = datetime.datetime.now()
-    # date = x.strftime("%d-%m-%Y")
-    # times = x.strftime("%H:%M")
-    # print("Called")
-    # print("Called")
-    # """Get a finger print image, template it, and see if it matches!"""
-    # print("Waiting for image...")
-    # while finger.get_image() != adafruit_fingerprint.OK:
-    #     pass
-    # print("Templating...")
-    # if finger.image_2_tz(1) != adafruit_fingerprint.OK:
-    #     return False
-    # print("Searching...")
-    # if finger.finger_search() != adafruit_fingerprint.OK:
-    #     return False
-    # return True    
     return redirect('/attendence')
 
 @app.route("/exit",methods=["POST"])
 def exit():
-    n = request.form["name"]
-    x = datetime.datetime.now()
-    time = x.strftime("%H:%M")    
-    check = attendence.find_one({"name":n})
-    if check and check["exit"] == "-":
-        attendence.find_one_and_update({"name":n},{ '$set': { "exit" : time}},return_document=ReturnDocument.AFTER)
+    if get_fingerprint():
+        iden = (int(finger.finger_id)*169691)+169691
+        cu = user.find_one({"fingerprint": iden})
+        n = cu["name"]
+        x = datetime.datetime.now()
+        time = x.strftime("%H:%M")    
+        date = x.strftime("%d-%m-%Y")
+        check = attendence.find_one({"name":n},{"date":date})
+        if check and check["exit"] == "-":
+            attendence.find_one_and_update({"name":n},{ '$set': { "exit" : time}},return_document=ReturnDocument.AFTER)
     return redirect('/')
 
 @app.route("/add",methods=["GET"])
