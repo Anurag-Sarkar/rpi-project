@@ -20,9 +20,11 @@ identitiy = 0
 global identity
 #---------------LIBRAREIS--------------------
 def print_f(pin):
-    time.sleep(0.5)
-    print("hello")
-    print("hello ====================")
+    l = []
+    l.append("hello")
+    if len(l) > 8:
+        print("function called")
+        l = []
     
 def enroll_finger(location):
     """Take a 2 finger images and template it, then store in 'location'"""
