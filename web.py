@@ -25,7 +25,7 @@ def print_f(pin):
     list.append(2)
     print(list)
     print(len(list))
-    if len(list) > 8:
+    if len(list) > 2:
         print("function called")
         list = []
     
