@@ -37,11 +37,11 @@
             <div id="people">
             {% for item in data%}
                 <div id="names">
-                    <p>{{item}}</p>
-                    <p>{{item}}</p>
-                    <p>{{item}}</p>
-                    <p>{{item}}</p>
-                    <p>{{item}}</p>
+                    <p>{{item["name"]}}</p>
+                    <p>{{item["entry"]}}</p>
+                    <p>{{item["exit"]}}</p>
+                    <p>{{item["date"]}}</p>
+                    <p>{{item["remark"]}}</p>
                 </div>
             {% endfor %}    
                 
