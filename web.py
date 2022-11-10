@@ -10,7 +10,7 @@ import RPi.GPIO as GPIO
 state = 0
 print(GPIO.VERSION)
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
 
@@ -108,7 +108,7 @@ def get_fingerprint():
     return True
 
 #---------------LIBRAREIS--------------------
-GPIO.add_event_detect(26, GPIO.RISING, callback=print_f, bouncetime=300)
+GPIO.add_event_detect(26, GPIO.FALLING, callback=print_f, bouncetime=300)
 
 
 
