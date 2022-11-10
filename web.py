@@ -187,6 +187,7 @@ def enter():
             today = now.replace(hour=10, minute=30, second=0, microsecond=0)
             if x > today:
                 print("Came late")
+                remark = "late"
             if not check:
                 print("found user")
                 data = {
@@ -194,7 +195,7 @@ def enter():
                     "date":date,
                     "time":times,
                     "exit":"-",
-                    "remark":"normal"
+                    "remark":remark
                 }
                 attendence.insert_one(data)
             else:
