@@ -21,8 +21,8 @@ global identity
 #---------------LIBRAREIS--------------------
 def print_f(pin):
     time.sleep(0.5)
-    print(time.time())
-    print(time.time(),"----")
+    print("hello")
+    print("hello ====================")
     
 def enroll_finger(location):
     """Take a 2 finger images and template it, then store in 'location'"""
