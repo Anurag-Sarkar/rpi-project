@@ -182,7 +182,10 @@ def enter():
         date = x.strftime("%d-%m-%Y")
         times = x.strftime("%H:%M")
         check = attendence.find_one({"name":cu["name"]},{"date":date})
-        print(check,"found in attendence for today")
+        if check:
+            print("found user")
+        else:
+            print("not found user")
         # data = {
         #     "name":cu["name"],
         #     "date":date,
