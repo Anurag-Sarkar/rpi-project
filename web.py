@@ -210,6 +210,10 @@ def exit():
         check = attendence.find_one({"name":n},{"date":date})
         if check and check["exit"] == "-":
             attendence.find_one_and_update({"name":n},{ '$set': { "exit" : time}},return_document=ReturnDocument.AFTER)
+        else:
+            print("user exited")
+    else:
+        print("FUCK YOU")
     return redirect('/')
 
 @app.route("/add",methods=["GET"])
