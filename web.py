@@ -26,7 +26,7 @@ def print_f(pin):
     print(list)
     print(len(list))
     if len(list) > 2:
-        print("function called")
+        enter()
         list = []
     
 def enroll_finger(location):
