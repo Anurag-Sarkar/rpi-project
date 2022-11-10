@@ -7,6 +7,7 @@ import adafruit_fingerprint
 import time
 import serial
 import RPi.GPIO as GPIO
+state = 0
 print(GPIO.VERSION)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -19,8 +20,13 @@ identitiy = 0
 global identity
 #---------------LIBRAREIS--------------------
 def print_f(pin):
-    print("Button Pressed........................")
-    print(time.time())
+    if state == 0:
+        state = 1
+        print("state == 0")
+    else:
+        state = 0
+        print("state == 1")
+    
 def enroll_finger(location):
     """Take a 2 finger images and template it, then store in 'location'"""
     for fingerimg in range(1, 3):
