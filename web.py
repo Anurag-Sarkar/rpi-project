@@ -276,7 +276,7 @@ def addmember():
     # else:
     #     return redirect("/")
 @app.route("/personelholiday",methods=["POST"])
-def allholiday():
+def personalholiday():
     date = []
     start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
     end = datetime.datetime.strptime(request.form["enddate"],"%Y-%m-%d")
@@ -293,7 +293,7 @@ def allholiday():
     #     else:
     #         print("date exists")
     #     start += skip
-    # return redirect("/holiday")
+    return redirect("/holiday")
 @app.route("/deleteall")
 def delete():
     finger.read_templates()
