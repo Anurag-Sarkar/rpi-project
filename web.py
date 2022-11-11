@@ -283,7 +283,7 @@ def allholiday():
     print(start,end)
     date.append(start)
     date.append(end)
-    print(date)
+    print(date,len(date))
     print(session["user"])
     return redirect("/holiday")
 
