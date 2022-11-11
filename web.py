@@ -284,15 +284,14 @@ def personalholiday():
     print(session["user"])
     loggedinuser = user.find_one({"name":session["user"]})
     addeddates = loggedinuser["dates"]
-    for i in addeddates:
-        print(i,type(i))
-    # while(start <= end):
-    #     print(start.strftime("%d-%m-%Y"),end="\n")
-    #     if start not in addeddates:
-    #         user.find_one_and_update({"name":session["user"]},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
-    #     else:
-    #         print("date exists")
-    #     start += skip
+    while(start <= end):
+        print(start.strftime("%d-%m-%Y"),type(start.strftime("%d-%m-%Y")),end="\n")
+        if start not in addeddates:
+            print("date not existet",start)
+            # user.find_one_and_update({"name":session["user"]},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
+        else:
+            print("date exists")
+        start += skip
     return redirect("/holiday")
 @app.route("/deleteall")
 def delete():
