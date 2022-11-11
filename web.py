@@ -284,6 +284,7 @@ def personalholiday():
     print(session["user"])
     loggedinuser = user.find_one({"name":session["user"]})
     addeddates = loggedinuser["dates"]
+    print(addeddates)
     while(start <= end):
         print(start.strftime("%d-%m-%Y"),type(start.strftime("%d-%m-%Y")),end="\n")
         if start not in addeddates:
