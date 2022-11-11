@@ -203,8 +203,9 @@ def enter():
     if get_fingerprint():
         print("Detected #", finger.finger_id, "with confidence", finger.confidence)
         iden = (int(finger.finger_id)*169691)+169691
+        print(iden)
         cu = user.find_one({"fingerprint": iden})
-        print(cu,"user found")
+        print("user found")
         if cu:
             x = datetime.datetime.now()
             date = x.strftime("%d-%m-%Y")
