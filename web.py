@@ -130,6 +130,19 @@ db = client["attendence"]
 user = db["user"]
 attendence = db["attendence"]
 
+lol = user.find_one({"name":"sheryians coding school"})
+if not lol:
+    data = {
+        "name":"sheryians coding school",
+        "defaultedDays":0,
+        "holidays":0,
+        "dates":[],
+        "fingerprint":identity,
+        "clg":0,
+        "password": "null"
+        }
+    user.insert_one(data)
+
 @app.route("/attendence")
 def index():
     alluser = user.find({})
@@ -294,17 +307,45 @@ def personalholiday():
     loggedinuser = user.find_one({"name":session["user"]})
     addeddates = loggedinuser["dates"]
     holiday = 0
-    while(start <= end):
-        print(start.strftime("%d-%m-%Y"),type(start.strftime("%d-%m-%Y")),end="\n")
-        if start.strftime("%d-%m-%Y") not in addeddates:
-            print("date not existet")
-            holiday += 1
-            user.find_one_and_update({"name":session["user"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
-            user.find_one_and_update({"name":session["user"]},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
-        else:
-            print("date exists")
-        start += skip
+    if end == "":
+        user.find_one_and_update({"name":session["user"]},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
+    else:
+        while(start <= end):
+            print(start.strftime("%d-%m-%Y"),type(start.strftime("%d-%m-%Y")),end="\n")
+            if start.strftime("%d-%m-%Y") not in addeddates:
+                print("date not existet")
+                holiday += 1
+                user.find_one_and_update({"name":session["user"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
+                user.find_one_and_update({"name":session["user"]},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
+            else:
+                print("date exists")
+            start += skip
     return redirect("/holiday")
+
+@app.route("/dojoholiday",methods=["POST"])
+def personalholiday():
+    start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
+    end = datetime.datetime.strptime(request.form["enddate"],"%Y-%m-%d")
+    skip = datetime.timedelta(days=1)
+    print(session["user"])
+    loggedinuser = user.find_one({"name":"sheryians coding school"})
+    addeddates = loggedinuser["dates"]
+    holiday = 0
+    if end == "":
+        user.find_one_and_update({"name":"sheryians coding school"},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
+    else:
+        while(start <= end):
+            print(start.strftime("%d-%m-%Y"),type(start.strftime("%d-%m-%Y")),end="\n")
+            if start.strftime("%d-%m-%Y") not in addeddates:
+                print("date not existet")
+                holiday += 1
+                user.find_one_and_update({"name":"sheryians coding school"},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
+                user.find_one_and_update({"name":"sheryians coding school"},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
+            else:
+                print("date exists")
+            start += skip
+    return redirect("/holiday")
+
 @app.route("/deleteall")
 def delete():
     finger.read_templates()
