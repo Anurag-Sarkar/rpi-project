@@ -278,8 +278,8 @@ def addmember():
 @app.route("/personelholiday",methods=["POST"])
 def allholiday():
     date = []
-    start = datetime.strptime(request.form["startdate"],"%Y-%m-%d")
-    end = datetime.strptime(request.form["enddate"],"%Y-%m-%d")
+    start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
+    end = datetime.datetime.strptime(request.form["enddate"],"%Y-%m-%d")
     skip = datetime.timedelta(days=1)
 
     while(start <= end):
