@@ -284,7 +284,7 @@ def allholiday():
     user.find_one({"name":session["user"]})
     addeddates = user["date"]
     print(addeddates)
-    print(user,"datesss")
+    print(addeddates,"datesss")
     # while(start <= end):
     #     print(start.strftime("%d-%m-%Y"),end="\n")
     #     if start not in addeddates:
