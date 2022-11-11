@@ -256,23 +256,21 @@ def addmember():
     print(n)
     check_user = user.find_one({"name":n})
     if not check_user:
-        if not get_fingerprint():
-            password = generate_password_hash(p)
-            data = {
-                "name":n,
-                "defaultedDays":0,
-                "holidays":0,
-                "dates":[],
-                "fingerprint":identity,
-                "clg":0,
-                "password": password
-            }
-            user.insert_one(data)
-            identity = 0
-            session["user"] = data["name"]
-            return redirect("/attendence")
-        else:
-            socket.emit("fingerexists")
+        password = generate_password_hash(p)
+        data = {
+            "name":n,
+            "defaultedDays":0,
+            "holidays":0,
+            "dates":[],
+            "fingerprint":identity,
+            "clg":0,
+            "password": password
+        }
+        user.insert_one(data)
+        identity = 0
+        session["user"] = data["name"]
+        return redirect("/attendence")
+    
     else:
         return "user exists"
     # else:
@@ -315,12 +313,16 @@ def message(data):
             break
     print('received message: ')
     print(identity)
-    if enroll_finger(i): 
-        print("Add fingerprint------------------------------")   
-        socket.emit("pass")
-    else:    
-        print("Cant add fingerprint----------------------------")   
-        socket.emit("fail")
+    if not get_fingerprint():
+        print("no finger found. adding....")
+        if enroll_finger(i): 
+            print("Add fingerprint------------------------------")   
+            socket.emit("pass")
+        else:    
+            print("Cant add fingerprint----------------------------")   
+            socket.emit("fail")
+    else:
+        socket.emit("fingerexists")
 
 socket.run(app,host="192.168.29.7",port="80",debug=True)
 
