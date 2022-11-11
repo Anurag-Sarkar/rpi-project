@@ -283,6 +283,7 @@ def allholiday():
     skip = datetime.timedelta(days=1)
     user.find_one({"name":session["user"]})
     addeddates = user["date"]
+    print(addeddates)
     print(user)
     while(start <= end):
         print(start.strftime("%d-%m-%Y"),end="\n")
