@@ -137,9 +137,9 @@ def index():
         print(i)
     x = datetime.datetime.now()
     date = x.strftime("%d-%m-%Y")
-    user = attendence.find({"date":date})
+    s = attendence.find({"date":date})
     use = []
-    for i in user:
+    for i in s:
         use.append(i)
     print(use)
     return render_template("attendence.html",data=use)
