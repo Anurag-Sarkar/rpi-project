@@ -281,10 +281,11 @@ def allholiday():
     start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
     end = datetime.datetime.strptime(request.form["enddate"],"%Y-%m-%d")
     skip = datetime.timedelta(days=1)
+    print(session["user"])
     user.find_one({"name":session["user"]})
     addeddates = user["dates"]
     print(user)
-    print(addeddates,"datesss")
+    # print(addeddates,"datesss")
     # while(start <= end):
     #     print(start.strftime("%d-%m-%Y"),end="\n")
     #     if start not in addeddates:
