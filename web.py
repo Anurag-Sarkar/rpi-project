@@ -136,7 +136,7 @@ def index():
     today = datetime.datetime.now()
     today = today.strftime("%d-%m-%Y")
     for i in alluser:
-        if today in i["dates"]:
+        if today in i["dates"]:        
             data = {
                     "name":i["name"],
                     "date":today,
@@ -287,17 +287,19 @@ def addmember():
     #     return redirect("/")
 @app.route("/personelholiday",methods=["POST"])
 def personalholiday():
-    date = []
     start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
     end = datetime.datetime.strptime(request.form["enddate"],"%Y-%m-%d")
     skip = datetime.timedelta(days=1)
     print(session["user"])
     loggedinuser = user.find_one({"name":session["user"]})
     addeddates = loggedinuser["dates"]
+    holiday = 0
     while(start <= end):
         print(start.strftime("%d-%m-%Y"),type(start.strftime("%d-%m-%Y")),end="\n")
         if start.strftime("%d-%m-%Y") not in addeddates:
             print("date not existet")
+            holiday += 1
+            user.find_one_and_update({"name":session["user"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
             user.find_one_and_update({"name":session["user"]},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
         else:
             print("date exists")
