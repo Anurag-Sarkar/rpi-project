@@ -133,8 +133,18 @@ attendence = db["attendence"]
 @app.route("/attendence")
 def index():
     alluser = user.find({})
+    today = datetime.datetime.now()
+    today = today.strftime("%d-%m-%Y")
     for i in alluser:
-        print(i["dates"])
+        if today in i["dates"]:
+            data = {
+                    "name":i["name"],
+                    "date":today,
+                    "time":"-",
+                    "exit":"-",
+                    "remark":"holiday"
+                }
+            attendence.insert_one(data)
     x = datetime.datetime.now()
     date = x.strftime("%d-%m-%Y")
     s = attendence.find({"date":date})
