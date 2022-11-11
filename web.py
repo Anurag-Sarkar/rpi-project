@@ -287,8 +287,7 @@ def allholiday():
     while(start <= end):
         print(start.strftime("%d-%m-%Y"),end="\n")
         if start not in addeddates:
-            loggedinuser.update({'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
-
+            user.find_one_and_update({"name":session["user"]},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
         else:
             print("date exists")
         start += skip
