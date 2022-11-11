@@ -280,13 +280,12 @@ def allholiday():
     date = []
     start = request.form["startdate"]
     end = request.form["enddate"]
-    print(start,end)
-    date.append(start)
-    date.append(end)
-    print(date,len(date))
-    print(session["user"])
+    skip = datetime.timedelta(days=1)
+    
+    while(start <= end):
+        print(start,end="\n")
+        start += skip
     return redirect("/holiday")
-
 @app.route("/deleteall")
 def delete():
     finger.read_templates()
