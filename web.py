@@ -137,7 +137,7 @@ if not lol:
         "defaultedDays":0,
         "holidays":0,
         "dates":[],
-        "fingerprint":identity,
+        "fingerprint":"none",
         "clg":0,
         "password": "null"
         }
