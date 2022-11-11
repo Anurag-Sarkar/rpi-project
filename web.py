@@ -158,6 +158,7 @@ def index():
                     "remark":"holiday"
                 }
             attendence.insert_one(data)
+    
     x = datetime.datetime.now()
     date = x.strftime("%d-%m-%Y")
     s = attendence.find({"date":date})
@@ -212,12 +213,21 @@ def enter():
             now = datetime.datetime.now()
             today = now.replace(hour=10, minute=30, second=0, microsecond=0)
             if x > today:
-                print("Came late")
-                lates = cu["defaultedDays"]
-                lates +=1
-                print()
-                user.find_one_and_update({"name":cu["name"]},{ '$set': { "defaultedDays" : lates}},return_document=ReturnDocument.AFTER)
-                remark = "late"
+                dojo = user.find_one({"name":"sheryians coding school"})
+                holidaycheck = dojo["dates"]
+                if date in holidaycheck:
+                    print("Over time")
+                    ot = cu["overtime"]
+                    ot +=1
+                    user.find_one_and_update({"name":"sheryians coding school"},{ '$set': { "overtime" : ot}},return_document=ReturnDocument.AFTER)
+                    remark = "extra"
+                else:
+                    print("Came late")
+                    lates = cu["defaultedDays"]
+                    lates +=1
+                    user.find_one_and_update({"name":cu["name"]},{ '$set': { "defaultedDays" : lates}},return_document=ReturnDocument.AFTER)
+                    remark = "late"
+
             if not check:
                 print("found user")
                 data = {
@@ -284,6 +294,7 @@ def addmember():
             "name":n,
             "defaultedDays":0,
             "holidays":0,
+            "overtime":0,
             "dates":[],
             "fingerprint":identity,
             "clg":0,
@@ -323,7 +334,7 @@ def personalholiday():
     return redirect("/holiday")
 
 @app.route("/dojoholiday",methods=["POST"])
-def personalholiday():
+def dojoholiday():
     start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
     end = datetime.datetime.strptime(request.form["enddate"],"%Y-%m-%d")
     skip = datetime.timedelta(days=1)
