@@ -281,9 +281,15 @@ def allholiday():
     start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
     end = datetime.datetime.strptime(request.form["enddate"],"%Y-%m-%d")
     skip = datetime.timedelta(days=1)
-
+    user.find_one({"name":session["user"]})
+    addeddates = user["date"]
+    print(user)
     while(start <= end):
         print(start.strftime("%d-%m-%Y"),end="\n")
+        if start not in addeddates:
+            user.update({'name': session["user"]}, {'$push': {'date': start}})
+        else:
+            print("date exists")
         start += skip
     return redirect("/holiday")
 @app.route("/deleteall")
