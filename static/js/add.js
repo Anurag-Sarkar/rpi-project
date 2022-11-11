@@ -26,3 +26,9 @@ socket.on('again', function() {
     document.querySelector("#finger").style.color = "black"
     console.log("not finger")
 });
+socket.on('fingerexists', function() {
+    document.querySelector("#finger").textContent = "Finger Exists"
+    document.querySelector("#finger").style.backgroundColor = "rgb(255, 110, 13)"
+    document.querySelector("#finger").style.color = "black"
+    console.log("not finger")
+});

@@ -250,26 +250,29 @@ def addmember():
     # if "user" in session:
     global identity
     print(identity)
-    n = request.form["name"]
+    n = request.form["name"].lower()
     p = request.form["password"]
     print(id)
     print(n)
     check_user = user.find_one({"name":n})
     if not check_user:
-        password = generate_password_hash(p)
-        data = {
-            "name":n,
-            "defaultedDays":0,
-            "holidays":0,
-            "dates":[],
-            "fingerprint":identity,
-            "clg":0,
-            "password": password
-        }
-        user.insert_one(data)
-        identity = 0
-        session["user"] = data["name"]
-        return redirect("/attendence")
+        if not get_fingerprint():
+            password = generate_password_hash(p)
+            data = {
+                "name":n,
+                "defaultedDays":0,
+                "holidays":0,
+                "dates":[],
+                "fingerprint":identity,
+                "clg":0,
+                "password": password
+            }
+            user.insert_one(data)
+            identity = 0
+            session["user"] = data["name"]
+            return redirect("/attendence")
+        else:
+            socket.emit("fingerexists")
     else:
         return "user exists"
     # else:
