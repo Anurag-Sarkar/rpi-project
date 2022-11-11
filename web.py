@@ -283,8 +283,7 @@ def allholiday():
     skip = datetime.timedelta(days=1)
 
     while(start <= end):
-        date = datetime.datetime.strptime(start, "%d-%m-%Y")
-        print(date.strptime(),end="\n")
+        print(start.split(" "),end="\n")
         start += skip
     return redirect("/holiday")
 @app.route("/deleteall")
