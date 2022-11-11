@@ -134,7 +134,7 @@ attendence = db["attendence"]
 def index():
     alluser = user.find({})
     for i in alluser:
-        print(i)
+        print(i["dates"])
     x = datetime.datetime.now()
     date = x.strftime("%d-%m-%Y")
     s = attendence.find({"date":date})
