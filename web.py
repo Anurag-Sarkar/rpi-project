@@ -131,7 +131,7 @@ user = db["user"]
 attendence = db["attendence"]
 
 lol = user.find_one({"name":"sheryians coding school"})
-print(lol)
+print(lol,"dojo data")
 if not lol:
     data = {
         "name":"sheryians coding school",
