@@ -135,12 +135,8 @@ print(lol,"dojo data")
 if not lol:
     data = {
         "name":"sheryians coding school",
-        "defaultedDays":0,
         "holidays":0,
         "dates":[],
-        "fingerprint":"none",
-        "clg":0,
-        "password": "null"
         }
     user.insert_one(data)
 
@@ -158,8 +154,10 @@ def index():
                     "exit":"-",
                     "remark":"holiday"
                 }
-            attendence.insert_one(data)
-    
+            present = attendence.find_one({"name":i["name"]},{"date":today})
+            if not present:
+                attendence.insert_one(data)
+                
     x = datetime.datetime.now()
     date = x.strftime("%d-%m-%Y")
     s = attendence.find({"date":date})
@@ -201,6 +199,7 @@ def logout():
 
 @app.route("/entry",methods=["GET"])
 def enter():
+    remark = "normal"
     if get_fingerprint():
         print("Detected #", finger.finger_id, "with confidence", finger.confidence)
         iden = (int(finger.finger_id)*169691)+169691
