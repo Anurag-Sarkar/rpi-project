@@ -131,6 +131,7 @@ user = db["user"]
 attendence = db["attendence"]
 
 lol = user.find_one({"name":"sheryians coding school"})
+print(lol)
 if not lol:
     data = {
         "name":"sheryians coding school",
@@ -297,6 +298,7 @@ def addmember():
             "holidays":0,
             "overtime":0,
             "dates":[],
+            "clg":[],
             "fingerprint":identity,
             "clg":0,
             "password": password
