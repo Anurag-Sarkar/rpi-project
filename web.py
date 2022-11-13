@@ -360,7 +360,7 @@ def dojoholiday():
     holiday = loggedinuser["holidays"]
     if end == "":
         holiday += 1
-        user.find_one_and_update({"name":"sheryians coding school"},{'$push': {'holiday':holiday}},return_document=ReturnDocument.AFTER)
+        user.find_one_and_update({"name":"sheryians coding school"},{'$push': {'holidays':holiday}},return_document=ReturnDocument.AFTER)
         user.find_one_and_update({"name":"sheryians coding school"},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
     else:
         end = datetime.datetime.strptime(end,"%Y-%m-%d")
