@@ -239,6 +239,7 @@ def enter():
                 }
                 attendence.insert_one(data)
             else:
+                print("already entered")
                 print(cu["remark"])
                 # print(cu["remark"],"find holiday")
                 # if cu["remark"] == "holiday":
