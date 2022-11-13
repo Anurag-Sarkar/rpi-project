@@ -223,6 +223,7 @@ def enter():
                     remark = "extra"
                 else:
                     if not check:
+                        print("hellllooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo")
                         print(check,"for late")
                         print("Came late")
                         lates = cu["defaultedDays"]
@@ -242,9 +243,7 @@ def enter():
                 attendence.insert_one(data)
             else:
                 check_holiday = attendence.find_one({"name":cu["name"]})
-                print(check_holiday["remark"],"find holiday")
                 if check_holiday["remark"] == "holiday":
-                    print(check_holiday["name"])
                     attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "times" : times}},return_document=ReturnDocument.AFTER)
                     attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "remark" : "normal"}},return_document=ReturnDocument.AFTER)
                 else:
