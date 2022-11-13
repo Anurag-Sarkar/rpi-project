@@ -205,7 +205,6 @@ def enter():
         iden = (int(finger.finger_id)*169691)+169691
         print(iden)
         cu = user.find_one({"fingerprint": iden})
-        print("user found")
         if cu:
             x = datetime.datetime.now()
             date = x.strftime("%d-%m-%Y")
@@ -240,7 +239,8 @@ def enter():
                 }
                 attendence.insert_one(data)
             else:
-                check = attendence.find_one({"name":cu["name"]})
+                check_holiday = attendence.find_one({"name":cu["name"]})
+                print(check_holiday["holiday"])
                 print("already entered")
         else:
             print("user not found")
