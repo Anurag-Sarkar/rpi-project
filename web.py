@@ -211,8 +211,8 @@ def enter():
             times = x.strftime("%H:%M")
             check = attendence.find_one({"name":cu["name"]},{"date":date})
             now = datetime.datetime.now()
-            today = now.replace(hour=10, minute=30, second=0, microsecond=0)
-            if x > today:
+            today_time = now.replace(hour=10, minute=30, second=0, microsecond=0)
+            if x > today_time:
                 dojo = user.find_one({"name":"sheryians coding school"})
                 holidaycheck = dojo["dates"]
                 if date in holidaycheck:
@@ -222,11 +222,12 @@ def enter():
                     user.find_one_and_update({"name":"sheryians coding school"},{ '$set': { "overtime" : ot}},return_document=ReturnDocument.AFTER)
                     remark = "extra"
                 else:
-                    print("Came late")
-                    lates = cu["defaultedDays"]
-                    lates +=1
-                    user.find_one_and_update({"name":cu["name"]},{ '$set': { "defaultedDays" : lates}},return_document=ReturnDocument.AFTER)
-                    remark = "late"
+                    if not check:
+                        print("Came late")
+                        lates = cu["defaultedDays"]
+                        lates +=1
+                        user.find_one_and_update({"name":cu["name"]},{ '$set': { "defaultedDays" : lates}},return_document=ReturnDocument.AFTER)
+                        remark = "late"
 
             if not check:
                 print("found user")
