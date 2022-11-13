@@ -239,8 +239,7 @@ def enter():
                 }
                 attendence.insert_one(data)
             else:
-                check_holiday = cu["holiday"]
-                print(check_holiday)
+                print(cu,"find holiday")
                 print("already entered")
         else:
             print("user not found")
