@@ -239,12 +239,14 @@ def enter():
                 }
                 attendence.insert_one(data)
             else:
-                if cu["remark"]:
-                    user.find_one_and_update({"name":cu["name"]},{ '$set': { "time" : times}},return_document=ReturnDocument.AFTER)
-                    user.find_one_and_update({"name":cu["name"]},{ '$set': { "remark" : "normal"}},return_document=ReturnDocument.AFTER)
-
                 print(cu["remark"],"find holiday")
-                print("already entered")
+                if cu["remark"] == "holiday":
+                    print(cu["name"])
+                    user.find_one_and_update({"name":cu["name"]},{ '$set': { "times" : times}},return_document=ReturnDocument.AFTER)
+                    user.find_one_and_update({"name":cu["name"]},{ '$set': { "remark" : "normal"}},return_document=ReturnDocument.AFTER)
+                else:
+                    print("already entered")
+
         else:
             print("user not found")
     else:
