@@ -222,6 +222,7 @@ def enter():
                     user.find_one_and_update({"name":"sheryians coding school"},{ '$set': { "overtime" : ot}},return_document=ReturnDocument.AFTER)
                     remark = "extra"
                 else:
+                    print(check,"for late")
                     if not check:
                         print("Came late")
                         lates = cu["defaultedDays"]
