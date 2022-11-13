@@ -240,6 +240,7 @@ def enter():
                 }
                 attendence.insert_one(data)
             else:
+                check = attendence.find_one({"name":cu["name"]})
                 print("already entered")
         else:
             print("user not found")
