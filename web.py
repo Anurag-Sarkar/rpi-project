@@ -223,8 +223,6 @@ def enter():
                     remark = "extra"
                 else:
                     if not check:
-                        print("hellllooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo")
-                        print(check,"for late")
                         print("Came late")
                         lates = cu["defaultedDays"]
                         lates +=1
@@ -244,6 +242,9 @@ def enter():
             else:
                 check_holiday = attendence.find_one({"name":cu["name"]})
                 if check_holiday["remark"] == "holiday":
+                    halfday = cu["halfday"]
+                    halfday += 1
+                    user.find_one_and_update({"name":cu["name"]},{ '$set': { "halfday" : halfday }},return_document=ReturnDocument.AFTER)
                     attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "times" : times}},return_document=ReturnDocument.AFTER)
                     attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "remark" : "normal"}},return_document=ReturnDocument.AFTER)
                 else:
@@ -304,10 +305,11 @@ def addmember():
             "defaultedDays":0,
             "holidays":0,
             "overtime":0,
+            "clg":0,
+            "halfday":0,
             "dates":[],
             "clg":[],
             "fingerprint":identity,
-            "clg":0,
             "password": password
         }
         user.insert_one(data)
@@ -327,7 +329,7 @@ def personalholiday():
     print(session["user"])
     loggedinuser = user.find_one({"name":session["user"]})
     addeddates = loggedinuser["dates"]
-    holiday = 0
+    holiday = loggedinuser["holidays"]
     end = request.form["enddate"]
     if end == "":
         holiday += 1
@@ -350,15 +352,18 @@ def personalholiday():
 @app.route("/dojoholiday",methods=["POST"])
 def dojoholiday():
     start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
-    end = datetime.datetime.strptime(request.form["enddate"],"%Y-%m-%d")
+    end = request.form["enddate"]
     skip = datetime.timedelta(days=1)
     print(session["user"])
     loggedinuser = user.find_one({"name":"sheryians coding school"})
     addeddates = loggedinuser["dates"]
-    holiday = 0
+    holiday = loggedinuser["holidays"]
     if end == "":
+        holiday += 1
+        user.find_one_and_update({"name":"sheryians coding school"},{'$push': {'holiday':holiday}},return_document=ReturnDocument.AFTER)
         user.find_one_and_update({"name":"sheryians coding school"},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
     else:
+        end = datetime.datetime.strptime(end,"%Y-%m-%d")
         while(start <= end):
             print(start.strftime("%d-%m-%Y"),type(start.strftime("%d-%m-%Y")),end="\n")
             if start.strftime("%d-%m-%Y") not in addeddates:
