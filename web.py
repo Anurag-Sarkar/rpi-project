@@ -183,9 +183,9 @@ def index():
                     "exit":"-",
                     "remark":"holiday"
                         }
-            present = attendence.find_one({"name":"sheryians coding school"})
+            present = attendence.find_one({"name":"sheryians coding school","date":today})
             print(present,"found sheryians holiday")
-            if not present or present["date"] != today:
+            if not present:
                 print("insterder sheryia")
                 attendence.insert_one(data)    
 
