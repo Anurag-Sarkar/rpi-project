@@ -143,7 +143,7 @@ if not lol:
 @app.route("/attendence")
 def index():
     alluser = user.find({})
-    today = datetime.datetime.now()
+    today = datetime.datetime.now()   
     today = today.strftime("%d-%m-%Y")
     dojo = user.find_one({"name":"sheryians coding school"})
     dojo_holiday = dojo["dates"]
@@ -151,6 +151,7 @@ def index():
         print(today , i["dates"])
         if today in i["dates"]:   
             if i["dates"] in dojo_holiday:
+                print("removed holiday",i["names"])
                 holiday = i["holidays"]  
                 if holiday > 0:
                     holiday -= 1
