@@ -151,7 +151,7 @@ def index():
         print(today , i["dates"])
         if today in i["dates"]:   
             if today in i["dates"] and today in dojo_holiday:
-                print("removed holiday",i["names"])
+                print("removed holiday",i["name"])
                 holiday = i["holidays"]  
                 if holiday > 0:
                     holiday -= 1
