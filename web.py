@@ -176,7 +176,18 @@ def index():
                     if not present:
                         attendence.insert_one(data)    
         elif today in dojo_holiday:
-            print("DOJO HOLIDAY")
+            data = {
+                    "name":"sheryains coding school",
+                    "date":today,
+                    "time":"-",
+                    "exit":"-",
+                    "remark":"holiday"
+                        }
+            present = attendence.find_one({"name":i["name"] , "date":today})
+            print(present)
+            if not present:
+                attendence.insert_one(data)    
+
             
     x = datetime.datetime.now()
     date = x.strftime("%d-%m-%Y")
