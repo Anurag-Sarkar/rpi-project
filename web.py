@@ -177,20 +177,16 @@ def index():
                         attendence.insert_one(data)    
         elif today in dojo_holiday:
             data = {
-                    "name":"sheryains coding school",
+                    "name":"sheryians coding school",
                     "date":today,
                     "time":"-",
                     "exit":"-",
                     "remark":"holiday"
                         }
-            present = attendence.find_one({"name":"sheryians coding school"})
-            print(present,"sheryians lol")
+            present = attendence.find_one({"name":"sheryians coding school","date":today})
             if not present:
-                print("insterder sheryia")
                 attendence.insert_one(data)    
-            elif present["date"] != today:
-                print("insterder")
-                attendence.insert_one(data)    
+                
 
                 
             
