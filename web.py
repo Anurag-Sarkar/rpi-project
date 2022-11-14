@@ -145,9 +145,17 @@ def index():
     alluser = user.find({})
     today = datetime.datetime.now()
     today = today.strftime("%d-%m-%Y")
+    dojo = user.find_one({"name":"sheryians coding school"})
+    dojo_holiday = dojo["dates"]
     for i in alluser:
         print(today , i["dates"])
-        if today in i["dates"]:        
+        if today in i["dates"]:   
+            if i["dates"] in dojo_holiday:
+                holiday = i["holidays"]  
+                if holiday > 0:
+                    holiday -= 1
+                user.find_one_and_update({"name":i["name"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
+
             print("got inside")
             data = {
                     "name":i["name"],
@@ -222,7 +230,7 @@ def enter():
                     print("Over time")
                     ot = cu["overtime"]
                     ot +=1
-                    user.find_one_and_update({"name":"sheryians coding school"},{ '$set': { "overtime" : ot}},return_document=ReturnDocument.AFTER)
+                    user.find_one_and_update({"name":cu["name"]},{ '$set': { "overtime" : ot}},return_document=ReturnDocument.AFTER)
                     remark = "extra"
                 else:
                     if not check:
@@ -349,7 +357,7 @@ def personalholiday():
         while(start <= end):
             print(start.strftime("%d-%m-%Y"),type(start.strftime("%d-%m-%Y")),end="\n")
             if start.strftime("%d-%m-%Y") not in addeddates and start.strftime("%d-%m-%Y") not in dojo_holiday:
-                print("date not existet")
+                print("adding dates")
                 holiday += 1
                 user.find_one_and_update({"name":session["user"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
                 user.find_one_and_update({"name":session["user"]},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
