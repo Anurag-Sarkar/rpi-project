@@ -185,10 +185,13 @@ def index():
                         }
             present = attendence.find_one({"name":"sheryians coding school"})
             if not present:
-                print(present["date"],"found sheryians holiday")
+                print("insterder sheryia")
+                attendence.insert_one(data)    
+            elif present["date"] != today:
                 print("insterder sheryia")
                 attendence.insert_one(data)    
 
+                
             
     x = datetime.datetime.now()
     date = x.strftime("%d-%m-%Y")
