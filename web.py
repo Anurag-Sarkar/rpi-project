@@ -243,10 +243,13 @@ def enter():
                 check_holiday = attendence.find_one({"name":cu["name"]})
                 if check_holiday["remark"] == "holiday":
                     halfday = cu["halfday"]
+                    holiday = cu["holiday"]
                     halfday += 1
-                    user.find_one_and_update({"name":cu["name"]},{ '$set': { "halfday" : halfday }},return_document=ReturnDocument.AFTER)
+                    holiday -= 1
+                    user.find_one_and_update({"name":cu["name"]},{ '$set': { "halfday" : holiday }},return_document=ReturnDocument.AFTER)
+                    user.find_one_and_update({"name":cu["name"]},{ '$set': { "holiday" : halfday }},return_document=ReturnDocument.AFTER)
                     attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "times" : times}},return_document=ReturnDocument.AFTER)
-                    attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "remark" : "normal"}},return_document=ReturnDocument.AFTER)
+                    attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "remark" : "halfday"}},return_document=ReturnDocument.AFTER)
                 else:
                     print("already entered")
 
@@ -330,16 +333,19 @@ def personalholiday():
     loggedinuser = user.find_one({"name":session["user"]})
     addeddates = loggedinuser["dates"]
     holiday = loggedinuser["holidays"]
+    dojo  = user.find_one({"name":"sheryians coding school"})
+    dojo_holiday = dojo["dates"]
     end = request.form["enddate"]
     if end == "":
-        holiday += 1
-        user.find_one_and_update({"name":session["user"]},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
-        user.find_one_and_update({"name":session["user"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
+        if start not in dojo_holiday:
+            holiday += 1
+            user.find_one_and_update({"name":session["user"]},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
+            user.find_one_and_update({"name":session["user"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
     else:
         end = datetime.datetime.strptime(end,"%Y-%m-%d")
         while(start <= end):
             print(start.strftime("%d-%m-%Y"),type(start.strftime("%d-%m-%Y")),end="\n")
-            if start.strftime("%d-%m-%Y") not in addeddates:
+            if start.strftime("%d-%m-%Y") not in addeddates and start.strftime("%d-%m-%Y") not in dojo_holiday:
                 print("date not existet")
                 holiday += 1
                 user.find_one_and_update({"name":session["user"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
