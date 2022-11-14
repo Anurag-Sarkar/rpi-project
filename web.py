@@ -258,7 +258,7 @@ def enter():
                     holiday = cu["holidays"]
                     halfday += 1
                     holiday -= 1
-                    user.find_one_and_update({"name":cu["name"]},{ '$set': { "halfday" : holiday }},return_document=ReturnDocument.AFTER)
+                    user.find_one_and_update({"name":cu["name"]},{ '$set': { "halfday" : halfday }},return_document=ReturnDocument.AFTER)
                     user.find_one_and_update({"name":cu["name"]},{ '$set': { "holiday" : halfday }},return_document=ReturnDocument.AFTER)
                     attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "times" : times}},return_document=ReturnDocument.AFTER)
                     attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "remark" : "halfday"}},return_document=ReturnDocument.AFTER)
