@@ -156,10 +156,9 @@ def index():
                     "exit":"-",
                     "remark":"holiday"
                 }
-            present = attendence.find_one({"date":today})
-            if present["name"] == i["name"]:
-                print(present)
-            else:
+            present = attendence.find_one({"name":i["name"] , "date":today})
+            print(present)
+            if not present:
                 attendence.insert_one(data)
                 
     x = datetime.datetime.now()
