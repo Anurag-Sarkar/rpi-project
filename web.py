@@ -155,7 +155,7 @@ def index():
                 holiday = i["holidays"]  
                 if holiday > 0:
                     holiday -= 1
-                user.find_one_and_update({"name":check_holiday["name"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
+                user.find_one_and_update({"name":i["name"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
             else:
                 data = {
                         "name":i["name"],
@@ -168,12 +168,7 @@ def index():
                 print(present)
                 if not present:
                     attendence.insert_one(data)    
-
-            check_holiday = user.find_one({"remark" : "holiday", "date":today})
-
-            
-            
-                
+    
     x = datetime.datetime.now()
     date = x.strftime("%d-%m-%Y")
     s = attendence.find({"date":date})
