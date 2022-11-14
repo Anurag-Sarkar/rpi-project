@@ -183,7 +183,7 @@ def index():
                     "exit":"-",
                     "remark":"holiday"
                         }
-            present = attendence.find_one({"name":"sheryians coding school" , "date":today})
+            present = attendence.find_one({"name":"sheryains coding school"})
             print(present,"found sheryians holiday")
             if not present:
                 print("insterder sheryians")
