@@ -148,27 +148,29 @@ def index():
     dojo = user.find_one({"name":"sheryians coding school"})
     dojo_holiday = dojo["dates"]
     for i in alluser:
-        print(today , i["dates"])
-        if today in i["dates"]:   
-            if today in dojo_holiday:
-                print("removed holiday",i["name"])
-                holiday = i["holidays"]  
-                if holiday > 0:
-                    holiday -= 1
-                user.find_one_and_update({"name":i["name"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
-            else:
-                data = {
-                        "name":i["name"],
-                        "date":today,
-                        "time":"-",
-                        "exit":"-",
-                        "remark":"holiday"
-                    }
-                present = attendence.find_one({"name":i["name"] , "date":today})
-                print(present)
-                if not present:
-                    attendence.insert_one(data)    
-    
+        if i["name"] != "sheryians coding school": 
+            print(today , i["dates"])
+            if today in i["dates"]:   
+                if today in dojo_holiday:
+                    print("removed holiday",i["name"])
+                    holiday = i["holidays"]  
+                    if holiday > 0:
+                        holiday -= 1
+                    user.find_one_and_update({"name":i["name"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
+                else:
+                    print("user added to attendence")
+                    data = {
+                            "name":i["name"],
+                            "date":today,
+                            "time":"-",
+                            "exit":"-",
+                            "remark":"holiday"
+                        }
+                    present = attendence.find_one({"name":i["name"] , "date":today})
+                    print(present)
+                    if not present:
+                        attendence.insert_one(data)    
+        
     x = datetime.datetime.now()
     date = x.strftime("%d-%m-%Y")
     s = attendence.find({"date":date})
