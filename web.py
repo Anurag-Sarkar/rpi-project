@@ -150,12 +150,6 @@ def index():
     for i in alluser:
         print(today , i["dates"])
         if today in i["dates"]:   
-            if today in i["dates"] and today in dojo_holiday:
-                print("removed holiday",i["name"])
-                holiday = i["holidays"]  
-                if holiday > 0:
-                    holiday -= 1
-                user.find_one_and_update({"name":i["name"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
 
             print("got inside")
             data = {
@@ -168,7 +162,16 @@ def index():
             present = attendence.find_one({"name":i["name"] , "date":today})
             print(present)
             if not present:
-                attendence.insert_one(data)
+                attendence.insert_one(data)    
+                
+            if today in i["dates"] and today in dojo_holiday:
+                print("removed holiday",i["name"])
+                holiday = i["holidays"]  
+                if holiday > 0:
+                    holiday -= 1
+                user.find_one_and_update({"name":i["name"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
+
+            
                 
     x = datetime.datetime.now()
     date = x.strftime("%d-%m-%Y")
