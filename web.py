@@ -183,8 +183,8 @@ def index():
                     "exit":"-",
                     "remark":"holiday"
                         }
-            present = attendence.find_one({"name":"sheryians coding school","date":today})
-            print(present,"found sheryians holiday")
+            present = attendence.find_one({"name":"sheryians coding school"})
+            print(present["date"],"found sheryians holiday")
             if not present:
                 print("insterder sheryia")
                 attendence.insert_one(data)    
@@ -241,7 +241,7 @@ def enter():
             x = datetime.datetime.now()
             date = x.strftime("%d-%m-%Y")
             times = x.strftime("%H:%M")
-            check = attendence.find_one({"name":cu["name"]},{"date":date})
+            check = attendence.find_one({"name":cu["name"] ,"date":date})
             now = datetime.datetime.now()
             today_time = now.replace(hour=10, minute=30, second=0, microsecond=0)
             if x > today_time:
