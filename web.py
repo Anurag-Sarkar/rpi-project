@@ -152,11 +152,16 @@ def index():
             print(today , i["dates"])
             if today in i["dates"]:   
                 if today in dojo_holiday:
+                    
                     print("removed holiday",i["name"])
                     holiday = i["holidays"]  
                     if holiday > 0:
                         holiday -= 1
                     user.find_one_and_update({"name":i["name"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
+                    dates = user.find_one({"name":i["name"]}) 
+                    dates = dates["dates"]
+                    dates.remove(today)
+                    user.find_one_and_update({"name":i["name"]},{ '$set': { "dates" : dates}},return_document=ReturnDocument.AFTER)
                 else:
                     print("user added to attendence")
                     data = {
