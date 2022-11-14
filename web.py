@@ -157,6 +157,7 @@ def index():
                     "remark":"holiday"
                 }
             present = attendence.find_one({"name":i["name"]},{"date":today})
+            print(present)
             if not present:
                 attendence.insert_one(data)
                 
