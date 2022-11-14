@@ -146,6 +146,7 @@ def index():
     today = datetime.datetime.now()
     today = today.strftime("%d-%m-%Y")
     for i in alluser:
+        print(today , i["dates"])
         if today in i["dates"]:        
             data = {
                     "name":i["name"],
