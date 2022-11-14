@@ -148,6 +148,7 @@ def index():
     for i in alluser:
         print(today , i["dates"])
         if today in i["dates"]:        
+            print("got inside")
             data = {
                     "name":i["name"],
                     "date":today,
