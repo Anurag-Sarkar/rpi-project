@@ -255,7 +255,7 @@ def enter():
                 check_holiday = attendence.find_one({"name":cu["name"]})
                 if check_holiday["remark"] == "holiday":
                     halfday = cu["halfday"]
-                    holiday = cu["holiday"]
+                    holiday = cu["holidays"]
                     halfday += 1
                     holiday -= 1
                     user.find_one_and_update({"name":cu["name"]},{ '$set': { "halfday" : holiday }},return_document=ReturnDocument.AFTER)
