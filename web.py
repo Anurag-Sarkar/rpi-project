@@ -188,7 +188,7 @@ def index():
                 print("insterder sheryia")
                 attendence.insert_one(data)    
             elif present["date"] != today:
-                print("insterder sheryia")
+                print("insterder")
                 attendence.insert_one(data)    
 
                 
