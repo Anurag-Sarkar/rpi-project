@@ -99,6 +99,11 @@ html, body {
   color: white;
   background-color: rgb(134, 134, 134);
 }
+#main #lol {
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
 
 @media only screen and (max-width: 600px) {
   #main #nav {
