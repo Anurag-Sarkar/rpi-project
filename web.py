@@ -435,14 +435,9 @@ def deleteholi():
     logged = user.find_one({"name":session["user"]})
     logged = logged["dates"]
     dates = request.form.getlist("dates")
-    # set1 = {logged}\
     print("dates of 2")
     print(logged)
     print(dates)
-    set2 = {dates}
-    diff = set1.difference(set2)
-    # diff = list(diff)
-    print(diff,"updated dates--------------")
     return redirect("/")
 
 @app.route("/olddata")
