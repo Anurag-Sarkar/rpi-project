@@ -7,6 +7,10 @@ import adafruit_fingerprint
 import time
 import serial
 import RPi.GPIO as GPIO
+from subprocess import Popen, PIPE
+import board
+import digitalio
+import adafruit_character_lcd.character_lcd as characterlcd
 state = 0
 print(GPIO.VERSION)
 GPIO.setmode(GPIO.BCM)
@@ -19,12 +23,7 @@ finger = adafruit_fingerprint.Adafruit_Fingerprint(uart)
 identitiy = 0
 global identity
 #---------------LIBRAREIS--------------------
-from subprocess import Popen, PIPE
-from time import sleep
-from datetime import datetime
-import board
-import digitalio
-import adafruit_character_lcd.character_lcd as characterlcd
+
 
 # Modify this if you have a different sized character LCD
 lcd_columns = 16
