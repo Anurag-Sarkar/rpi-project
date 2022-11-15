@@ -426,7 +426,7 @@ def delete():
 def olddata():
     today = datetime.datetime.now()
     for i in range(30):
-        d = today - datetime.timedelta(days = 30)
+        d = today - datetime.timedelta(days = i)
         print(d.strftime("%d-%m-%Y"))
     return redirect("/add")
      
