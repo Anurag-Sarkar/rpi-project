@@ -33,8 +33,8 @@
                 </form>
                 <p>* to add single holiday select start date only</p>
             </div>
-            
-            <div id="dojo">
+            {%if admin%}
+                        <div id="dojo">
                 <h5>Dojo holiday</h5>
                 <form action="/dojoholiday" method="post">
                     <div id="start">
@@ -49,7 +49,7 @@
                 </form>
                 <p>* to add single holiday select start date only</p>
             </div>
-
+            {%endif%}
             <div id="clg">
                 <h5>College half-day</h5>
                 <form action="/clgholiday">

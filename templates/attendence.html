@@ -11,7 +11,9 @@
 <body>
         <div id="overlay">
             <div id="button">
+                {%if admin%}
                 <a href="/add"><p id="member">Add Memeber</p></a>
+                {%endif%}
                 <a href="/holiday"><p id="holiday">Add Holiday</p></a>
             </div>
             <i class="ri-close-fill"></i>
