@@ -435,7 +435,7 @@ def deleteholiday():
 def deleteholi():
     logged = user.find_one({"name":session["user"]})
     dates = request.form.getlist("dates")
-    print(dates)
+    print(dates,"dates to delete -------------------")
     return redirect("/")
 
 @app.route("/olddata")
