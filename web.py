@@ -433,7 +433,7 @@ def olddata():
         people.append(d.strftime("%d-%m-%Y"))
         for i in found:
             people.append(i)
-    print(people)
+    print(data)
     return redirect("/add")
      
 
