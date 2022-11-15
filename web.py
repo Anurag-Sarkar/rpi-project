@@ -429,7 +429,7 @@ def delete():
 def deleteholiday():
     logged = user.find_one({"name":session["user"]})
     print(logged["dates"])
-    return render_template("deleteholiday",date=logged["dates"])
+    return render_template("deleteholiday.html",date=logged["dates"])
 
 @app.route("/olddata")
 def olddata():
