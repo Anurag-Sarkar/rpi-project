@@ -437,7 +437,10 @@ def deleteholi():
     dates = request.form.getlist("dates")
     print("dates of 2")
     print(logged)
-    print(dates)
+    for i in range(len(logged)):
+        if dates[i] in logged:
+            logged.remove(dates[i])
+    print(logged,"updated holiday")
     return redirect("/")
 
 @app.route("/olddata")
