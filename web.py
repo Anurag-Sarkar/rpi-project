@@ -152,7 +152,6 @@ def index():
             print(today , i["dates"])
             if today in i["dates"]:   
                 if today in dojo_holiday:
-                    
                     print("removed holiday",i["name"])
                     holiday = i["holidays"]  
                     if holiday > 0:
@@ -421,6 +420,14 @@ def delete():
     for i in finger.templates:
         print(i)
         finger.delete_model(i)
+    return redirect("/add")
+
+@app.route("/olddata")
+def olddata():
+    today = datetime.datetime.now()
+    for i in range(30):
+        d = today - datetime.timedelta(days = 30)
+        print(d.strftime("%d-%m-%Y"))
     return redirect("/add")
      
 
