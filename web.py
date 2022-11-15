@@ -438,7 +438,7 @@ def deleteholi():
     set1 = {logged}
     set2 = {dates}
     diff = set1.difference(set2)
-    diff = list(diff)
+    # diff = list(diff)
     print(diff,"updated dates--------------")
     return redirect("/")
 
