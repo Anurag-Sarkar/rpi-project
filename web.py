@@ -492,7 +492,7 @@ def delete():
         session.pop("user", None)
         return redirect("/")
 
-@app.route("/deleteuser",methods=[POST])
+@app.route("/deleteuser",methods=["POST"])
 def delete():
     usr = user.find_one({"name":request.form["name"]})
     id = (usr["fingerprint"] - 169691)/169691
