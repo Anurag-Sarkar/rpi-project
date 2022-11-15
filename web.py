@@ -139,8 +139,10 @@ if not lol:
     user.insert_one(data)
 def check_admin():
     if session["user"] == "dhanesh malviya" or session["user"] == "harsh sharma" or session["user"] == "adarsh gupta" or session["user"] == "harshit sahu" or session["user"] == "anurag sarkar":
+        print("admin")
         return True
     else:
+        print("not admin")
         return False
 
 @app.route("/attendence")
