@@ -431,6 +431,13 @@ def deleteholiday():
     print(logged["dates"])
     return render_template("deleteholiday.html",date=logged["dates"])
 
+@app.route("/deleteholi",method=["POST"])
+def deleteholi():
+    logged = user.find_one({"name":session["user"]})
+    dates = request.form.getlist("dates")
+    print(dates)
+    return redirect("/")
+
 @app.route("/olddata")
 def olddata():
     today = datetime.datetime.now()

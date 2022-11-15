@@ -21,13 +21,16 @@
             {%for i in date%}
             {%if date|length > 0 %}
                 <div id="dates">
-                    <input type="checkbox">
+                    <input type="checkbox" name="dates">
                     <label for="">{{i}}</label> 
                 </div>
             {% else %}
                 <h1>No Holiday Taken</h1>
             {%endif%}
-            {% endfor %}    
+            {% endfor %}   
+            {%if date|length > 0 %}
+                <button type="submit">DELETE</button>
+            {%endif%}
         </form>
     
     </div>
