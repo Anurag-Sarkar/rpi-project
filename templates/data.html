@@ -19,12 +19,12 @@
         </div>
         <div id="olddata">
                 
-            </div>
             {% for item in deta %}
-                <h2>{{item[0]}}</h2>
+            <h2>{{item[0]}}</h2>
             <div id="date">
                 {% for i in range(1,item|length) %}
-                    {% if i["remark"] == "late"  %}
+                    <p>{{i}}</p>
+                    <!-- {% if i["remark"] == "late"  %}
                         <div id="names" style="background-color: rgb(255, 163, 102); display: flex;">
                             <p>{{i["name"]}}</p>
                             <p>{{i["time"]}}</p>
@@ -48,7 +48,7 @@
                             <p>{{i["date"]}}</p>
                             <p>{{i["remark"]}}</p>
                         </div>
-                    {% else %}
+                        {% else %}
                         <div id="names" style="display: flex;">
                             <p>{{i["name"]}}</p>
                             <p>{{i["time"]}}</p>
@@ -56,11 +56,12 @@
                             <p>{{i["date"]}}</p>
                             <p>{{i["remark"]}}</p>
                         </div>
-                    {% endif %}
-                {% endfor %} 
+                        {% endif %} -->
+                    {% endfor %} 
+                </div>
+                {% endfor %}    
             </div>
-            {% endfor %}    
         </div>
     </div>
-</body>
-</html>
+    </body>
+    </html>
