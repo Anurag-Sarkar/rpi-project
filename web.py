@@ -140,10 +140,10 @@ if not lol:
 def check_admin():
     if session["user"] == "dhanesh malviya" or session["user"] == "harsh sharma" or session["user"] == "adarsh gupta" or session["user"] == "harshit sahu" or session["user"] == "anurag sarkar":
         print("admin")
-        return True
+        return "admin"
     else:
         print("not admin")
-        return False
+        return "notadmin"
 
 @app.route("/attendence")
 def index():
@@ -201,7 +201,7 @@ def index():
     for i in s:
         use.append(i)
     print(use)
-    return render_template("attendence.html",data=use,admin = check_admin())
+    return render_template("attendence.html",data=use, admin = check_admin())
 
 @app.route("/",methods=["GET"])
 def login():
