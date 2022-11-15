@@ -20,10 +20,12 @@
         <div id="olddata">
                 
             {% for item in deta %}
+            {% if item|length > 1%}
             <h2>{{item[0]}}</h2>
             <div id="date">
                 {% for i in range(1,item|length) %}
                     <!-- <p>{{item[i]}}</p> -->
+
                     {% if item[i]["remark"] == "late"  %}
                         <div id="names" style="background-color: rgb(255, 163, 102); display: flex;">
                             <p>{{item[i]["name"]}}</p>
@@ -57,8 +59,9 @@
                             <p>{{item[i]["remark"]}}</p>
                         </div>
                         {% endif %}
-                    {% endfor %} 
-                </div>
+                        {% endfor %} 
+                    </div>
+                    {% endif %}
                 {% endfor %}    
             </div>
         </div>
