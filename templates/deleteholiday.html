@@ -19,10 +19,14 @@
         </div>
         <form action="/deleteholi" method="post">
             {%for i in date%}
+                {%if date|length < 1%}
+                    <h1>No Holiday Taken</h1>
+                {%else%}
                 <div id="dates">
                     <input type="checkbox">
                     <label for="">{{i}}</label> 
                 </div>
+                {%endif%}
             {% endfor %}    
         </form>
     
