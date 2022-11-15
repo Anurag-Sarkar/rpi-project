@@ -427,7 +427,8 @@ def olddata():
     today = datetime.datetime.now()
     for i in range(30):
         d = today - datetime.timedelta(days = i)
-        print(d.strftime("%d-%m-%Y"))
+        found = attendence.find_one({"date":d.strftime("%d-%m-%Y")})
+        print(found)
     return redirect("/add")
      
 
