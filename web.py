@@ -373,11 +373,11 @@ def exit():
 
 @app.route("/add",methods=["GET"])
 def add():
-    if check_admin() == "admin":
-        return render_template("add.html")
-    else:
-        session.pop("user", None)
-        return redirect("/")
+    # if check_admin() == "admin":
+    return render_template("add.html")
+    # else:
+    #     session.pop("user", None)
+    #     return redirect("/")
 @app.route("/holiday",methods=["GET"])
 def holiday():
     if "user" in session:
@@ -387,39 +387,39 @@ def holiday():
 
 @app.route("/addmember",methods=["POST"])
 def addmember():
-    if check_admin() == "admin": 
+    # if check_admin() == "admin": 
         # if "user" in session:
-        global identity
-        print(identity)
-        n = request.form["name"].lower()
-        p = request.form["password"]
-        print(id)
-        print(n)
-        check_user = user.find_one({"name":n})
-        if not check_user:
-            password = generate_password_hash(p)
-            data = {
-                "name":n,
-                "defaultedDays":0,
-                "holidays":0,
-                "overtime":0,
-                "clg":0,
-                "halfday":0,
-                "dates":[],
-                "clg":[],
-                "fingerprint":identity,
-                "password": password
-            }
-            user.insert_one(data)
-            identity = 0
-            session["user"] = data["name"]
-            return redirect("/attendence")
-        
-        else:
-            return redirect("/")
+    global identity
+    print(identity)
+    n = request.form["name"].lower()
+    p = request.form["password"]
+    print(id)
+    print(n)
+    check_user = user.find_one({"name":n})
+    if not check_user:
+        password = generate_password_hash(p)
+        data = {
+            "name":n,
+            "defaultedDays":0,
+            "holidays":0,
+            "overtime":0,
+            "clg":0,
+            "halfday":0,
+            "dates":[],
+            "clg":[],
+            "fingerprint":identity,
+            "password": password
+        }
+        user.insert_one(data)
+        identity = 0
+        session["user"] = data["name"]
+        return redirect("/attendence")
+    
     else:
-        session.pop("user", None)
         return redirect("/")
+    # else:
+    #     session.pop("user", None)
+    #     return redirect("/")
 
 @app.route("/personelholiday",methods=["POST"])
 def personalholiday():
@@ -496,12 +496,12 @@ def delete():
 def deletesingle():
     usr = user.find_one({"name":request.form["name"]})
     if usr:
-        id = (usr["fingerprint"] - 169691)/169691
+        id = (usr["fingerprint"] - 169691)//169691
         print(id)
         return redirect("/")
     else:
         return redirect('/')
-        
+
 @app.route("/deleteholiday")
 def deleteholiday():
     if "user" in session:
