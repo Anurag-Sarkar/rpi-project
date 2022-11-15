@@ -23,7 +23,7 @@
             {% for item in deta %}
                 <h2>item[0]</h2>
             <div id="date">
-                {% for i in range(1,len(item)) %}
+                {% for i in range(1,item|length) %}
                     <p>{{item[i]}}</p>
                 {% endfor %} 
             </div>
