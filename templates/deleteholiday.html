@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style/deleteholiday.css">
+</head>
+<body>
+    <div id="main">
+        <div id="nav">
+            <h1>SHERYIANS</h1>
+            <div id="button">
+                <a href="/add"><p>Add Memeber</p></a>
+                <a href="/holiday"><p>Add Holiday</p></a>
+            </div>
+        </div>
+        <form action="/deleteholi" method="post">
+            {%for i in date%}
+                <div id="dates">
+                    <input type="checkbox">
+                    <label for="">{{i}}</label> 
+                </div>
+            {% endfor %}    
+        </form>
+    
+    </div>
+</body>
+</html>

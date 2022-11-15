@@ -116,8 +116,6 @@ except Exception:
 #---------------LIBRAREIS--------------------
 GPIO.add_event_detect(26, GPIO.FALLING, callback=print_f, bouncetime=300)
 
-
-
 app = Flask(__name__)
 app.config["SECRTE"] = "secret"
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -139,6 +137,11 @@ if not lol:
         "dates":[],
         }
     user.insert_one(data)
+def check_admin():
+    if session["user"] == "dhanesh malviya" or session["user"] == "harsh sharma" or session["user"] == "adarsh gupta" or session["user"] == "harshit sahu" or session["user"] == "anurag sarkar":
+        return True
+    else:
+        return False
 
 @app.route("/attendence")
 def index():
@@ -196,7 +199,7 @@ def index():
     for i in s:
         use.append(i)
     print(use)
-    return render_template("attendence.html",data=use)
+    return render_template("attendence.html",data=use,admin = check_admin())
 
 @app.route("/",methods=["GET"])
 def login():
@@ -318,7 +321,7 @@ def add():
 @app.route("/holiday",methods=["GET"])
 def holiday():
     if "user" in session:
-        return render_template("holiday.html")
+        return render_template("holiday.html" ,admin = check_admin())
     else:
         return redirect("/")
 
@@ -421,6 +424,11 @@ def delete():
         print(i)
         finger.delete_model(i)
     return redirect("/add")
+
+@app.route("/deleteholiday")
+def deleteholiday():
+    logged = user.find_one({"name":session["user"]})
+    return render_template("deleteholiday",date=logged["dates"])
 
 @app.route("/olddata")
 def olddata():
