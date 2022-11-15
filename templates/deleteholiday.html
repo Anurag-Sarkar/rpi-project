@@ -21,7 +21,7 @@
             {%for i in date%}
             {%if date|length > 0 %}
                 <div id="dates">
-                    <input type="checkbox" name="dates">
+                    <input type="checkbox" name="dates" value="{{i}}">
                     <label for="">{{i}}</label> 
                 </div>
             {% else %}
