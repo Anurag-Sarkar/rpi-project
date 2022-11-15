@@ -439,13 +439,13 @@ def deleteholi():
     print("dates of 2")
     print(logged)
     print(dates)
-    for i in range(len(logged)):
+    for i in range(len(dates)):
         if dates[i] in logged:
             h -= 1
             logged.remove(dates[i])
     print(logged,"updated holiday")
-    user.find_one_and_update({"name":session["user"]},{'$set': {'dates': logged}},return_document=ReturnDocument.AFTER)
-    user.find_one_and_update({"name":session["user"]},{'$set': {'holidays': h}},return_document=ReturnDocument.AFTER)
+    # user.find_one_and_update({"name":session["user"]},{'$set': {'dates': logged}},return_document=ReturnDocument.AFTER)
+    # user.find_one_and_update({"name":session["user"]},{'$set': {'holidays': h}},return_document=ReturnDocument.AFTER)
 
     return redirect("/")
 
