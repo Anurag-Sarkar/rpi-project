@@ -493,7 +493,7 @@ def delete():
         return redirect("/")
 
 @app.route("/deleteuser",methods=["POST"])
-def delete():
+def deletesingle():
     usr = user.find_one({"name":request.form["name"]})
     id = (usr["fingerprint"] - 169691)/169691
     print(id)
