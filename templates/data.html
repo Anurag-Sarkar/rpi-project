@@ -24,7 +24,38 @@
                 <h2>{{item[0]}}</h2>
             <div id="date">
                 {% for i in range(1,item|length) %}
-                    <p>{{item[i]}}</p>
+                    {% if i["remark"] == "late"  %}
+                        <div id="names" style="background-color: rgb(255, 163, 102); display: flex;">
+                            <p>{{i["name"]}}</p>
+                            <p>{{i["time"]}}</p>
+                            <p>{{i["exit"]}}</p>
+                            <p>{{i["date"]}}</p>
+                            <p>{{i["remark"]}}</p>
+                        </div>
+                    {% elif i["remark"] == "holiday" %}
+                        <div id="names" style="background-color: rgb(119, 255, 56); display: flex;">
+                            <p>{{i["name"]}}</p>
+                            <p>{{i["time"]}}</p>
+                            <p>{{i["exit"]}}</p>
+                            <p>{{i["date"]}}</p>
+                            <p>{{i["remark"]}}</p>
+                        </div>
+                    {% elif i["remark"] == "extra" %}
+                        <div id="names" style="background-color: rgb(186, 112, 255); display: flex;">
+                            <p>{{i["name"]}}</p>
+                            <p>{{i["time"]}}</p>
+                            <p>{{i["exit"]}}</p>
+                            <p>{{i["date"]}}</p>
+                            <p>{{i["remark"]}}</p>
+                        </div>
+                    {% else %}
+                        <div id="names" style="display: flex;">
+                            <p>{{i["name"]}}</p>
+                            <p>{{i["time"]}}</p>
+                            <p>{{i["exit"]}}</p>
+                            <p>{{i["date"]}}</p>
+                            <p>{{i["remark"]}}</p>
+                        </div>
                 {% endfor %} 
             </div>
             {% endfor %}    
