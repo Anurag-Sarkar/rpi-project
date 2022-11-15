@@ -24,8 +24,12 @@
         <div id="nav">
             <h1>SHERYIANS</h1>
             <div id="button">
-            <a href="/add"><p>Add Memeber</p></a>
-            <a href="/holiday"><p>Add Holiday</p></a>
+                {%if admin == "admin"%}
+                <a href="/add"><p id="member">Add Memeber</p></a>
+                <a href="/holiday"><p id="holiday">Add Holiday</p></a>
+            {%else%}
+                <a href="/holiday"><p id="holiday">Add Holiday</p></a>
+            {%endif%}
             </div>
             <i class="ri-menu-4-fill"></i>
         </div>
