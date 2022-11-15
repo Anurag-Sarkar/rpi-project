@@ -12,10 +12,11 @@
         <div id="overlay">
             <div id="button"> 
                 {%if admin == "admin"%}
-                    <h1>{{admin}}</h1>    
-                <a href="/add"><p id="member">Add Memeber</p></a>
+                    <a href="/add"><p id="member">Add Memeber</p></a>
+                    <a href="/holiday"><p id="holiday">Add Holiday</p></a>
+                {%else%}
+                    <a href="/holiday"><p id="holiday">Add Holiday</p></a>
                 {%endif%}
-                <a href="/holiday"><p id="holiday">Add Holiday</p></a>
             </div>
             <i class="ri-close-fill"></i>
         </div>
