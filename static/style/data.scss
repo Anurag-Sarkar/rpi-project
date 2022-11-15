@@ -58,6 +58,14 @@ html,body{
             height: 100%;
             background-color: red;
             text-align: center;
+            #names{
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                p{
+                    width: 25%;
+                }
+            }
         }
     }
 }
