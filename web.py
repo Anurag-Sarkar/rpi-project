@@ -441,6 +441,8 @@ def deleteholi():
         if dates[i] in logged:
             logged.remove(dates[i])
     print(logged,"updated holiday")
+    user.find_one_and_update({"name":session["user"]},{'$set': {'dates': logged}},return_document=ReturnDocument.AFTER)
+
     return redirect("/")
 
 @app.route("/olddata")
