@@ -435,7 +435,7 @@ def olddata():
             people.append(i)
         data.append(people)
     print(data)
-    return redirect("/add")
+    return render_template("data.html",deta=data)
      
 
          
