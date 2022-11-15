@@ -329,37 +329,39 @@ def holiday():
 
 @app.route("/addmember",methods=["POST"])
 def addmember():
-    # if "user" in session:
-    global identity
-    print(identity)
-    n = request.form["name"].lower()
-    p = request.form["password"]
-    print(id)
-    print(n)
-    check_user = user.find_one({"name":n})
-    if not check_user:
-        password = generate_password_hash(p)
-        data = {
-            "name":n,
-            "defaultedDays":0,
-            "holidays":0,
-            "overtime":0,
-            "clg":0,
-            "halfday":0,
-            "dates":[],
-            "clg":[],
-            "fingerprint":identity,
-            "password": password
-        }
-        user.insert_one(data)
-        identity = 0
-        session["user"] = data["name"]
-        return redirect("/attendence")
-    
+    if check_admin() == "admin": 
+        # if "user" in session:
+        global identity
+        print(identity)
+        n = request.form["name"].lower()
+        p = request.form["password"]
+        print(id)
+        print(n)
+        check_user = user.find_one({"name":n})
+        if not check_user:
+            password = generate_password_hash(p)
+            data = {
+                "name":n,
+                "defaultedDays":0,
+                "holidays":0,
+                "overtime":0,
+                "clg":0,
+                "halfday":0,
+                "dates":[],
+                "clg":[],
+                "fingerprint":identity,
+                "password": password
+            }
+            user.insert_one(data)
+            identity = 0
+            session["user"] = data["name"]
+            return redirect("/attendence")
+        
+        else:
+            return redirect("/")
     else:
-        return "user exists"
-    # else:
-    #     return redirect("/")
+        session.pop("user", None)
+        return redirect("/")
 
 @app.route("/personelholiday",methods=["POST"])
 def personalholiday():
@@ -393,6 +395,7 @@ def personalholiday():
 
 @app.route("/dojoholiday",methods=["POST"])
 def dojoholiday():
+
     start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
     end = request.form["enddate"]
     skip = datetime.timedelta(days=1)
@@ -420,12 +423,16 @@ def dojoholiday():
 
 @app.route("/deleteall")
 def delete():
-    finger.read_templates()
-    print(finger.templates)
-    for i in finger.templates:
-        print(i)
-        finger.delete_model(i)
-    return redirect("/add")
+    if check_admin() == "admin": 
+        finger.read_templates()
+        print(finger.templates)
+        for i in finger.templates:
+            print(i)
+            finger.delete_model(i)
+        return redirect("/add")
+    else:
+        session.pop("user", None)
+        return redirect("/")
 
 @app.route("/deleteholiday")
 def deleteholiday():
@@ -453,18 +460,21 @@ def deleteholi():
 
 @app.route("/olddata")
 def olddata():
-    today = datetime.datetime.now()
-    data = []
-    for i in range(30):
-        people = []
-        d = today - datetime.timedelta(days = i)
-        found = attendence.find({"date":d.strftime("%d-%m-%Y")})
-        people.append(d.strftime("%d-%m-%Y"))
-        for i in found:
-            people.append(i)
-        data.append(people)
-    return render_template("data.html",deta=data)
-     
+    if check_admin() == "admin": 
+        today = datetime.datetime.now()
+        data = []
+        for i in range(30):
+            people = []
+            d = today - datetime.timedelta(days = i)
+            found = attendence.find({"date":d.strftime("%d-%m-%Y")})
+            people.append(d.strftime("%d-%m-%Y"))
+            for i in found:
+                people.append(i)
+            data.append(people)
+        return render_template("data.html",deta=data)
+    else:
+        session.pop("user", None)
+        return redirect("/")     
 
          
 
