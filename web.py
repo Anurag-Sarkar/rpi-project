@@ -431,7 +431,7 @@ def deleteholiday():
     print(logged["dates"])
     return render_template("deleteholiday.html",date=logged["dates"])
 
-@app.route("/deleteholi",method=["POST"])
+@app.route("/deleteholi",methods=["POST"])
 def deleteholi():
     logged = user.find_one({"name":session["user"]})
     dates = request.form.getlist("dates")
