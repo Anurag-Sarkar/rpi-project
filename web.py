@@ -428,14 +428,18 @@ def delete():
 @app.route("/deleteholiday")
 def deleteholiday():
     logged = user.find_one({"name":session["user"]})
-    print(logged["dates"])
     return render_template("deleteholiday.html",date=logged["dates"])
 
 @app.route("/deleteholi",methods=["POST"])
 def deleteholi():
     logged = user.find_one({"name":session["user"]})
+    logged = logged["dates"]
     dates = request.form.getlist("dates")
-    print(dates,"dates to delete -------------------")
+    set1 = {logged}
+    set2 = {dates}
+    diff = set1.difference(set2)
+    diff = list(diff)
+    print(diff,"updated dates--------------")
     return redirect("/")
 
 @app.route("/olddata")
@@ -450,7 +454,6 @@ def olddata():
         for i in found:
             people.append(i)
         data.append(people)
-    print(data)
     return render_template("data.html",deta=data)
      
 
