@@ -64,8 +64,13 @@ def enroll_finger(location):
     for fingerimg in range(1, 3):
         if fingerimg == 1:
             print("Place finger on sensor...", end="")
+            lcd.clear()
+            lcd.message = "Ungli kro"
+
         else:
             print("Place same finger again...", end="")
+            lcd.clear()
+            lcd.message = "Phirse ungli kro"
             socket.emit("again")
 
         while True:
@@ -91,6 +96,9 @@ def enroll_finger(location):
                 print("Image too messy")
             elif i == adafruit_fingerprint.FEATUREFAIL:
                 print("Could not identify features")
+                lcd.clear()
+                lcd.message = "saaf kro ungli"
+
             elif i == adafruit_fingerprint.INVALIDIMAGE:
                 print("Image invalid")
             else:
@@ -130,6 +138,8 @@ def enroll_finger(location):
     return True
 try:
     def get_fingerprint():
+        lcd.clear()
+        lcd.message = "Ungli Lagao"
         """Get a finger print image, template it, and see if it matches!"""
         print("Waiting for image...")
         while finger.get_image() != adafruit_fingerprint.OK:
@@ -268,8 +278,10 @@ def logout():
 
 @app.route("/entry",methods=["GET"])
 def enter():
+    
     remark = "normal"
     if get_fingerprint():
+        
         print("Detected #", finger.finger_id, "with confidence", finger.confidence)
         iden = (int(finger.finger_id)*169691)+169691
         print(iden)
@@ -300,6 +312,8 @@ def enter():
 
             if not check:
                 print("found user")
+                lcd.clear()
+                lcd.message = "Welcome...\n" + cu["name"]
                 data = {
                     "name":cu["name"],
                     "date":date,
@@ -320,16 +334,23 @@ def enter():
                     attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "times" : times}},return_document=ReturnDocument.AFTER)
                     attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "remark" : "halfday"}},return_document=ReturnDocument.AFTER)
                 else:
+                    lcd.clear()
+                    lcd.message = "kitni baar ghusoge"
                     print("already entered")
 
         else:
+            lcd.clear()
+            lcd.message = "Koon ho aap???"
             print("user not found")
     else:
+        lcd.clear()
+        lcd.message = "Clean Sensor"
         print("FUCK YOU")
     return redirect('/attendence')
 
 @app.route("/exit",methods=["GET"])
 def exit():
+
     if get_fingerprint():
         iden = (int(finger.finger_id)*169691)+169691
         cu = user.find_one({"fingerprint": iden})
@@ -339,8 +360,12 @@ def exit():
         date = x.strftime("%d-%m-%Y")
         check = attendence.find_one({"name":n})
         if check and check["date"] == date and check["exit"] == "-":
+            lcd.clear()
+            lcd.message = "Bye...\n" + cu["name"]
             attendence.find_one_and_update({"name":n},{ '$set': { "exit" : time}},return_document=ReturnDocument.AFTER)
         else:
+            lcd.clear()
+            lcd.message = "bhaag gya wo"
             print("user exited")
     else:
         print("FUCK YOU")
@@ -531,12 +556,17 @@ def message(data):
     if not get_fingerprint():
         print("no finger found. adding....")
         if enroll_finger(i): 
-            print("Add fingerprint------------------------------")   
+            print("Add fingerprint------------------------------") 
+            lcd.clear() 
+            lcd.message = "Ungli aagai"
+  
             socket.emit("pass")
         else:    
             print("Cant add fingerprint----------------------------")   
             socket.emit("fail")
     else:
+        lcd.clear()
+        lcd.message = "Ye ungli hai\nDusri Ungli do"
         socket.emit("fingerexists")
 
 socket.run(app,host="192.168.29.7",port="80",debug=True)
