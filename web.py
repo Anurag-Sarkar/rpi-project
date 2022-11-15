@@ -495,9 +495,13 @@ def delete():
 @app.route("/deleteuser",methods=["POST"])
 def deletesingle():
     usr = user.find_one({"name":request.form["name"]})
-    id = (usr["fingerprint"] - 169691)/169691
-    print(id)
-
+    if usr:
+        id = (usr["fingerprint"] - 169691)/169691
+        print(id)
+        return redirect("/")
+    else:
+        return redirect('/')
+        
 @app.route("/deleteholiday")
 def deleteholiday():
     if "user" in session:
