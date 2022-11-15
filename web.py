@@ -425,11 +425,15 @@ def delete():
 @app.route("/olddata")
 def olddata():
     today = datetime.datetime.now()
+    data = []
     for i in range(30):
+        people = []
         d = today - datetime.timedelta(days = i)
         found = attendence.find({"date":d.strftime("%d-%m-%Y")})
+        people.append(d.strftime("%d-%m-%Y"))
         for i in found:
-            print(i)
+            people.append(i)
+    print(people)
     return redirect("/add")
      
 
