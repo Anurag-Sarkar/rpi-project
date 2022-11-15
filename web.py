@@ -433,15 +433,18 @@ def deleteholiday():
 @app.route("/deleteholi",methods=["POST"])
 def deleteholi():
     logged = user.find_one({"name":session["user"]})
+    h = logged["holidays"]
     logged = logged["dates"]
     dates = request.form.getlist("dates")
     print("dates of 2")
     print(logged)
     for i in range(len(logged)):
         if dates[i] in logged:
+            h -= 1
             logged.remove(dates[i])
     print(logged,"updated holiday")
     user.find_one_and_update({"name":session["user"]},{'$set': {'dates': logged}},return_document=ReturnDocument.AFTER)
+    user.find_one_and_update({"name":session["user"]},{'$set': {'holidays': h}},return_document=ReturnDocument.AFTER)
 
     return redirect("/")
 
