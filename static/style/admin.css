@@ -64,6 +64,10 @@ html, body {
 #main #data #left #members:nth-child(even) {
   background-color: beige;
 }
+#main #data #left #members p {
+  width: 33.3333333333%;
+  text-align: center;
+}
 #main #data #right {
   padding: 20px;
   background-color: rgb(247, 247, 247);

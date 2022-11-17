@@ -20,13 +20,15 @@
         </div>
         <div id="data">
             <div id="left">
-                {%for member in user%}
-                <div id="members">
-                    <p>{{member["name"]}}</p>
-                    <p>{{member["holiday"]}}</p>
-                    <p>{{member["defaultedDays"]}}</p>
-                </div>
-                {%endfor%}
+                {% for member in user %}
+                    {% if member["name"] != "sheryinas coding school"%}
+                        <div id="members">
+                            <p>{{member["name"]}}</p>
+                            <p>{{member["holiday"]}}</p>
+                            <p>{{member["defaultedDays"]}}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
             <div id="right">
                 <div id="details">

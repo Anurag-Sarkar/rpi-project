@@ -59,6 +59,10 @@ html,body{
                 &:nth-child(even){
                     background-color: beige;
                 }
+                p{
+                    width: calc(100%/3);
+                    text-align: center;
+                }
             }
         }
         #right{
