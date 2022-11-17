@@ -466,9 +466,9 @@ def admin():
 @socket.on("getdata")
 def getname(data):
     print(data)
-    u = user.find_one({"name":data})
-    print(u)
-    emit('after',  {'data':'Lets dance'})
+    usr = user.find_one({"name":data})
+    print(usr)
+    emit('after',  {'data':usr})
 
 @socket.on("finger")
 def message(data):
