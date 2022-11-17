@@ -468,7 +468,7 @@ def getname(data):
     print(data)
     usr = user.find_one({"name":data})
     print(usr)
-    emit('after',  {'data':usr})
+    emit('after',  {'data':usr,"sex":"hi"})
 
 @socket.on("finger")
 def message(data):
