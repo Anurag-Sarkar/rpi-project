@@ -458,9 +458,9 @@ def olddata():
 
 @app.route("/admin")
 def admin():
-    if session["user"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
-        users = user.find({})
-        return render_template("admin.html",user = users)
+    # if session["user"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+    users = user.find({})
+    return render_template("admin.html")
 
 
 @socket.on("finger")
