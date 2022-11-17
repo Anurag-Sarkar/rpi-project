@@ -56,6 +56,11 @@ html, body {
 #main #data #left .heading {
   background-color: grey;
   font-weight: 800;
+  display: flex;
+  font-size: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
 }
 #main #data #left .members {
   background-color: rgb(255, 222, 192);
