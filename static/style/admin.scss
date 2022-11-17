@@ -74,6 +74,7 @@ html,body{
                     background-color: beige;
                 }
                 p{
+                    pointer-events: none;
                     width: calc(100%/3);
                     text-align: center;
                 }
