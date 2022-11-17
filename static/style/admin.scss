@@ -57,6 +57,10 @@ html,body{
                 justify-content: space-between;
                 align-items: center;
                 padding: 10px 15px;
+                p{
+                    width: calc(100%/3);
+                    text-align: center;
+                }
 
             }
             .members{
