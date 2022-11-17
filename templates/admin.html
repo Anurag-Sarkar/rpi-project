@@ -27,7 +27,7 @@
                 </div>
                 {% for member in user %}
                     {% if member["name"] != "sheryians coding school" %}
-                        <div id="members" class="{{member["name"]}}" >
+                        <div class="members" id="{{member["name"]}}" >
                             <p>{{member["name"]}}</p>
                             <p>{{member["holiday"]}}</p>
                             <p>{{member["defaultedDays"]}}</p>
