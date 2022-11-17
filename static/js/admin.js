@@ -1,3 +1,3 @@
 document.querySelector("#left").addEventListener("click",data=>{
-    console.log(data)
+    console.log(data.target)
 })
