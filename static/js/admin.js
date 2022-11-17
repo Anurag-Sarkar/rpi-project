@@ -1,1 +1,3 @@
-document.querySelector("#left").addEventListener()
+document.querySelector("#left").addEventListener("click",data=>{
+    console.log(data)
+})

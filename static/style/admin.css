@@ -54,7 +54,7 @@ html, body {
   width: 40%;
 }
 #main #data #left .heading {
-  background-color: grey;
+  background-color: rgb(224, 224, 224);
   font-weight: 800;
   display: flex;
   font-size: 20px;
