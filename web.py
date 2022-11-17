@@ -355,7 +355,8 @@ def addmember():
         user.insert_one(data)
     else:
         print("USER ALREADY ADDED")
-
+    return redirect("/admin")
+    
 @app.route("/holiday",methods=["GET"])
 def holiday():
     if "user" in session:
