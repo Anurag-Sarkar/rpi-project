@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&display=swap");
+* {
+  margin: 0;
+  padding: 0%;
+  font-family: "Karla";
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+#main {
+  width: 100%;
+  height: 100%;
+}
+#main #greeting {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  padding: 0px 50px;
+  width: 100%;
+  margin-top: 50px;
+}
+#main #greeting h1 {
+  font-weight: 800;
+  font-size: 60px;
+}
+#main #greeting #button {
+  justify-content: space-between;
+  width: 20%;
+  display: flex;
+}
+#main #greeting #button a {
+  text-decoration: none;
+  color: white;
+}
+#main #greeting #button a p {
+  background-color: black;
+  font-size: 23px;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+#main #data {
+  margin-top: 100px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 50px;
+}
+#main #data #left {
+  width: 40%;
+}
+#main #data #left #members {
+  background-color: rgb(255, 222, 192);
+  display: flex;
+  font-size: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+}
+#main #data #left #members:nth-child(even) {
+  background-color: beige;
+}
+#main #data #right {
+  padding: 20px;
+  background-color: rgb(247, 247, 247);
+  width: 45%;
+  height: 70%;
+}
+#main #data #right #details h2 {
+  margin-bottom: 30px;
+}
+#main #data #right #details #avg {
+  padding: 0% 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 100px;
+}
+#main #data #right #details #holi {
+  padding: 0% 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#main #data #right #last {
+  background-color: aquamarine;
+  margin-top: 50px;
+  width: 100%;
+}
+#main #data #right #last #dets {
+  display: flex;
+  font-size: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+}
+#main #data #right #last #dets:nth-child(even) {
+  background-color: rgb(192, 242, 255);
+}/*# sourceMappingURL=admin.css.map */

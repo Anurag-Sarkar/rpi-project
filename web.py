@@ -177,13 +177,6 @@ if not lol:
         "dates":[],
         }
     user.insert_one(data)
-def check_admin():
-    if session["user"] == "dhanesh malviya" or session["user"] == "harsh sharma" or session["user"] == "adarsh gupta" or session["user"] == "harshit sahu" or session["user"] == "anurag sarkar":
-        print("admin")
-        return "admin"
-    else:
-        print("not admin")
-        return "notadmin"
 
 @app.route("/attendence")
 def index():
@@ -242,39 +235,9 @@ def index():
         for i in s:
             use.append(i)
         print(use)
-        return render_template("attendence.html",data=use, admin = check_admin())
+        return render_template("attendence.html",data=use)
     else:
         return redirect("/")
-
-@app.route("/",methods=["GET"])
-def login():
-    if "user" in session:
-       return redirect("/attendence")
-    else:
-       return render_template("login.html")
-
-@app.route("/loginuser",methods=["POST"])
-def loginuser():
-    name = request.form["name"]
-    pwsd = request.form["password"]
-    userdata = user.find_one({"name":name}) 
-    if userdata:
-        if check_password_hash(userdata["password"],pwsd):
-            session["user"] = userdata["name"]
-            print(userdata["password"])
-            return redirect("/attendence")
-        
-        else:
-            print("hellloo")
-            emit("wrong")
-            return redirect("/")
-    else:
-        return redirect("/")
-
-@app.route("/logout",methods=["GET"])
-def logout():
-    session.pop("user", None)
-    return redirect("/")
 
 @app.route("/entry",methods=["GET"])
 def enter():
@@ -373,60 +336,40 @@ def exit():
 
 @app.route("/add",methods=["GET"])
 def add():
-    # if check_admin() == "admin":
     return render_template("add.html")
-    # else:
-    #     session.pop("user", None)
-    #     return redirect("/")
+        
+@app.route("/addmember",methods=["POST"])
+def addmember():
+    fingerprint = identitiy
+    name = request.form["name"]
+    check = user.find_one({"name":name})
+    if not check:
+        data = {
+            "name":name,
+            "fingerprint":fingerprint,
+            "holiday":0,
+            "dates":[],
+            "overtime":0,
+            "defaultedDays":0
+        }
+        user.insert_one(data)
+    else:
+        print("USER ALREADY ADDED")
+
 @app.route("/holiday",methods=["GET"])
 def holiday():
     if "user" in session:
-        return render_template("holiday.html" ,admin = check_admin())
+        return render_template("holiday.html")
     else:
         return redirect("/")
 
-@app.route("/addmember",methods=["POST"])
-def addmember():
-    # if check_admin() == "admin": 
-        # if "user" in session:
-    global identity
-    print(identity)
-    n = request.form["name"].lower()
-    p = request.form["password"]
-    print(id)
-    print(n)
-    check_user = user.find_one({"name":n})
-    if not check_user:
-        password = generate_password_hash(p)
-        data = {
-            "name":n,
-            "defaultedDays":0,
-            "holidays":0,
-            "overtime":0,
-            "clg":0,
-            "halfday":0,
-            "dates":[],
-            "clg":[],
-            "fingerprint":identity,
-            "password": password
-        }
-        user.insert_one(data)
-        identity = 0
-        session["user"] = data["name"]
-        return redirect("/attendence")
-    
-    else:
-        return redirect("/")
-    # else:
-    #     session.pop("user", None)
-    #     return redirect("/")
 
 @app.route("/personelholiday",methods=["POST"])
 def personalholiday():
     start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
     skip = datetime.timedelta(days=1)
     print(session["user"])
-    loggedinuser = user.find_one({"name":session["user"]})
+    # loggedinuser = user.find_one({"name":session["user"]})
     addeddates = loggedinuser["dates"]
     holiday = loggedinuser["holidays"]
     dojo  = user.find_one({"name":"sheryians coding school"})
@@ -481,26 +424,14 @@ def dojoholiday():
 
 @app.route("/deleteall")
 def delete():
-    if check_admin() == "admin": 
-        finger.read_templates()
-        print(finger.templates)
-        for i in finger.templates:
-            print(i)
-            finger.delete_model(i)
-        return redirect("/add")
-    else:
-        session.pop("user", None)
-        return redirect("/")
+    finger.read_templates()
+    print(finger.templates)
+    for i in finger.templates:
+        print(i)
+        finger.delete_model(i)
+    return redirect("/add")
+    
 
-@app.route("/deleteuser",methods=["POST"])
-def deletesingle():
-    usr = user.find_one({"name":request.form["name"]})
-    if usr:
-        id = (usr["fingerprint"] - 169691)//169691
-        print(id)
-        return redirect("/")
-    else:
-        return redirect('/')
 
 @app.route("/deleteholiday")
 def deleteholiday():
@@ -510,44 +441,26 @@ def deleteholiday():
     else:
         return redirect("/")
 
-@app.route("/deleteholi",methods=["POST"])
-def deleteholi():
-    logged = user.find_one({"name":session["user"]})
-    h = logged["holidays"]
-    logged = logged["dates"]
-    dates = request.form.getlist("dates")
-    print("dates of 2")
-    print(logged)
-    print(dates)
-    for i in range(len(dates)):
-        if dates[i] in logged:
-            h -= 1
-            logged.remove(dates[i])
-    print(logged,"updated holiday")
-    user.find_one_and_update({"name":session["user"]},{'$set': {'dates': logged}},return_document=ReturnDocument.AFTER)
-    user.find_one_and_update({"name":session["user"]},{'$set': {'holidays': h}},return_document=ReturnDocument.AFTER)
-
-    return redirect("/")
 
 @app.route("/olddata")
 def olddata():
-    if check_admin() == "admin": 
-        today = datetime.datetime.now()
-        data = []
-        for i in range(30):
-            people = []
-            d = today - datetime.timedelta(days = i)
-            found = attendence.find({"date":d.strftime("%d-%m-%Y")})
-            people.append(d.strftime("%d-%m-%Y"))
-            for i in found:
-                people.append(i)
-            data.append(people)
-        return render_template("data.html",deta=data)
-    else:
-        session.pop("user", None)
-        return redirect("/")     
+    today = datetime.datetime.now()
+    data = []
+    for i in range(30):
+        people = []
+        d = today - datetime.timedelta(days = i)
+        found = attendence.find({"date":d.strftime("%d-%m-%Y")})
+        people.append(d.strftime("%d-%m-%Y"))
+        for i in found:
+            people.append(i)
+        data.append(people)
+    return render_template("data.html",deta=data)
 
-         
+@app.route("/admin")
+def admin():
+    if session["user"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+        users = user.find({})
+        return render_template("admin.html",user = users)
 
 
 @socket.on("finger")
