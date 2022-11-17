@@ -20,6 +20,11 @@
         </div>
         <div id="data">
             <div id="left">
+                <div id="members" class="heading">
+                    <p>Name</p>
+                    <p>Holidays</p>
+                    <p>Late</p>
+                </div>
                 {% for member in user %}
                     {% if member["name"] != "sheryians coding school" %}
                         <div id="members">
@@ -43,6 +48,11 @@
                     </div>
                 </div>
                 <div id="last">
+                    <div id="dets">
+                        <p>Date</p>
+                        <p>Entry</p>
+                        <p>Exit</p>
+                    </div>
                     <div id="dets">
                         <p>Date</p>
                         <p>Entry</p>

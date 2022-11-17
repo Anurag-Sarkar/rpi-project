@@ -53,6 +53,10 @@ html, body {
 #main #data #left {
   width: 40%;
 }
+#main #data #left .heading {
+  background-color: grey;
+  font-weight: 800;
+}
 #main #data #left #members {
   background-color: rgb(255, 222, 192);
   display: flex;
