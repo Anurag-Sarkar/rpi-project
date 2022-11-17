@@ -463,6 +463,10 @@ def admin():
     users = user.find({})
     return render_template("admin.html",user = users)
 
+@socket.on("getdata")
+def getname(data):
+    print(data)
+
 
 @socket.on("finger")
 def message(data):
