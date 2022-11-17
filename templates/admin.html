@@ -20,13 +20,13 @@
         </div>
         <div id="data">
             <div id="left">
-                {{for member in user}}
+                {%for member in user%}
                 <div id="members">
                     <p>{{member["name"]}}</p>
                     <p>{{member["holiday"]}}</p>
                     <p>{{member["defaultedDays"]}}</p>
                 </div>
-                {endfor}
+                {%endfor%}
             </div>
             <div id="right">
                 <div id="details">
