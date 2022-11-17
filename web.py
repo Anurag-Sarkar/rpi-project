@@ -356,7 +356,7 @@ def addmember():
     else:
         print("USER ALREADY ADDED")
     return redirect("/admin")
-    
+
 @app.route("/holiday",methods=["GET"])
 def holiday():
     if "user" in session:
@@ -461,7 +461,7 @@ def olddata():
 def admin():
     # if session["user"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
     users = user.find({})
-    return render_template("admin.html")
+    return render_template("admin.html",user = users)
 
 
 @socket.on("finger")
