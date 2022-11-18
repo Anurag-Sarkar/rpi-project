@@ -340,6 +340,7 @@ def add():
         
 @app.route("/addmember",methods=["POST"])
 def addmember():
+    global identitiy
     name = request.form["name"]
     check = user.find_one({"name":name})
     if not check:
