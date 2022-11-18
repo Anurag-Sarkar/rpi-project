@@ -340,11 +340,11 @@ def add():
         
 @app.route("/addmember",methods=["POST"])
 def addmember():
-    print("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------SEX")
-    print(identity,"fingerprintcode")
     name = request.form["name"]
     check = user.find_one({"name":name})
     if not check:
+        print("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------SEX")
+        print(identitiy)
         data = {
             "name":name.title(),
             "fingerprint":identitiy,
