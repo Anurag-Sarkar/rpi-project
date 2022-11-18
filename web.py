@@ -521,6 +521,7 @@ def getname(data):
         "holiday":u["holiday"],
         "late":u["defaultedDays"],
         "avg":str(avg_time),
+        "attendence":last
     }
     emit('after',  {'data':usr,"sex":"hi"})
 
