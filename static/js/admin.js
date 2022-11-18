@@ -4,7 +4,7 @@ const socket = io();
 document.querySelector("#left").addEventListener("click",data=>{
     socket.emit("getdata",nam=data.target.id )
     console.log(data.target.id)
-    document.querySelector("#right").style.display = "inherit"
+    document.querySelector("#right").style.display = "block"
     
 })
 socket.on("after",function(data){
