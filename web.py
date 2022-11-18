@@ -473,11 +473,10 @@ def getname(data):
     date_list = [base - datetime.timedelta(days=x) for x in range(days)]
     time_sum = datetime.timedelta()
     avg_time = datetime.timedelta()
-
+    last_attendence = []
     for i in date_list:
         print(i.strftime("%d-%m-%y"))
         user_data = attendence.find_one({"name":data,"date":i.strftime("%d-%m-%y")})
-        last_attendence = []
         if user_data:
             if user_data["remark"] == "holiday":
                 attend = {
