@@ -6,6 +6,7 @@ document.querySelector("#left").addEventListener("click",data=>{
     console.log(data.target.id)
     document.querySelector("#right").style.display = "block"
     document.querySelector(".circle").style.display = "block"
+    document.querySelector("#all").style.display = "none"
     
 })
 socket.on("after",function(data){
