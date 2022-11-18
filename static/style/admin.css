@@ -83,6 +83,7 @@ html, body {
   text-align: center;
 }
 #main #data #right {
+  display: none;
   position: relative;
   padding: 20px;
   background-color: rgb(237, 237, 237);
@@ -130,6 +131,10 @@ html, body {
 #main #data #right #last #dets p {
   text-align: center;
   width: 33.3333333333%;
+}
+
+#all {
+  display: none;
 }
 
 .circle {
