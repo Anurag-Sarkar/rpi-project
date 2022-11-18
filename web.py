@@ -21,7 +21,6 @@ GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 uart = serial.Serial("/dev/ttyUSB0", baudrate=57600, timeout=1)
 finger = adafruit_fingerprint.Adafruit_Fingerprint(uart)
 identitiy = 0
-global identity
 #---------------LIBRAREIS--------------------
 
 
@@ -341,13 +340,13 @@ def add():
         
 @app.route("/addmember",methods=["POST"])
 def addmember():
-    fingerprint = identitiy
+    print(identity,"fingerprintcode")
     name = request.form["name"]
     check = user.find_one({"name":name})
     if not check:
         data = {
             "name":name.title(),
-            "fingerprint":fingerprint,
+            "fingerprint":identitiy,
             "holiday":0,
             "dates":[],
             "overtime":0,
