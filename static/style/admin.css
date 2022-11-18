@@ -83,6 +83,7 @@ html, body {
   text-align: center;
 }
 #main #data #right {
+  display: none;
   padding: 20px;
   background-color: rgb(247, 247, 247);
   width: 45%;
