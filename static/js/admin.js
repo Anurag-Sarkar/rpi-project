@@ -12,17 +12,17 @@ socket.on("after",function(data){
     document.querySelector("#details #avg #tw").textContent = data.totaltime
     document.querySelector("#details #holi #th").textContent = data.holidays
     document.querySelector("#details #holi #tl").textContent = data.late
-    clutter = ""
-    data.attendence.forEach(deta=>{
-        stuff = `<div id="dets">
-        <p>${deta.date}</p>
-                    <p>${deta.entry}</p>
-                    <p>${deta.exit}</p>
-                    </div>`
-        clutter += stuff
-        document.querySelector("#last").innerHTML = clutter
+    // clutter = ""
+    // data.attendence.forEach(deta=>{
+    //     stuff = `<div id="dets">
+    //     <p>${deta.date}</p>
+    //                 <p>${deta.entry}</p>
+    //                 <p>${deta.exit}</p>
+    //                 </div>`
+    //     clutter += stuff
+    //     document.querySelector("#last").innerHTML = clutter
 
-    })
+    // })
 
 
 })
