@@ -95,13 +95,21 @@ html,body{
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    margin-bottom: 100px;
+                    margin-bottom: 70px;
+                    p{
+                        font-size: 20px;
+                        font-weight: 500;
+                    }
                 }
                 #holi{
                     padding: 0% 15%;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    p{
+                        font-size: 20px;
+                        font-weight: 500;
+                    }
                 }
             }
             #last{
@@ -116,6 +124,10 @@ html,body{
                     padding: 5px 10px;
                     &:nth-child(even){
                         background-color: rgb(192, 242, 255);
+                    }
+                    p{
+                        text-align: center;
+                        width: calc(100%/3);
                     }
                 }
             }

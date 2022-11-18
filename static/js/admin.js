@@ -10,7 +10,7 @@ socket.on("after",function(data){
     document.querySelector("#details h2").textContent = data.data.name
     document.querySelector("#details #avg #avgtime").textContent = data.data.avg
     document.querySelector("#details #avg #tw").textContent = data.data.totaltime
-    document.querySelector("#details #holi #th").textContent = data.data.holidays
+    document.querySelector("#details #holi #th").textContent = data.data.holiday
     document.querySelector("#details #holi #tl").textContent = data.data.late
     clutter = ""
     data.data.attendence.forEach(deta=>{

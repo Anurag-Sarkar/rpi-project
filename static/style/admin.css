@@ -96,13 +96,21 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 100px;
+  margin-bottom: 70px;
+}
+#main #data #right #details #avg p {
+  font-size: 20px;
+  font-weight: 500;
 }
 #main #data #right #details #holi {
   padding: 0% 15%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+#main #data #right #details #holi p {
+  font-size: 20px;
+  font-weight: 500;
 }
 #main #data #right #last {
   background-color: aquamarine;
@@ -118,4 +126,8 @@ html, body {
 }
 #main #data #right #last #dets:nth-child(even) {
   background-color: rgb(192, 242, 255);
+}
+#main #data #right #last #dets p {
+  text-align: center;
+  width: 33.3333333333%;
 }/*# sourceMappingURL=admin.css.map */
