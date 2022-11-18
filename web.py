@@ -513,14 +513,14 @@ def getname(data):
             }
             last.append(attend)
 
-    total_time = (time_sum.days*24 + time_sum.seconds//3600,"h :",(time_sum.seconds % 3600)//60) 
-    avg_time = (avg_time/4)
+    total_time = (time_sum.days*24 + time_sum.seconds//3600 + ":" + (time_sum.seconds % 3600)//60) 
+    avg_time = str(avg_time/4)
     usr = {
         "name":u["name"],
         "totaltime":str(total_time),
         "holiday":u["holiday"],
         "late":u["defaultedDays"],
-        "avg":str(avg_time),
+        "avg":avg_time[0:-3],
         "attendence":last
     }
     emit('after',  {'data':usr,"sex":"hi"})
