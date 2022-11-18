@@ -93,21 +93,28 @@ html, body {
   margin-bottom: 30px;
 }
 #main #data #right #details #avg {
-  padding: 0% 15%;
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 70px;
+}
+#main #data #right #details #avg #l {
+  width: 50%;
+  text-align: center;
 }
 #main #data #right #details #avg p {
   font-size: 20px;
   font-weight: 500;
 }
 #main #data #right #details #holi {
-  padding: 0% 15%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+#main #data #right #details #holi #l {
+  width: 50%;
+  text-align: center;
 }
 #main #data #right #details #holi p {
   font-size: 20px;

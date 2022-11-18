@@ -92,21 +92,30 @@ html,body{
                     margin-bottom: 30px;
                 }
                 #avg{
-                    padding: 0% 15%;
                     display: flex;
+                    width: 100%;
                     justify-content: space-between;
                     align-items: center;
                     margin-bottom: 70px;
+                    #l{
+                        width: 50%;
+                        text-align: center;
+                        // background-color: gainsboro;
+                    }
                     p{
                         font-size: 20px;
                         font-weight: 500;
                     }
                 }
                 #holi{
-                    padding: 0% 15%;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    #l{
+                        width: 50%;
+                        text-align: center;
+                        // background-color: gainsboro;
+                    }
                     p{
                         font-size: 20px;
                         font-weight: 500;
