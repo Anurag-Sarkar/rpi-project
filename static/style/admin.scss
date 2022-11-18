@@ -81,14 +81,14 @@ html,body{
             }
         }
         #right{
-            display: none;
+            // display: none;
             position: relative;
             padding: 20px;            
             background-color: rgb(237, 237, 237);
             width: 45%;
             #details{
 
-                h2{
+                #name{
                     margin-bottom: 30px;
                 }
                 #avg{
@@ -136,7 +136,7 @@ html,body{
     }
 }
 #all{
-    display: none;
+    // display: none;
 }
 .circle{
     position: absolute;
@@ -152,4 +152,12 @@ html,body{
     100%{
         transform: rotate(360deg);
     }   
+}
+#l{
+    position: relative;
+    text-align: center;
+    h2{
+        font-size: 30px;
+        margin-bottom: 0px;
+    }
 }

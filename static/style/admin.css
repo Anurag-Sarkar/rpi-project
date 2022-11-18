@@ -83,13 +83,12 @@ html, body {
   text-align: center;
 }
 #main #data #right {
-  display: none;
   position: relative;
   padding: 20px;
   background-color: rgb(237, 237, 237);
   width: 45%;
 }
-#main #data #right #details h2 {
+#main #data #right #details #name {
   margin-bottom: 30px;
 }
 #main #data #right #details #avg {
@@ -133,10 +132,6 @@ html, body {
   width: 33.3333333333%;
 }
 
-#all {
-  display: none;
-}
-
 .circle {
   position: absolute;
   left: 44%;
@@ -158,4 +153,12 @@ html, body {
   100% {
     transform: rotate(360deg);
   }
+}
+#l {
+  position: relative;
+  text-align: center;
+}
+#l h2 {
+  font-size: 30px;
+  margin-bottom: 0px;
 }/*# sourceMappingURL=admin.css.map */
