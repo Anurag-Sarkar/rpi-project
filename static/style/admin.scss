@@ -82,12 +82,12 @@ html,body{
         }
         #right{
             display: none;
-            padding: 20px;
-            // box-shadow: 1px 1px 1px black;
-            background-color: rgb(247, 247, 247);
+            position: relative;
+            padding: 20px;            
+            background-color: rgb(237, 237, 237);
             width: 45%;
-            height: 70%;
             #details{
+
                 h2{
                     margin-bottom: 30px;
                 }
@@ -134,4 +134,22 @@ html,body{
             }
         }
     }
+}
+#all{
+    display: none;
+}
+.circle{
+    position: absolute;
+    left: 44%;
+    display: none;
+    top: 20%;
+    font-size: 150px;
+    border-radius: 50%;
+    animation: rotate 1s linear  infinite;
+    
+}
+@keyframes rotate {
+    100%{
+        transform: rotate(360deg);
+    }   
 }

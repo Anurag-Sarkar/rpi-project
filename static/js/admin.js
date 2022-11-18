@@ -5,10 +5,13 @@ document.querySelector("#left").addEventListener("click",data=>{
     socket.emit("getdata",nam=data.target.id )
     console.log(data.target.id)
     document.querySelector("#right").style.display = "block"
+    document.querySelector(".circle").style.display = "block"
     
 })
 socket.on("after",function(data){
     console.log(data.data)
+    document.querySelector(".circle").style.display = "none"
+    document.querySelector("#all").style.display = "block"
     document.querySelector("#details h2").textContent = data.data.name
     document.querySelector("#details #avg #avgtime").textContent = data.data.avg
     document.querySelector("#details #avg #tw").textContent = data.data.totaltime
