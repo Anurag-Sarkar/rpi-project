@@ -346,7 +346,7 @@ def addmember():
     check = user.find_one({"name":name})
     if not check:
         data = {
-            "name":name,
+            "name":name.title(),
             "fingerprint":fingerprint,
             "holiday":0,
             "dates":[],
@@ -516,7 +516,7 @@ def getname(data):
     total_time = (str(time_sum.days*24 + time_sum.seconds//3600) + ":" + str((time_sum.seconds % 3600)//60)) 
     avg_time = str(avg_time/4)
     usr = {
-        "name":u["name"],
+        "name":u["name"].title(),
         "totaltime":str(total_time),
         "holiday":u["holiday"],
         "late":u["defaultedDays"],
