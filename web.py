@@ -473,7 +473,7 @@ def getname(data):
     date_list = [base - datetime.timedelta(days=x) for x in range(days)]
     time_sum = datetime.timedelta()
     avg_time = datetime.timedelta()
-    last_attendence = []
+    last = []
     for i in date_list:
         print(i.strftime("%d-%m-%y"))
         user_data = attendence.find_one({"name":data,"date":i.strftime("%d-%m-%y")})
@@ -485,7 +485,7 @@ def getname(data):
                 "entry":"holiday",
                 "exit":"holiday"
                     }
-                last_attendence.append(attend)
+                last.append(attend)
             else:    
 
                 attend = {
@@ -494,7 +494,7 @@ def getname(data):
                     "entry":user_data["entry"],
                     "exit":user_data["exit"]
                 }
-                last_attendence.append(attend)
+                last.append(attend)
 
                 t = datetime.datetime.strptime(user_data["exit"],"%H:%M") - datetime.datetime.strptime(user_data["entry"],"%H:%M")
                 h,m,s = str(t).split(":")
@@ -511,7 +511,7 @@ def getname(data):
                 "entry":"na",
                 "exit":"na"
             }
-            last_attendence.append(attend)
+            last.append(attend)
 
     total_time = time_sum.days*24 + time_sum.seconds//3600,"h :",(time_sum.seconds % 3600)//60 
     avg_time = avg_time/4
