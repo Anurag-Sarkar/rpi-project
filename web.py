@@ -212,7 +212,8 @@ def index():
                         present = attendence.find_one({"name":i["name"] , "date":today})
                         print(present)
                         if not present:
-                            attendence.insert_one(data)    
+                            attendence.insert_one(data) 
+
             elif today in dojo_holiday:
                 data = {
                         "name":"sheryians coding school",
@@ -280,7 +281,7 @@ def enter():
                 data = {
                     "name":cu["name"],
                     "date":date,
-                    "time":times,
+                    "entry":times,
                     "exit":"-",
                     "remark":remark
                 }
@@ -466,8 +467,62 @@ def admin():
 @socket.on("getdata")
 def getname(data):
     print(data)
-    usr = user.find_one({"name":data})
-    print(usr)
+    u = user.find_one({"name":data})
+    base = datetime.datetime.today()
+    days = int(base.strftime("%d"))
+    date_list = [base - datetime.timedelta(days=x) for x in range(days)]
+    time_sum = datetime.timedelta()
+    avg_time = datetime.timedelta()
+
+    for i in date_list:
+        print(i.strftime("%d-%m-%y"))
+        user_data = attendence.find_one({"name":data,"date":i.strftime("%d-%m-%y")})
+        if user_data:
+            if user_data["remark"] == "holiday":
+                attend = {
+                "name":u["name"],
+                "date":i.strftime("%d-%m-%y"), 
+                "entry":"holiday",
+                "exit":"holiday"
+                    }
+                last_attendence.append(attend)
+            else:    
+
+                last_attendence = []
+                attend = {
+                    "name":u["name"],
+                    "date":i.strftime("%d-%m-%y"), 
+                    "entry":user_data["entry"],
+                    "exit":user_data["exit"]
+                }
+                last_attendence.append(attend)
+
+                t = datetime.datetime.strptime(user_data["exit"],"%H:%M") - datetime.datetime.strptime(user_data["entry"],"%H:%M")
+                h,m,s = str(t).split(":")
+                d = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
+                time_sum += d        
+
+                hour,minute = str(user_data["entry"]).split(":")
+                av = datetime.timedelta(hours=int(hour), minutes=int(minute))
+                avg_time += av
+        else:
+            attend = {
+                "name":u["name"],
+                "date":i.strftime("%d-%m-%y"), 
+                "entry":"na",
+                "exit":"na"
+            }
+            last_attendence.append(attend)
+
+    total_time = time_sum.days*24 + time_sum.seconds//3600,"h :",(time_sum.seconds % 3600)//60 
+    avg_time = avg_time/4
+    usr = {
+        "name":u["name"],
+        "totaltime":total_time,
+        "holiday":u["holiday"],
+        "late":u["defaultedDays"],
+        "avg":avg_time,
+    }
     emit('after',  {'data':usr,"sex":"hi"})
 
 @socket.on("finger")
