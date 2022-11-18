@@ -513,8 +513,8 @@ def getname(data):
             }
             last.append(attend)
 
-    total_time = time_sum.days*24 + time_sum.seconds//3600,"h :",(time_sum.seconds % 3600)//60 
-    avg_time = avg_time/4
+    total_time = str(time_sum.days*24 + time_sum.seconds//3600,"h :",(time_sum.seconds % 3600)//60) 
+    avg_time = str(avg_time/4)
     usr = {
         "name":u["name"],
         "totaltime":total_time,
