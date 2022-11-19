@@ -126,6 +126,7 @@ html,body{
                 background-color: aquamarine;
                 margin-top: 50px;
                 width: 100%;
+
                 #dets{
                     display: flex;
                     font-size: 20px;
@@ -134,6 +135,10 @@ html,body{
                     padding: 5px 10px;
                     &:nth-child(even){
                         background-color: rgb(192, 242, 255);
+                    }
+                    &:nth-child(1){
+                        background-color: rgb(1, 204, 255);
+                        font-weight: 600;
                     }
                     p{
                         text-align: center;
