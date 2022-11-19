@@ -354,6 +354,7 @@ def addmember():
         }
         user.insert_one(data)
     else:
+        print(identitiy)
         print("USER ALREADY ADDED")
     return redirect("/admin")
 
