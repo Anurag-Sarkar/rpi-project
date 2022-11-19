@@ -516,7 +516,12 @@ def getname(data):
                 "exit":"na"
             }
             last.append(attend)
-
+    plate = {
+        "date" : "Date",
+        "entry" : "Entry",
+        "exit" : "Exit"
+    }
+    last.insert(0,plate)
     total_time = (str(time_sum.days*24 + time_sum.seconds//3600) + ":" + str((time_sum.seconds % 3600)//60)) 
     avg_time = str(avg_time/4)
     usr = {
