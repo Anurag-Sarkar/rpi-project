@@ -478,6 +478,7 @@ def getname(data):
     for i in date_list:
         print(i.strftime("%d-%m-%y"))
         user_data = attendence.find_one({"name":data,"date":i.strftime("%d-%m-%y")})
+        print(user_data)
         if user_data:
             if user_data["remark"] == "holiday":
                 attend = {
