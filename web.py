@@ -499,14 +499,15 @@ def getname(data):
                 }
                 last.append(attend)
 
-                t = datetime.datetime.strptime(user_data["exit"],"%H:%M") - datetime.datetime.strptime(user_data["entry"],"%H:%M")
-                h,m,s = str(t).split(":")
-                d = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
-                time_sum += d        
+                if user_data["exit"] != "-":
+                    t = datetime.datetime.strptime(user_data["exit"],"%H:%M") - datetime.datetime.strptime(user_data["entry"],"%H:%M")
+                    h,m,s = str(t).split(":")
+                    d = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
+                    time_sum += d        
 
-                hour,minute = str(user_data["entry"]).split(":")
-                av = datetime.timedelta(hours=int(hour), minutes=int(minute))
-                avg_time += av
+                    hour,minute = str(user_data["entry"]).split(":")
+                    av = datetime.timedelta(hours=int(hour), minutes=int(minute))
+                    avg_time += av
         else:
             attend = {
                 "name":u["name"],
