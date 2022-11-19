@@ -132,6 +132,11 @@ html, body {
   align-items: center;
   padding: 5px 10px;
 }
+#main #data #right #last #dets:nth-child(1) {
+  background-color: rgb(1, 204, 255);
+  font-weight: 800;
+  font-size: 22px;
+}
 #main #data #right #last #dets:nth-child(even) {
   background-color: rgb(192, 242, 255);
 }
