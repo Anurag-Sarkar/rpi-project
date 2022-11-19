@@ -477,8 +477,8 @@ def getname(data):
     last = []
     for i in date_list:
         print(i.strftime("%d-%m-%y"))
-        # user_data = attendence.find_one({"name":data,"date":i.strftime("%d-%m-%y")})
-        user_data = attendence.find_one({"name":data})
+        user_data = attendence.find_one({"name":data,"date":i.strftime("%d-%m-%Y")})
+        # user_data = attendence.find_one({"name":data})
         print(user_data)
         if user_data:
             if user_data["remark"] == "holiday":
