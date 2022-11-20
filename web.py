@@ -372,28 +372,28 @@ def personalholiday():
     print(request.form["user"])
     user_name = user.find_one({"name":request.form["user"]})
     print(user_name)
-    # addeddates = user_name["dates"]
-    # holiday = user_name["holidays"]
-    # dojo  = user.find_one({"name":"sheryians coding school"})
-    # dojo_holiday = dojo["dates"]
-    # end = request.form["enddate"]
-    # if end == "":
-    #     if start not in dojo_holiday:
-    #         holiday += 1
-    #         user.find_one_and_update({"name":user_name},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
-    #         user.find_one_and_update({"name":user_name},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
-    # else:
-    #     end = datetime.datetime.strptime(end,"%Y-%m-%d")
-    #     while(start <= end):
-    #         print(start.strftime("%d-%m-%Y"),type(start.strftime("%d-%m-%Y")),end="\n")
-    #         if start.strftime("%d-%m-%Y") not in addeddates and start.strftime("%d-%m-%Y") not in dojo_holiday:
-    #             print("adding dates")
-    #             holiday += 1
-    #             user.find_one_and_update({"name":user_name},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
-    #             user.find_one_and_update({"name":user_name},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
-    #         else:
-    #             print("date exists")
-    #         start += skip
+    addeddates = user_name["dates"]
+    holiday = user_name["holidays"]
+    dojo  = user.find_one({"name":"sheryians coding school"})
+    dojo_holiday = dojo["dates"]
+    end = request.form["enddate"]
+    if end == "":
+        if start not in dojo_holiday:
+            holiday += 1
+            user.find_one_and_update({"name":user_name},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
+            user.find_one_and_update({"name":user_name},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
+    else:
+        end = datetime.datetime.strptime(end,"%Y-%m-%d")
+        while(start <= end):
+            print(start.strftime("%d-%m-%Y"),type(start.strftime("%d-%m-%Y")),end="\n")
+            if start.strftime("%d-%m-%Y") not in addeddates and start.strftime("%d-%m-%Y") not in dojo_holiday:
+                print("adding dates")
+                holiday += 1
+                user.find_one_and_update({"name":user_name},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
+                user.find_one_and_update({"name":user_name},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
+            else:
+                print("date exists")
+            start += skip
     return redirect("/holiday")
 
 @app.route("/deleteall")

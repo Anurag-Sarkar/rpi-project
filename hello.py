@@ -1,8 +1,14 @@
-
-s = {}.fromkeys(["hello","mellu","sex"],None)
-print(s)
-
 l = [1,2,3,4,5,6]
-m = l.copy()
-m.append(9)
-print(l,m)
+dir = input("enter side: ")
+count = int(input("enter times: "))
+print(l)
+for i in range(count):
+    if dir == "left":
+        val = l.pop((len(l)-1))
+        l.insert(0,val)
+        
+    if dir == "right":
+        val = l.pop(0)
+        l.insert((len(l)),val)
+
+print(l)
