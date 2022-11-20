@@ -21,23 +21,13 @@
         </div>
         <div id="add">
             <div id="personel">
-                <h5>Personal holiday</h5>
+                <h5>Add holiday</h5>
                 <form action="/personelholiday" method="post">
-                    <div id="start">
-                        <label for="">Start date</label>
-                        <input type="date" name="startdate">
-                    </div>
-                    <div id="end">
-                        <label for="">End date</label>
-                        <input type="date" name="enddate">
-                    </div>
-                    <button type="submit">Add holiday</button>
-                </form>
-                <p>* to add single holiday select start date only</p>
-            </div>
-            <div id="dojo">
-                <h5>Dojo holiday</h5>
-                <form action="/dojoholiday" method="post">
+                    <select id="user" name="cars">
+                        {% for member in user %}
+                                <option value="{{member.name}}">{{member.name}}</option>
+                        {% endfor %}
+                      </select>
                     <div id="start">
                         <label for="">Start date</label>
                         <input type="date" name="startdate">

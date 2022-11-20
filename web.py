@@ -361,10 +361,8 @@ def addmember():
 
 @app.route("/holiday",methods=["GET"])
 def holiday():
-    if "user" in session:
-        return render_template("holiday.html")
-    else:
-        return redirect("/")
+    users = user.find({})
+    return render_template("holiday.html",user = users)
 
 
 @app.route("/personelholiday",methods=["POST"])
