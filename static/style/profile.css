@@ -12,6 +12,8 @@ html, body {
 }
 
 #right {
+  display: none;
+  margin-top: 150px;
   position: absolute;
   transform: translateX(-50%);
   left: 50%;
