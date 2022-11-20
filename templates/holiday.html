@@ -35,30 +35,28 @@
                 </form>
                 <p>* to add single holiday select start date only</p>
             </div>
-            {%if admin == "admin"%}
-                <div id="dojo">
-                    <h5>Dojo holiday</h5>
-                    <form action="/dojoholiday" method="post">
-                        <div id="start">
-                            <label for="">Start date</label>
-                            <input type="date" name="startdate">
-                        </div>
-                        <div id="end">
-                            <label for="">End date</label>
-                            <input type="date" name="enddate">
-                        </div>
-                        <button type="submit">Add holiday</button>
-                    </form>
-                    <p>* to add single holiday select start date only</p>
-                </div>
-            {%endif%}
-            <div id="clg">
+            <div id="dojo">
+                <h5>Dojo holiday</h5>
+                <form action="/dojoholiday" method="post">
+                    <div id="start">
+                        <label for="">Start date</label>
+                        <input type="date" name="startdate">
+                    </div>
+                    <div id="end">
+                        <label for="">End date</label>
+                        <input type="date" name="enddate">
+                    </div>
+                    <button type="submit">Add holiday</button>
+                </form>
+                <p>* to add single holiday select start date only</p>
+            </div>
+            <!-- <div id="clg">
                 <h5>College half-day</h5>
                 <form action="/clgholiday">
                     <button type="submit">Mark for today</button>
                     <button type="submit">Mark for tommorow</button>
                 </form>
-            </div>
+            </div> -->
         </div>
 </body>
 </html>
