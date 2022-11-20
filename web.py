@@ -369,58 +369,30 @@ def holiday():
 def personalholiday():
     start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
     skip = datetime.timedelta(days=1)
-    print(session["user"])
-    # loggedinuser = user.find_one({"name":session["user"]})
-    addeddates = loggedinuser["dates"]
-    holiday = loggedinuser["holidays"]
-    dojo  = user.find_one({"name":"sheryians coding school"})
-    dojo_holiday = dojo["dates"]
-    end = request.form["enddate"]
-    if end == "":
-        if start not in dojo_holiday:
-            holiday += 1
-            user.find_one_and_update({"name":session["user"]},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
-            user.find_one_and_update({"name":session["user"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
-    else:
-        end = datetime.datetime.strptime(end,"%Y-%m-%d")
-        while(start <= end):
-            print(start.strftime("%d-%m-%Y"),type(start.strftime("%d-%m-%Y")),end="\n")
-            if start.strftime("%d-%m-%Y") not in addeddates and start.strftime("%d-%m-%Y") not in dojo_holiday:
-                print("adding dates")
-                holiday += 1
-                user.find_one_and_update({"name":session["user"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
-                user.find_one_and_update({"name":session["user"]},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
-            else:
-                print("date exists")
-            start += skip
-    return redirect("/holiday")
-
-@app.route("/dojoholiday",methods=["POST"])
-def dojoholiday():
-
-    start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
-    end = request.form["enddate"]
-    skip = datetime.timedelta(days=1)
-    print(session["user"])
-    loggedinuser = user.find_one({"name":"sheryians coding school"})
-    addeddates = loggedinuser["dates"]
-    holiday = loggedinuser["holidays"]
-    if end == "":
-        holiday += 1
-        user.find_one_and_update({"name":"sheryians coding school"},{'$set': {'holidays':holiday}},return_document=ReturnDocument.AFTER)
-        user.find_one_and_update({"name":"sheryians coding school"},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
-    else:
-        end = datetime.datetime.strptime(end,"%Y-%m-%d")
-        while(start <= end):
-            print(start.strftime("%d-%m-%Y"),type(start.strftime("%d-%m-%Y")),end="\n")
-            if start.strftime("%d-%m-%Y") not in addeddates:
-                print("date not existet")
-                holiday += 1
-                user.find_one_and_update({"name":"sheryians coding school"},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
-                user.find_one_and_update({"name":"sheryians coding school"},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
-            else:
-                print("date exists")
-            start += skip
+    print(request.form("user"))
+    user_name = user.find_one()
+    # addeddates = user_name["dates"]
+    # holiday = user_name["holidays"]
+    # dojo  = user.find_one({"name":"sheryians coding school"})
+    # dojo_holiday = dojo["dates"]
+    # end = request.form["enddate"]
+    # if end == "":
+    #     if start not in dojo_holiday:
+    #         holiday += 1
+    #         user.find_one_and_update({"name":user_name},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
+    #         user.find_one_and_update({"name":user_name},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
+    # else:
+    #     end = datetime.datetime.strptime(end,"%Y-%m-%d")
+    #     while(start <= end):
+    #         print(start.strftime("%d-%m-%Y"),type(start.strftime("%d-%m-%Y")),end="\n")
+    #         if start.strftime("%d-%m-%Y") not in addeddates and start.strftime("%d-%m-%Y") not in dojo_holiday:
+    #             print("adding dates")
+    #             holiday += 1
+    #             user.find_one_and_update({"name":user_name},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
+    #             user.find_one_and_update({"name":user_name},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
+    #         else:
+    #             print("date exists")
+    #         start += skip
     return redirect("/holiday")
 
 @app.route("/deleteall")
