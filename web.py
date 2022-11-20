@@ -379,6 +379,7 @@ def personalholiday():
     end = request.form["enddate"]
     if end == "":
         if start not in dojo_holiday:
+            print(start)
             holiday += 1
             user.find_one_and_update({"name":user_name},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
             user.find_one_and_update({"name":user_name},{ '$set': { "holiday" : holiday}},return_document=ReturnDocument.AFTER)
