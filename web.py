@@ -172,7 +172,7 @@ print(lol,"dojo data")
 if not lol:
     data = {
         "name":"sheryians coding school",
-        "holidays":0,
+        "holiday":0,
         "dates":[],
         }
     user.insert_one(data)
@@ -191,10 +191,10 @@ def index():
                 if today in i["dates"]:   
                     if today in dojo_holiday:
                         print("removed holiday",i["name"])
-                        holiday = i["holidays"]  
+                        holiday = i["holiday"]  
                         if holiday > 0:
                             holiday -= 1
-                        user.find_one_and_update({"name":i["name"]},{ '$set': { "holidays" : holiday}},return_document=ReturnDocument.AFTER)
+                        user.find_one_and_update({"name":i["name"]},{ '$set': { "holiday" : holiday}},return_document=ReturnDocument.AFTER)
                         dates = user.find_one({"name":i["name"]}) 
                         dates = dates["dates"]
                         dates.remove(today)
@@ -289,7 +289,7 @@ def enter():
                 check_holiday = attendence.find_one({"name":cu["name"]})
                 if check_holiday["remark"] == "holiday":
                     halfday = cu["halfday"]
-                    holiday = cu["holidays"]
+                    holiday = cu["holiday"]
                     halfday += 1
                     holiday -= 1
                     user.find_one_and_update({"name":cu["name"]},{ '$set': { "halfday" : halfday }},return_document=ReturnDocument.AFTER)
