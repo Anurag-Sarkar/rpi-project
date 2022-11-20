@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&display=swap");
+* {
+  font-family: "Karla";
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+#right {
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  padding: 20px;
+  width: 45%;
+  height: 105%;
+}
+#right #details #name {
+  margin-bottom: 30px;
+}
+#right #details #avg {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 70px;
+}
+#right #details #avg #l {
+  width: 50%;
+  text-align: center;
+}
+#right #details #avg p {
+  font-size: 20px;
+  font-weight: 500;
+}
+#right #details #holi {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#right #details #holi #l {
+  width: 50%;
+  text-align: center;
+}
+#right #details #holi p {
+  font-size: 20px;
+  font-weight: 500;
+}
+#right #last {
+  background-color: aquamarine;
+  margin-top: 50px;
+  width: 100%;
+}
+#right #last #dets {
+  display: flex;
+  font-size: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+}
+#right #last #dets:nth-child(1) {
+  background-color: rgb(1, 204, 255);
+  font-weight: 800;
+  font-size: 22px;
+}
+#right #last #dets:nth-child(even) {
+  background-color: rgb(192, 242, 255);
+}
+#right #last #dets p {
+  text-align: center;
+  width: 33.3333333333%;
+}/*# sourceMappingURL=profile.css.map */
