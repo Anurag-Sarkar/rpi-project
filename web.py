@@ -365,7 +365,7 @@ def holiday():
     return render_template("holiday.html",user = users)
 
 
-@app.route("/personelholiday",methods=["POST"])
+@app.route("/addingholiday",methods=["POST"])
 def personalholiday():
     start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
     skip = datetime.timedelta(days=1)
