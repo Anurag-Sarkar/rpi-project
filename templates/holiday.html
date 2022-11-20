@@ -23,7 +23,9 @@
             <div id="personel">
                 <h5>Add holiday</h5>
                 <form action="/personelholiday" method="post">
-                    <select id="user" name="cars">
+                    <select id="user" name="user">
+                        <option value="default" selected>Select name</option>
+
                         {% for member in user %}
                                 <option value="{{member.name}}">{{member.name}}</option>
                         {% endfor %}
