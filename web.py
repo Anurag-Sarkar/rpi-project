@@ -431,6 +431,11 @@ def olddata():
         data.append(people)
     return render_template("data.html",deta=data)
 
+@app.route("/profile",methods=["POST"])
+def profile ():
+    users = user.find({})
+    return render_template("profile.html",user = users)
+
 @app.route("/admin")
 def admin():
     # if session["user"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
