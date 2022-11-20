@@ -370,7 +370,8 @@ def personalholiday():
     start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
     skip = datetime.timedelta(days=1)
     print(request.form["user"])
-    user_name = user.find_one()
+    user_name = user.find_one({"name":request.form["user"]})
+    print(user_name)
     # addeddates = user_name["dates"]
     # holiday = user_name["holidays"]
     # dojo  = user.find_one({"name":"sheryians coding school"})
