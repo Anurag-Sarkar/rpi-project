@@ -4,12 +4,13 @@ const socket = io();
 document.querySelector("#user").addEventListener("change",data=>{
     console.log(data.target.value)
     socket.emit("getdata",nam=data.target.value)
-
+    document.querySelector("#status").textContent = "LOADING..."
+    
 })
 console.log("hello")
 
 socket.on("after",function(data){
-    document.querySelector("#user").style.display = "none"
+    document.querySelector("#status").textContent = ""
     document.querySelector("#right").style.display = "block"
     document.querySelector("#details h2").textContent = data.data.name
     document.querySelector("#details #avg #avgtime").textContent = data.data.avg
