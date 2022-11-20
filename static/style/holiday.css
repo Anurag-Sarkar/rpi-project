@@ -79,6 +79,10 @@ html, body {
   border: none;
   top: 20px;
 }
+#main #add #personel form #user #option {
+  color: white;
+  background-color: black;
+}
 #main #add #personel form #start {
   margin-top: 30px;
   display: flex;
