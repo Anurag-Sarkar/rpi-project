@@ -431,7 +431,7 @@ def olddata():
         data.append(people)
     return render_template("data.html",deta=data)
 
-@app.route("/profile",methods=["POST"])
+@app.route("/profile")
 def profile ():
     users = user.find({})
     return render_template("profile.html",user = users)
