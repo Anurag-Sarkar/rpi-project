@@ -302,6 +302,7 @@ def enter():
                     print("exited")
                     lol = attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "exit" : times}},return_document=ReturnDocument.AFTER)
                     print(lol,"exited data")
+
  
         else:
             lcd.clear()
@@ -334,7 +335,7 @@ def exit():
             print("user exited")
     else:
         print("FUCK YOU")
-    return redirect('/')
+    return redirect('/attendence')
 
 @app.route("/add",methods=["GET"])
 def add():
