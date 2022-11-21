@@ -255,7 +255,7 @@ def enter():
             times = x.strftime("%H:%M")
             check = attendence.find_one({"name":cu["name"] ,"date":date})
             now = datetime.datetime.now()
-            today_time = now.replace(hour=10, minute=30, second=0, microsecond=0)
+            today_time = now.replace(hour=10, minute=45, second=0, microsecond=0)
             if x > today_time:
                 dojo = user.find_one({"name":"sheryians coding school"})
                 holidaycheck = dojo["dates"]
@@ -272,6 +272,11 @@ def enter():
                         lates +=1
                         user.find_one_and_update({"name":cu["name"]},{ '$set': { "defaultedDays" : lates}},return_document=ReturnDocument.AFTER)
                         remark = "late"
+                    
+                    elif check and check["date"] == date and check["exit"] == "-" :
+                        print("Came late")
+                        attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "exit" : times}},return_document=ReturnDocument.AFTER)
+
 
             if not check:
                 print("found user")
@@ -296,10 +301,10 @@ def enter():
                     user.find_one_and_update({"name":cu["name"]},{ '$set': { "holiday" : halfday }},return_document=ReturnDocument.AFTER)
                     attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "times" : times}},return_document=ReturnDocument.AFTER)
                     attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "remark" : "halfday"}},return_document=ReturnDocument.AFTER)
-                else:
-                    lcd.clear()
-                    lcd.message = "kitni baar ghusoge"
-                    print("already entered")
+                
+                elif check and check["date"] == date and check["exit"] == "-" :
+                    print("exited")
+                    attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "exit" : times}},return_document=ReturnDocument.AFTER)
 
         else:
             lcd.clear()
