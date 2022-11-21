@@ -300,6 +300,7 @@ def enter():
                 
                 elif check and check["date"] == date and check["exit"] == "-" :
                     print("exited")
+                    print(date)
                     lol = attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "exit" : times}})
                     print(lol,"exited data")
                     print(attendence.find_one({"name":cu["name"]}))
