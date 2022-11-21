@@ -41,7 +41,7 @@
                     {% if item["remark"] == "late"  %}
                         <div id="names" style="background-color: rgb(255, 163, 102);">
                             <p>{{item["name"]}}</p>
-                            <p>{{item["time"]}}</p>
+                            <p>{{item["entry"]}}</p>
                             <p>{{item["exit"]}}</p>
                             <p>{{item["date"]}}</p>
                             <p>{{item["remark"]}}</p>
@@ -49,7 +49,7 @@
                     {% elif item["remark"] == "holiday" %}
                         <div id="names" style="background-color: rgb(119, 255, 56);">
                             <p>{{item["name"]}}</p>
-                            <p>{{item["time"]}}</p>
+                            <p>{{item["entry"]}}</p>
                             <p>{{item["exit"]}}</p>
                             <p>{{item["date"]}}</p>
                             <p>{{item["remark"]}}</p>
@@ -57,7 +57,7 @@
                     {% elif item["remark"] == "extra" %}
                         <div id="names" style="background-color: rgb(186, 112, 255);">
                             <p>{{item["name"]}}</p>
-                            <p>{{item["time"]}}</p>
+                            <p>{{item["entry"]}}</p>
                             <p>{{item["exit"]}}</p>
                             <p>{{item["date"]}}</p>
                             <p>{{item["remark"]}}</p>
@@ -65,7 +65,7 @@
                     {% else %}
                         <div id="names">
                             <p>{{item["name"]}}</p>
-                            <p>{{item["time"]}}</p>
+                            <p>{{item["entry"]}}</p>
                             <p>{{item["exit"]}}</p>
                             <p>{{item["date"]}}</p>
                             <p>{{item["remark"]}}</p>
