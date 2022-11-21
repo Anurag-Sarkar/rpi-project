@@ -168,7 +168,7 @@ user = db["user"]
 attendence = db["attendence"]
 
 lol = user.find_one({"name":"sheryians coding school"})
-print(lol,"dojo data")
+print("dojo find")
 if not lol:
     data = {
         "name":"sheryians coding school",
@@ -176,6 +176,7 @@ if not lol:
         "dates":[],
         }
     user.insert_one(data)
+    
 
 @app.route("/attendence")
 def index():
@@ -272,11 +273,6 @@ def enter():
                         lates +=1
                         user.find_one_and_update({"name":cu["name"]},{ '$set': { "defaultedDays" : lates}},return_document=ReturnDocument.AFTER)
                         remark = "late"
-                    
-                    elif check and check["date"] == date and check["exit"] == "-" :
-                        print("exiting")
-                        attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "exit" : times}},return_document=ReturnDocument.AFTER)
-
 
             if not check:
                 print("found user")
@@ -305,7 +301,7 @@ def enter():
                 elif check and check["date"] == date and check["exit"] == "-" :
                     print("exited")
                     lol = attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "exit" : times}},return_document=ReturnDocument.AFTER)
-                    print(lol)
+                    print(lol,"exited data")
 
         else:
             lcd.clear()
