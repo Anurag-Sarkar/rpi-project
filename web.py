@@ -326,10 +326,15 @@ def loginuser():
     if password == "thisisjustawesome":
         print("welcome admin")
         session["user"] = "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C"
+        return redirect("/admin")
+    else:
+        return redirect("/login")
+
 
 @app.route("/logout",methods=["POST"])
 def logout():
     session.pop("username",None)
+    return redirect("/attendence")
 
 @app.route("/add",methods=["GET"])
 def add():
