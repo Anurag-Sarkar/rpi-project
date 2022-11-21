@@ -321,14 +321,14 @@ def login():
     return render_template("login.html")
 
 @app.route("/loginuser",methods=["POST"])
-def login():
+def loginuser():
     password = request.formm["password"]
     if password == "thisisjustawesome":
         print("welcome admin")
         session["user"] = "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C"
 
 @app.route("/logout",methods=["POST"])
-def login():
+def logout():
     session.pop("username",None)
 
 @app.route("/add",methods=["GET"])
