@@ -176,7 +176,7 @@ if not lol:
         "dates":[],
         }
     user.insert_one(data)
-    
+
 
 @app.route("/attendence")
 def index():
@@ -301,6 +301,7 @@ def enter():
                 elif check and check["date"] == date and check["exit"] == "-" :
                     print("exited")
                     lol = attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "exit" : times}},return_document=ReturnDocument.AFTER)
+                    print(attendence.find_one({"name":cu["name"]}))
                     print(lol,"exited data")
 
         else:
