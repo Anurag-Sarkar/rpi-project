@@ -322,7 +322,7 @@ def login():
 
 @app.route("/loginuser",methods=["POST"])
 def loginuser():
-    password = request.formm["password"]
+    password = request.form["password"]
     if password == "thisisjustawesome":
         print("welcome admin")
         session["user"] = "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C"
