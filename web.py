@@ -458,7 +458,7 @@ def admin():
         users = user.find({})
         return render_template("admin.html",user = users)
     else:
-        return redirect("/attendence")
+        return redirect("/login")
 @socket.on("getdata")
 def getname(data):
     print(data)
