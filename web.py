@@ -274,7 +274,7 @@ def enter():
                         remark = "late"
                     
                     elif check and check["date"] == date and check["exit"] == "-" :
-                        print("Came late")
+                        print("exiting")
                         attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "exit" : times}},return_document=ReturnDocument.AFTER)
 
 
@@ -304,7 +304,8 @@ def enter():
                 
                 elif check and check["date"] == date and check["exit"] == "-" :
                     print("exited")
-                    attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "exit" : times}},return_document=ReturnDocument.AFTER)
+                    lol = attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "exit" : times}},return_document=ReturnDocument.AFTER)
+                    print(lol)
 
         else:
             lcd.clear()
