@@ -300,8 +300,9 @@ def enter():
                 
                 elif check and check["date"] == date and check["exit"] == "-" :
                     print("exited")
-                    lol = attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "exit" : times}},return_document=ReturnDocument.AFTER)
+                    lol = attendence.find_one_and_update({"name":cu["name"]},{ '$set': { "exit" : times}})
                     print(lol,"exited data")
+                    print(attendence.find_one({"name":cu["name"]}))
 
  
         else:
@@ -314,28 +315,28 @@ def enter():
         print("FUCK YOU")
     return redirect('/attendence')
 
-@app.route("/exit",methods=["GET"])
-def exit():
+# @app.route("/exit",methods=["GET"])
+# def exit():
 
-    if get_fingerprint():
-        iden = (int(finger.finger_id)*169691)+169691
-        cu = user.find_one({"fingerprint": iden})
-        n = cu["name"]
-        x = datetime.datetime.now()
-        time = x.strftime("%H:%M")    
-        date = x.strftime("%d-%m-%Y")
-        check = attendence.find_one({"name":n})
-        if check and check["date"] == date and check["exit"] == "-":
-            lcd.clear()
-            lcd.message = "Bye...\n" + cu["name"]
-            attendence.find_one_and_update({"name":n},{ '$set': { "exit" : time}},return_document=ReturnDocument.AFTER)
-        else:
-            lcd.clear()
-            lcd.message = "bhaag gya wo"
-            print("user exited")
-    else:
-        print("FUCK YOU")
-    return redirect('/attendence')
+#     if get_fingerprint():
+#         iden = (int(finger.finger_id)*169691)+169691
+#         cu = user.find_one({"fingerprint": iden})
+#         n = cu["name"]
+#         x = datetime.datetime.now()
+#         time = x.strftime("%H:%M")    
+#         date = x.strftime("%d-%m-%Y")
+#         check = attendence.find_one({"name":n})
+#         if check and check["date"] == date and check["exit"] == "-":
+#             lcd.clear()
+#             lcd.message = "Bye...\n" + cu["name"]
+#             attendence.find_one_and_update({"name":n},{ '$set': { "exit" : time}},return_document=ReturnDocument.AFTER)
+#         else:
+#             lcd.clear()
+#             lcd.message = "bhaag gya wo"
+#             print("user exited")
+#     else:
+#         print("FUCK YOU")
+#     return redirect('/attendence')
 
 @app.route("/add",methods=["GET"])
 def add():
