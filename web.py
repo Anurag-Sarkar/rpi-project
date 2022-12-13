@@ -14,7 +14,7 @@ import adafruit_character_lcd.character_lcd as characterlcd
 state = 0
 print(GPIO.VERSION)
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
 
@@ -561,6 +561,13 @@ def message(data):
         lcd.clear()
         lcd.message = "Ye ungli hai\nDusri Ungli do"
         socket.emit("fingerexists")
+
+
+GPIO.wait_for_edge(26, GPIO.BOTH)
+if not GPIO.input(26):
+    print("Button pressed!")
+else:
+    print("Button released!")
 
 socket.run(app,host="192.168.29.7",port="80",debug=True)
 
