@@ -463,8 +463,9 @@ def admin():
     else:
         return redirect("/login")
 
-def buttonpressed():
+def buttonpressed(hello):
     print("buttonpressed")
+    print(hello)
 
 @socket.on("getdata")
 def getname(data):
