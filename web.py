@@ -27,7 +27,7 @@ identitiy = 0
 lcd_columns = 16
 lcd_rows = 2
 
-# compatible with all versions of RPI as of Jan. 2019
+# compatible with all versions    of RPI as of Jan. 2019
 # v1 - v3B+
 lcd_rs = digitalio.DigitalInOut(board.D22)
 lcd_en = digitalio.DigitalInOut(board.D17)
