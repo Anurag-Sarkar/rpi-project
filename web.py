@@ -462,6 +462,10 @@ def admin():
         return render_template("admin.html",user = users)
     else:
         return redirect("/login")
+
+def buttonpressed():
+    print("buttonpressed")
+
 @socket.on("getdata")
 def getname(data):
     print(data)
@@ -560,12 +564,8 @@ def message(data):
         lcd.message = "Ye ungli hai\nDusri Ungli do"
         socket.emit("fingerexists")
 
+GPIO.add_event_detect(26, GPIO.RISING,callback=buttonpressed, bouncetime=2000)
 
-GPIO.wait_for_edge(26, GPIO.BOTH)
-if not GPIO.input(26):
-    print("Button pressed!")
-else:
-    print("Button released!")
 
 socket.run(app,host="192.168.29.7",port="80",debug=True)
 
