@@ -13,7 +13,7 @@ import digitalio
 import adafruit_character_lcd.character_lcd as characterlcd
 state = 0
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) 
 
 
 
