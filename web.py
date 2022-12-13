@@ -12,7 +12,6 @@ import board
 import digitalio
 import adafruit_character_lcd.character_lcd as characterlcd
 state = 0
-print(GPIO.VERSION)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
@@ -153,7 +152,6 @@ try:
 except Exception:
     print(Exception)
 #---------------LIBRAREIS--------------------
-GPIO.add_event_detect(26, GPIO.FALLING, callback=print_f, bouncetime=300)
 
 app = Flask(__name__)
 app.config["SECRTE"] = "secret"
