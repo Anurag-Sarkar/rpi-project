@@ -464,9 +464,9 @@ def admin():
         return redirect("/login")
 
 def buttonpressed(hello):
+    time.sleep(1)
     print("buttonpressed")
     print("hello")
-    time.sleep(100)
 
 @socket.on("getdata")
 def getname(data):
