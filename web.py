@@ -466,6 +466,7 @@ def admin():
 def buttonpressed(hello):
     print("buttonpressed")
     print("hello")
+    time.sleep(100)
 
 @socket.on("getdata")
 def getname(data):
