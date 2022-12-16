@@ -45,8 +45,6 @@ lcd = characterlcd.Character_LCD_Mono(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6,
 lcd.clear()
 
 lcd.message = "Welcome!!! Asshole"
-time.sleep(2)
-lcd.message = "Press button to\nEnter / Exit "
 
 
 
@@ -74,8 +72,7 @@ def enroll_finger(location):
             lcd.clear()
             lcd.message = "Place again"
             socket.emit("again")
-            time.sleep(2)
-            lcd.message = "Press button to\nEnter / Exit "
+
 
 
         while True:
@@ -103,8 +100,7 @@ def enroll_finger(location):
                 print("Could not identify features")
                 lcd.clear()
                 lcd.message = "Clean sensor\n or finger"
-                time.sleep(2)
-                lcd.message = "Press button to\nEnter / Exit "
+ 
 
 
             elif i == adafruit_fingerprint.INVALIDIMAGE:
@@ -295,8 +291,7 @@ def enter():
                     "remark":remark
                 }
                 attendence.insert_one(data)
-                time.sleep(2)
-                lcd.message = "Press button to\nEnter / Exit "
+
 
             else:
                 check_holiday = attendence.find_one({"name":cu["name"]})
@@ -328,8 +323,6 @@ def enter():
         lcd.clear()
         lcd.message = "Clean Sensor" 
         print("FUCK YOU")
-        time.sleep(2)
-        lcd.message = "Press button to\nEnter / Exit "
 
     return redirect('/attendence',200,{"success":True})
 
