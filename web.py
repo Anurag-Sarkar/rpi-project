@@ -44,7 +44,9 @@ lcd = characterlcd.Character_LCD_Mono(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6,
                                       lcd_d7, lcd_columns, lcd_rows)
 lcd.clear()
 
-lcd.message = "hehe"
+lcd.message = "Welcome!!! Asshole"
+time.sleep(2)
+lcd.message = "Press button to\nEnter / Exit "
 
 
 
@@ -65,13 +67,16 @@ def enroll_finger(location):
         if fingerimg == 1:
             print("Place finger on sensor...", end="")
             lcd.clear()
-            lcd.message = "Ungli kro"
+            lcd.message = "Place Your Finger\non sensor"
 
         else:
             print("Place same finger again...", end="")
             lcd.clear()
-            lcd.message = "Phirse ungli kro"
+            lcd.message = "Place again"
             socket.emit("again")
+            time.sleep(2)
+            lcd.message = "Press button to\nEnter / Exit "
+
 
         while True:
             i = finger.get_image()
@@ -97,7 +102,10 @@ def enroll_finger(location):
             elif i == adafruit_fingerprint.FEATUREFAIL:
                 print("Could not identify features")
                 lcd.clear()
-                lcd.message = "saaf kro ungli"
+                lcd.message = "Clean sensor\n or finger"
+                time.sleep(2)
+                lcd.message = "Press button to\nEnter / Exit "
+
 
             elif i == adafruit_fingerprint.INVALIDIMAGE:
                 print("Image invalid")
@@ -139,7 +147,7 @@ def enroll_finger(location):
 try:
     def get_fingerprint():
         lcd.clear()
-        lcd.message = "Ungli Lagao"
+        lcd.message = "Place Finger"
         """Get a finger print image, template it, and see if it matches!"""
         print("Waiting for image...")
         while finger.get_image() != adafruit_fingerprint.OK:
@@ -245,6 +253,7 @@ def enter():
     
     remark = "normal"
     if get_fingerprint():
+
         
         print("Detected #", finger.finger_id, "with confidence", finger.confidence)
         iden = (int(finger.finger_id)*169691)+169691
@@ -286,6 +295,9 @@ def enter():
                     "remark":remark
                 }
                 attendence.insert_one(data)
+                time.sleep(2)
+                lcd.message = "Press button to\nEnter / Exit "
+
             else:
                 check_holiday = attendence.find_one({"name":cu["name"]})
                 if check_holiday["remark"] == "holiday":
@@ -304,16 +316,23 @@ def enter():
                     lol = attendence.find_one_and_update({"name":cu["name"],"date":date},{ '$set': { "exit" : times}})
                     print(lol,"exited data")
                     print(attendence.find_one({"name":cu["name"]}))
+                    lcd.message = "Bye Bye...\n" + cu["name"]
+
 
  
         else:
             lcd.clear()
-            lcd.message = "Koon ho aap???"
+            lcd.message = "Unknown you are"
             print("user not found")
     else:
         lcd.clear()
         lcd.message = "Clean Sensor" 
         print("FUCK YOU")
+        time.sleep(2)
+        lcd.message = "Press button to\nEnter / Exit "
+
+    time.sleep(2)
+    lcd.message = "Welcome...\n" + cu["name"]
     return redirect('/attendence',200,{"success":True})
 
 @app.route("/login",methods=["GET"])
@@ -557,7 +576,7 @@ def message(data):
         if enroll_finger(i): 
             print("Add fingerprint------------------------------") 
             lcd.clear() 
-            lcd.message = "Ungli aagai"
+            lcd.message = "Added Fingerprint"
   
             socket.emit("pass")
         else:    
@@ -565,7 +584,7 @@ def message(data):
             socket.emit("fail")
     else:
         lcd.clear()
-        lcd.message = "Ye ungli hai\nDusri Ungli do"
+        lcd.message = "Finger Exists\nPlace Another finger"
         socket.emit("fingerexists")
 
 # GPIO.add_event_detect(26, GPIO.RISING,callback= , bouncetime=2000)
