@@ -331,8 +331,6 @@ def enter():
         time.sleep(2)
         lcd.message = "Press button to\nEnter / Exit "
 
-    time.sleep(2)
-    lcd.message = "Press Button to\nEnter"
     return redirect('/attendence',200,{"success":True})
 
 @app.route("/login",methods=["GET"])
