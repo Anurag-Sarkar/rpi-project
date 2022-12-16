@@ -252,13 +252,13 @@ def index():
 def enter():
     
     remark = "normal"
-    cu = user.find_one({"fingerprint": iden})
     if get_fingerprint():
 
         
         print("Detected #", finger.finger_id, "with confidence", finger.confidence)
         iden = (int(finger.finger_id)*169691)+169691
         print(iden)
+        cu = user.find_one({"fingerprint": iden})
         if cu:
             x = datetime.datetime.now()
             date = x.strftime("%d-%m-%Y")
@@ -332,7 +332,7 @@ def enter():
         lcd.message = "Press button to\nEnter / Exit "
 
     time.sleep(2)
-    lcd.message = "Welcome...\n" + cu["name"]
+    lcd.message = "Press Button to\nEnter"
     return redirect('/attendence',200,{"success":True})
 
 @app.route("/login",methods=["GET"])
