@@ -14,6 +14,8 @@ import adafruit_character_lcd.character_lcd as characterlcd
 state = 0
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) 
+GPIO.setup(8,GPIO.OUT)
+GPIO.output(8, GPIO.HIGH)  # make ledPin output HIGH level to turn on led - Here HIGH TURNS ON LED
 
 
 
@@ -310,9 +312,9 @@ def enter():
             print("user not found")
     else:
         lcd.clear()
-        lcd.message = "Clean Sensor"
+        lcd.message = "Clean Sensor" 
         print("FUCK YOU")
-    return redirect('/attendence')
+    return redirect('/attendence',200,{"success":True})
 
 @app.route("/login",methods=["GET"])
 def login():
@@ -566,7 +568,7 @@ def message(data):
         lcd.message = "Ye ungli hai\nDusri Ungli do"
         socket.emit("fingerexists")
 
-GPIO.add_event_detect(26, GPIO.RISING,callback=buttonpressed, bouncetime=2000)
+GPIO.add_event_detect(26, GPIO.RISING,callback= , bouncetime=2000)
 
 
 socket.run(app,host="192.168.29.7",port="80",debug=True)
