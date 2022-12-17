@@ -298,6 +298,7 @@ def enter():
 
             else:
                 print("user aready in work")
+                lcd.message = "You are already\nLogged"
                 check_holiday = attendence.find_one({"name":cu["name"]})
                 if check_holiday["remark"] == "holiday":
                     halfday = cu["halfday"]
