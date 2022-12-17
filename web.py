@@ -11,6 +11,9 @@ from subprocess import Popen, PIPE
 import board
 import digitalio
 import adafruit_character_lcd.character_lcd as characterlcd
+
+time.sleep(5)
+
 state = 0
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) 
