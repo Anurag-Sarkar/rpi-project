@@ -94,7 +94,7 @@ html, body {
   justify-content: center;
 }
 #main #time #people {
-  margin-top: 40px;
+  margin-top: 80px;
   width: 100%;
   height: 100%;
 }
@@ -180,7 +180,7 @@ html, body {
     font-size: 16px;
   }
   #main #time #people {
-    margin-top: 85px;
+    margin-top: 65px;
   }
   #main #time #people #names {
     text-align: center;
