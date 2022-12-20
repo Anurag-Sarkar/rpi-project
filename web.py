@@ -478,7 +478,7 @@ def profile ():
 
 @app.route("/admin")
 def admin():
-    print(session)
+    print(session["user"])
     if session["user"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
         users = user.find({})
         return render_template("admin.html",user = users)
