@@ -465,6 +465,7 @@ def deleteone():
             l = [4,5,8,9,10,11,13]
             for i in range(17):
                 if i not in l:
+                    
                     # finger.delete_model(i)
                     print(i)
             print(finger.templates)
