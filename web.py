@@ -241,7 +241,10 @@ def index():
         s = attendence.find({"date":date})
         use = []
         for i in s:
-            print(i,"userdata")
+            print(i["entry"])
+            print(i["exit"])
+            print(int(i["entry"]))
+            print(int(i["exit"]))
             use.append(i)
         return render_template("attendence.html",data=use)
     else:
@@ -264,7 +267,7 @@ def enter():
             times = x.strftime("%H:%M")
             check = attendence.find_one({"name":cu["name"] ,"date":date})
             now = datetime.datetime.now()
-            today_time = now.replace(hour=10, minute=45, second=0, microsecond=0)
+            today_time = now.replace(hour=11, minute=0, second=0, microsecond=0)
             if x > today_time:
                 dojo = user.find_one({"name":"sheryians coding school"})
                 holidaycheck = dojo["dates"]
