@@ -38,9 +38,14 @@
             <p>{{data}}</p>
             <div id="people">
                 {% for item in data %}\
-                    {% set hour = item["entry"].split(':') %}
-                    {% set hr = hour[0] | int %}
-                    {% set min = hour[1] | int %}
+                    {% if item["exit"] != "-"  %}
+                        {% set hour = item["exit"].split(':') %}
+                        {% set hr = hour[0] | int %}
+                        {% set min = hour[1] | int %}
+                    {%endif%}
+                    {% set chour = item["entry"].split(':') %}
+                    {% set chr = hour[0] | int %}
+                    {% set cmin = hour[1] | int %}
                     {% if item["remark"] == "late"  %}
                         <div id="names" style="background-color: rgb(255, 102, 102);">
                             <p>{{item["name"]}}</p>
@@ -68,13 +73,24 @@
                     {% else %}
                     <div id="names">
                             <p>{{item["name"]}}</p>
-                            {% if hr > 12%}
-                                {% set hr = hr - 12 %}
-                                <p>{{hr|string+':'+min|string}} pm</p>
+                            {% if chr > 12%}
+                                {% set chr = chr - 12 %}
+                                <p>{{chr|string + ':' + cmin|string}} pm</p>
                             {% else%}
-                                <p>{{hr|string+':'+min|string}} am</p>
+                                <p>{{chr|string + ':' + cmin|string}} am</p>
                             {%endif%}
-                            <p>{{item["exit"]}}</p>
+
+                            {% if item["exit"] != "-"  %}
+                                {% if hr > 12%}
+                                    {% set hr = hr - 12 %}
+                                        <p>{{hr|string + ':' + min|string}} pm</p>
+                                    {% else%}
+                                        <p>{{hr|string + ':' + min|string}} am</p>
+                                {%endif%}
+                            {% else%}
+                                <p>{{item["exit"]}}</p>
+                            {%endif%}
+
                             <p>{{item["date"]}}</p>
                             <p>{{item["remark"]}}</p>
                         </div>
