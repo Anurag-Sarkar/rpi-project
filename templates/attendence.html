@@ -49,24 +49,69 @@
                     {% if item["remark"] == "late"  %}
                         <div id="names" style="background-color: rgb(255, 102, 102);">
                             <p>{{item["name"]}}</p>
-                            <p>{{item["entry"]}}am</p>
-                            <p>{{item["exit"]}}</p>
+                            {% if chr > 12%}
+                                {% set chr = chr - 12 %}
+                                <p>{{chr|string + ':' + cmin|string}} pm</p>
+                            {% else%}
+                                <p>{{chr|string + ':' + cmin|string}} am</p>
+                            {%endif%}
+
+                            {% if item["exit"] != "-"  %}
+                                {% if hr > 12%}
+                                    {% set hr = hr - 12 %}
+                                        <p>{{hr|string + ':' + min|string}} pm</p>
+                                    {% else%}
+                                        <p>{{hr|string + ':' + min|string}} am</p>
+                                {%endif%}
+                            {% else%}
+                                <p>{{item["exit"]}}</p>
+                            {%endif%}
                             <p>{{item["date"]}}</p>
                             <p>{{item["remark"]}}</p>
                         </div>
                     {% elif item["remark"] == "holiday" %}
                         <div id="names" style="background-color: rgb(141, 255, 89);">
                             <p>{{item["name"]}}</p>
-                            <p>{{item["entry"]}}</p>
-                            <p>{{item["exit"]}}</p>
+                            {% if chr > 12%}
+                                {% set chr = chr - 12 %}
+                                <p>{{chr|string + ':' + cmin|string}} pm</p>
+                            {% else%}
+                                <p>{{chr|string + ':' + cmin|string}} am</p>
+                            {%endif%}
+
+                            {% if item["exit"] != "-"  %}
+                                {% if hr > 12%}
+                                    {% set hr = hr - 12 %}
+                                        <p>{{hr|string + ':' + min|string}} pm</p>
+                                    {% else%}
+                                        <p>{{hr|string + ':' + min|string}} am</p>
+                                {%endif%}
+                            {% else%}
+                                <p>{{item["exit"]}}</p>
+                            {%endif%}
                             <p>{{item["date"]}}</p>
                             <p>{{item["remark"]}}</p>
                         </div>
                     {% elif item["remark"] == "extra" %}
                     <div id="names" style="background-color: rgb(186, 112, 255);">
                         <p>{{item["name"]}}</p>
-                        <p>{{item["entry"]}}</p>
-                        <p>{{item["exit"]}}</p>
+                        {% if chr > 12%}
+                                {% set chr = chr - 12 %}
+                                <p>{{chr|string + ':' + cmin|string}} pm</p>
+                            {% else%}
+                                <p>{{chr|string + ':' + cmin|string}} am</p>
+                            {%endif%}
+
+                            {% if item["exit"] != "-"  %}
+                                {% if hr > 12%}
+                                    {% set hr = hr - 12 %}
+                                        <p>{{hr|string + ':' + min|string}} pm</p>
+                                    {% else%}
+                                        <p>{{hr|string + ':' + min|string}} am</p>
+                                {%endif%}
+                            {% else%}
+                                <p>{{item["exit"]}}</p>
+                            {%endif%}
                         <p>{{item["date"]}}</p>
                         <p>{{item["remark"]}}</p>
                     </div>
@@ -90,7 +135,6 @@
                             {% else%}
                                 <p>{{item["exit"]}}</p>
                             {%endif%}
-
                             <p>{{item["date"]}}</p>
                             <p>{{item["remark"]}}</p>
                         </div>
