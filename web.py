@@ -20,7 +20,7 @@ GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(8,GPIO.OUT)
 GPIO.output(8, GPIO.HIGH)  # make ledPin output HIGH level to turn on led - Here HIGH TURNS ON LED
 
-
+pwsd = "sherytheattendence"
 
 uart = serial.Serial("/dev/ttyUSB0", baudrate=57600, timeout=1)
 finger = adafruit_fingerprint.Adafruit_Fingerprint(uart)
@@ -343,7 +343,7 @@ def login():
 @app.route("/loginuser",methods=["POST"])
 def loginuser():
     password = request.form["password"]
-    if password == "thisisjustawesome":
+    if password == pwsd:
         print("welcome admin")
         session["username"] = "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C"
         return redirect("/admin")
