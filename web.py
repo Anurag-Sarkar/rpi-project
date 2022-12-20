@@ -241,8 +241,7 @@ def index():
         s = attendence.find({"date":date})
         use = []
         for i in s:
-            i["entry"] = "sex"
-            i["exit"] = "sex"
+            print(i["entry"].split(":"))
             
             use.append(i)
         return render_template("attendence.html",data=use)
