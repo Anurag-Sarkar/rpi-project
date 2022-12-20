@@ -33,7 +33,7 @@
                 <p>Remark</p>
             </div>
             <div id="people">
-                {% for item in data %}\
+                {% for item in data %}
                     {% if item["exit"] != "-"  %}
                         {% set hour = item["exit"].split(':') %}
                         {% set hr = hour[0] | int %}
