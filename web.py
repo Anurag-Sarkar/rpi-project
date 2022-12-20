@@ -62,6 +62,9 @@ def print_f(pin):
         enter()
         list = []
     
+def redirect_to_login():
+    return redirect("/login")
+
 def enroll_finger(location):
     """Take a 2 finger images and template it, then store in 'location'"""
     for fingerimg in range(1, 3):
@@ -358,120 +361,142 @@ def logout():
 
 @app.route("/add",methods=["GET"])
 def add():
-    if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
-        return render_template("add.html")
-    else:
-        return redirect("/attendence")
-        
+    try:
+        if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+            return render_template("add.html")
+        else:
+            return redirect("/attendence")
+    except Exception as err:
+        redirect_to_login()
+
 @app.route("/addmember",methods=["POST"])
 def addmember():
-    if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
-        global identitiy
-        name = request.form["name"]
-        check = user.find_one({"name":name})
-        print(check,"this is user details")
-        if not check:
-            data = {
-                "name":name.title(),
-                "fingerprint":identitiy,
-                "holiday":0,
-                "dates":[],
-                "overtime":0,
-                "defaultedDays":0
-            }
-            user.insert_one(data)
+    try:
+        if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+            global identitiy
+            name = request.form["name"]
+            check = user.find_one({"name":name})
+            print(check,"this is user details")
+            if not check:
+                data = {
+                    "name":name.title(),
+                    "fingerprint":identitiy,
+                    "holiday":0,
+                    "dates":[],
+                    "overtime":0,
+                    "defaultedDays":0
+                }
+                user.insert_one(data)
+            else:
+                print(identitiy)
+                print("USER ALREADY ADDED")
+            return redirect("/admin")
         else:
-            print(identitiy)
-            print("USER ALREADY ADDED")
-        return redirect("/admin")
-    else:
-        return redirect("/attendence")
-
+            return redirect("/attendence")
+    
+    except Exception as err:
+        redirect_to_login()
+        
 @app.route("/holiday",methods=["GET"])
 def holiday():
-    if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
-        users = user.find({})
-        return render_template("holiday.html",user = users)
-    else:
-        return redirect("/attendence")
-
+    try:
+        if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+            users = user.find({})
+            return render_template("holiday.html",user = users)
+        else:
+            return redirect("/attendence")
+    except Exception as err:
+        redirect_to_login()
+        
 
 @app.route("/addingholiday",methods=["POST"])
 def personalholiday():
-    if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
-        start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
-        skip = datetime.timedelta(days=1)
-        print(request.form["user"])
-        user_name = user.find_one({"name":request.form["user"]})
-        print(user_name)
-        addeddates = user_name["dates"]
-        holiday = user_name["holiday"]
-        dojo  = user.find_one({"name":"sheryians coding school"})
-        dojo_holiday = dojo["dates"]
-        end = request.form["enddate"]
-        if end == "":
-            if start not in dojo_holiday:
-                print(start)
-                holiday += 1
-                user.find_one_and_update({"name":user_name["name"]},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
-                user.find_one_and_update({"name":user_name["name"]},{ '$set': { "holiday" : holiday}},return_document=ReturnDocument.AFTER)
-        else:
-            end = datetime.datetime.strptime(end,"%Y-%m-%d")
-            while(start <= end):
-                print(start.strftime("%d-%m-%Y"),type(start.strftime("%d-%m-%Y")),end="\n")
-                if start.strftime("%d-%m-%Y") not in addeddates and start.strftime("%d-%m-%Y") not in dojo_holiday:
-                    print("adding dates")
+    try:
+        if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+            start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
+            skip = datetime.timedelta(days=1)
+            print(request.form["user"])
+            user_name = user.find_one({"name":request.form["user"]})
+            print(user_name)
+            addeddates = user_name["dates"]
+            holiday = user_name["holiday"]
+            dojo  = user.find_one({"name":"sheryians coding school"})
+            dojo_holiday = dojo["dates"]
+            end = request.form["enddate"]
+            if end == "":
+                if start not in dojo_holiday:
+                    print(start)
                     holiday += 1
-                    user.find_one_and_update({"name":user_name["name"]},{ '$set': { "holiday" : holiday}},return_document=ReturnDocument.AFTER)
                     user.find_one_and_update({"name":user_name["name"]},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
-                else:
-                    print("date exists")
-                start += skip
-        return redirect("/holiday")
-    else:
-        return redirect("/attendence")
-
+                    user.find_one_and_update({"name":user_name["name"]},{ '$set': { "holiday" : holiday}},return_document=ReturnDocument.AFTER)
+            else:
+                end = datetime.datetime.strptime(end,"%Y-%m-%d")
+                while(start <= end):
+                    print(start.strftime("%d-%m-%Y"),type(start.strftime("%d-%m-%Y")),end="\n")
+                    if start.strftime("%d-%m-%Y") not in addeddates and start.strftime("%d-%m-%Y") not in dojo_holiday:
+                        print("adding dates")
+                        holiday += 1
+                        user.find_one_and_update({"name":user_name["name"]},{ '$set': { "holiday" : holiday}},return_document=ReturnDocument.AFTER)
+                        user.find_one_and_update({"name":user_name["name"]},{'$push': {'dates': start.strftime("%d-%m-%Y")}},return_document=ReturnDocument.AFTER)
+                    else:
+                        print("date exists")
+                    start += skip
+            return redirect("/holiday")
+        else:
+            return redirect("/attendence")
+    except Exception as err:
+        redirect_to_login()
+        
 @app.route("/deleteall")
 def delete():
-    if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
-        finger.read_templates()
-        print(finger.templates)
-        for i in finger.templates:
-            print(i)
-            finger.delete_model(i)
-        return redirect("/add")
-    else:
-        return redirect("/attendence")
-    
+    try:
+        if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+            finger.read_templates()
+            print(finger.templates)
+            for i in finger.templates:
+                print(i)
+                finger.delete_model(i)
+            return redirect("/add")
+        else:
+            return redirect("/attendence")
+    except Exception as err:
+        redirect_to_login()
+            
 
 
 @app.route("/deleteholiday")
 def deleteholiday():
-    if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
-        logged = user.find_one({"name":session["username"]})
-        return render_template("deleteholiday.html",date=logged["dates"])
-    else:
-        return redirect("/attendence")
-
+    try:
+        if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+            logged = user.find_one({"name":session["username"]})
+            return render_template("deleteholiday.html",date=logged["dates"])
+        else:
+            return redirect("/attendence")
+    except Exception as err:
+        redirect_to_login()
+        
 
 
 @app.route("/olddata")
 def olddata():
-    if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
-        today = datetime.datetime.now()
-        data = []
-        for i in range(30):
-            people = []
-            d = today - datetime.timedelta(days = i)
-            found = attendence.find({"date":d.strftime("%d-%m-%Y")})
-            people.append(d.strftime("%d-%m-%Y"))
-            for i in found:
-                people.append(i)
-            data.append(people)
-        return render_template("data.html",deta=data)
-    else:
-        return redirect("/attendence")
-
+    try:
+        if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+            today = datetime.datetime.now()
+            data = []
+            for i in range(30):
+                people = []
+                d = today - datetime.timedelta(days = i)
+                found = attendence.find({"date":d.strftime("%d-%m-%Y")})
+                people.append(d.strftime("%d-%m-%Y"))
+                for i in found:
+                    people.append(i)
+                data.append(people)
+            return render_template("data.html",deta=data)
+        else:
+            return redirect("/attendence")
+    except Exception as err:
+        redirect_to_login()
+        
 @app.route("/profile")
 def profile ():
     users = user.find({})
@@ -479,17 +504,15 @@ def profile ():
 
 @app.route("/admin")
 def admin():
-    print(session["username"])
-    if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
-        users = user.find({})
-        return render_template("admin.html",user = users)
-    else:
-        return redirect("/login")
-
-def buttonpressed(hello):
-    time.sleep(1)
-    print("buttonpressed")
-    print("hello")
+    try:
+        print(session["username"])
+        if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+            users = user.find({})
+            return render_template("admin.html",user = users)
+        else:
+            return redirect("/login")
+    except Exception as err:
+        redirect_to_login()
 
 @socket.on("getdata")
 def getname(data):
