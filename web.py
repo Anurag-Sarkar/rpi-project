@@ -444,20 +444,19 @@ def personalholiday():
     except Exception as err:
         return redirect("/login")
         
-# @app.route("/deleteall")
-# def delete():
-#     try:
-#         if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
-#             finger.read_templates()
-#             print(finger.templates)
-#             for i in finger.templates:
-#                 print(i)
-#                 finger.delete_model(i)
-#             return redirect("/add")
-#         else:
-#             return redirect("/attendence")
-#     except Exception as err:
-#         return redirect("/login")
+@app.route("/deleteall")
+def delete():
+    try:
+        if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+            finger.read_templates()
+            print(finger.templates)
+            for i in finger.templates:
+                print(i)
+            return redirect("/add")
+        else:
+            return redirect("/attendence")
+    except Exception as err:
+        return redirect("/login")
             
 @app.route("/delete")
 def deleteone():
@@ -466,7 +465,7 @@ def deleteone():
             l = [4,5,8,9,10,11,13]
             for i in range(17):
                 if i not in l:
-                    finger.delete_model(i)
+                    # finger.delete_model(i)
                     print(i)
             print(finger.templates)
             return redirect("/admin")
