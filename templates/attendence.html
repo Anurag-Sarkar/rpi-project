@@ -44,8 +44,8 @@
                         {% set min = hour[1] | int %}
                     {%endif%}
                     {% set chour = item["entry"].split(':') %}
-                    {% set chr = hour[0] | int %}
-                    {% set cmin = hour[1] | int %}
+                    {% set chr = chour[0] | int %}
+                    {% set cmin = chour[1] | int %}
                     {% if item["remark"] == "late"  %}
                         <div id="names" style="background-color: rgb(255, 102, 102);">
                             <p>{{item["name"]}}</p>
