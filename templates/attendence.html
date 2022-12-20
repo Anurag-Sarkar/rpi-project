@@ -40,6 +40,7 @@
                 {% for item in data %}\
                     {% set hour = item["entry"].split(':') %}
                     {% set hr = hour[0] | int %}
+                    {% set min = hour[1] | int %}
                     {% if item["remark"] == "late"  %}
                         <div id="names" style="background-color: rgb(255, 102, 102);">
                             <p>{{item["name"]}}</p>
@@ -67,7 +68,12 @@
                     {% else %}
                     <div id="names">
                             <p>{{item["name"]}}</p>
-                            <p>{{hr}}</p>
+                            {% if hr > 12%}
+                                {% set hr = hr - 12 %}
+                                <p>{{hr,":",min}}pm</p>
+                            {% else%}
+                                <p>{{hr,":",min}}am</p>
+                            {%endif%}
                             <p>{{item["exit"]}}</p>
                             <p>{{item["date"]}}</p>
                             <p>{{item["remark"]}}</p>
