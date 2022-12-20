@@ -345,7 +345,7 @@ def loginuser():
     password = request.form["password"]
     if password == "thisisjustawesome":
         print("welcome admin")
-        session["user"] = "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C"
+        session["username"] = "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C"
         return redirect("/admin")
     else:
         return redirect("/login")
@@ -353,19 +353,19 @@ def loginuser():
 
 @app.route("/logout",methods=["GET"])
 def logout():
-    session.pop("user",None)
+    session.pop("username",None)
     return redirect("/attendence")
 
 @app.route("/add",methods=["GET"])
 def add():
-    if session["user"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+    if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
         return render_template("add.html")
     else:
         return redirect("/attendence")
         
 @app.route("/addmember",methods=["POST"])
 def addmember():
-    if session["user"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+    if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
         global identitiy
         name = request.form["name"]
         check = user.find_one({"name":name})
@@ -389,7 +389,7 @@ def addmember():
 
 @app.route("/holiday",methods=["GET"])
 def holiday():
-    if session["user"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+    if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
         users = user.find({})
         return render_template("holiday.html",user = users)
     else:
@@ -398,7 +398,7 @@ def holiday():
 
 @app.route("/addingholiday",methods=["POST"])
 def personalholiday():
-    if session["user"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+    if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
         start = datetime.datetime.strptime(request.form["startdate"],"%Y-%m-%d")
         skip = datetime.timedelta(days=1)
         print(request.form["user"])
@@ -433,7 +433,7 @@ def personalholiday():
 
 @app.route("/deleteall")
 def delete():
-    if session["user"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+    if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
         finger.read_templates()
         print(finger.templates)
         for i in finger.templates:
@@ -447,8 +447,8 @@ def delete():
 
 @app.route("/deleteholiday")
 def deleteholiday():
-    if session["user"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
-        logged = user.find_one({"name":session["user"]})
+    if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+        logged = user.find_one({"name":session["username"]})
         return render_template("deleteholiday.html",date=logged["dates"])
     else:
         return redirect("/attendence")
@@ -457,7 +457,7 @@ def deleteholiday():
 
 @app.route("/olddata")
 def olddata():
-    if session["user"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+    if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
         today = datetime.datetime.now()
         data = []
         for i in range(30):
@@ -479,8 +479,8 @@ def profile ():
 
 @app.route("/admin")
 def admin():
-    print(session["user"])
-    if session["user"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+    print(session["username"])
+    if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
         users = user.find({})
         return render_template("admin.html",user = users)
     else:
