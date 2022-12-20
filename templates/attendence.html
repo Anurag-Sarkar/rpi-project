@@ -70,9 +70,9 @@
                             <p>{{item["name"]}}</p>
                             {% if hr > 12%}
                                 {% set hr = hr - 12 %}
-                                <p>{{hr,":",min}}pm</p>
+                                <p>{{hr+':'+min}} pm</p>
                             {% else%}
-                                <p>{{hr,":",min}}am</p>
+                                <p>{{hr+':'+min}} am</p>
                             {%endif%}
                             <p>{{item["exit"]}}</p>
                             <p>{{item["date"]}}</p>
