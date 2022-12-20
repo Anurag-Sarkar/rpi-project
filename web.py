@@ -243,8 +243,8 @@ def index():
         for i in s:
             print(i["entry"])
             print(i["exit"])
-            print(int(i["entry"]))
-            print(int(i["exit"]))
+            print(type(i["entry"]))
+            print(type(i["exit"]))
             use.append(i)
         return render_template("attendence.html",data=use)
     else:
