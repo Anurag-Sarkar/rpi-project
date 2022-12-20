@@ -19,6 +19,7 @@ socket.on("after",function(data){
     document.querySelector("#details #holi #th").textContent = data.data.holiday
     document.querySelector("#details #holi #tl").textContent = data.data.late
     clutter = ""
+    
     data.data.attendence.forEach(deta=>{
         stuff = `<div id="dets">
         <p>${deta.date}</p>
