@@ -241,8 +241,8 @@ def index():
         s = attendence.find({"date":date})
         use = []
         for i in s:
+            print(i,"userdata")
             use.append(i)
-        print(use)
         return render_template("attendence.html",data=use)
     else:
         return redirect("/")
