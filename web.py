@@ -185,6 +185,10 @@ if not lol:
     user.insert_one(data)
 
 
+@app.route("/")
+def red():
+    return redirect('/attendence')
+
 @app.route("/attendence")
 def index():
     alluser = user.find({})
