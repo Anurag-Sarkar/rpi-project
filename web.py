@@ -187,68 +187,65 @@ if not lol:
 
 @app.route("/attendence")
 def index():
-    if "user" in session:
-        alluser = user.find({})
-        today = datetime.datetime.now()   
-        today = today.strftime("%d-%m-%Y")
-        dojo = user.find_one({"name":"sheryians coding school"})
-        dojo_holiday = dojo["dates"]
-        for i in alluser:
-            if i["name"] != "sheryians coding school": 
-                print(today , i["dates"])
-                if today in i["dates"]:   
-                    if today in dojo_holiday:
-                        print("removed holiday",i["name"])
-                        holiday = i["holiday"]  
-                        if holiday > 0:
-                            holiday -= 1
-                        user.find_one_and_update({"name":i["name"]},{ '$set': { "holiday" : holiday}},return_document=ReturnDocument.AFTER)
-                        dates = user.find_one({"name":i["name"]}) 
-                        dates = dates["dates"]
-                        dates.remove(today)
-                        user.find_one_and_update({"name":i["name"]},{ '$set': { "dates" : dates}},return_document=ReturnDocument.AFTER)
-                    else:
-                        print("user added to attendence")
-                        data = {
-                                "name":i["name"],
-                                "date":today,
-                                "time":"-",
-                                "exit":"-",
-                                "remark":"holiday"
-                            }
-                        present = attendence.find_one({"name":i["name"] , "date":today})
-                        print(present)
-                        if not present:
-                            attendence.insert_one(data) 
+    alluser = user.find({})
+    today = datetime.datetime.now()   
+    today = today.strftime("%d-%m-%Y")
+    dojo = user.find_one({"name":"sheryians coding school"})
+    dojo_holiday = dojo["dates"]
+    for i in alluser:
+        if i["name"] != "sheryians coding school": 
+            print(today , i["dates"])
+            if today in i["dates"]:   
+                if today in dojo_holiday:
+                    print("removed holiday",i["name"])
+                    holiday = i["holiday"]  
+                    if holiday > 0:
+                        holiday -= 1
+                    user.find_one_and_update({"name":i["name"]},{ '$set': { "holiday" : holiday}},return_document=ReturnDocument.AFTER)
+                    dates = user.find_one({"name":i["name"]}) 
+                    dates = dates["dates"]
+                    dates.remove(today)
+                    user.find_one_and_update({"name":i["name"]},{ '$set': { "dates" : dates}},return_document=ReturnDocument.AFTER)
+                else:
+                    print("user added to attendence")
+                    data = {
+                            "name":i["name"],
+                            "date":today,
+                            "time":"-",
+                            "exit":"-",
+                            "remark":"holiday"
+                        }
+                    present = attendence.find_one({"name":i["name"] , "date":today})
+                    print(present)
+                    if not present:
+                        attendence.insert_one(data) 
 
-            elif today in dojo_holiday:
-                data = {
-                        "name":"sheryians coding school",
-                        "date":today,
-                        "time":"-",
-                        "exit":"-",
-                        "remark":"holiday"
-                            }
-                present = attendence.find_one({"name":"sheryians coding school","date":today})
-                if not present:
-                    attendence.insert_one(data)    
-                    
-
-                    
+        elif today in dojo_holiday:
+            data = {
+                    "name":"sheryians coding school",
+                    "date":today,
+                    "time":"-",
+                    "exit":"-",
+                    "remark":"holiday"
+                        }
+            present = attendence.find_one({"name":"sheryians coding school","date":today})
+            if not present:
+                attendence.insert_one(data)    
                 
-        x = datetime.datetime.now()
-        date = x.strftime("%d-%m-%Y")
-        s = attendence.find({"date":date})
-        use = []
-        for i in s:
-            # temp_entry = i["entry"].split(":")
-            # if int(temp_entry[0]) > 12:
-            #     int(temp_entry[0])-12
+
+                
             
-            use.append(i)
-        return render_template("attendence.html",data=use)
-    else:
-        return redirect("/")
+    x = datetime.datetime.now()
+    date = x.strftime("%d-%m-%Y")
+    s = attendence.find({"date":date})
+    use = []
+    for i in s:
+        # temp_entry = i["entry"].split(":")
+        # if int(temp_entry[0]) > 12:
+        #     int(temp_entry[0])-12
+        
+        use.append(i)
+    return render_template("attendence.html",data=use)
 
 @app.route("/entry",methods=["GET"])
 def enter():
