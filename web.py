@@ -463,9 +463,10 @@ def delete():
 def deleteone():
     try:
         if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
-            finger.read_templates()
-            print(finger.templates)            
-            return redirect("/add")
+            l = [4,5,8,9,10,11,13]
+            for i in range(17):
+                if i not in l:
+                    print(i)
         else:
             return redirect("/attendence")
     except Exception as err:
