@@ -320,6 +320,11 @@ html, body {
   #main #add #dojo h5 {
     font-size: 15px;
   }
+  #main #add #dojo form #option {
+    font-size: 15px;
+    color: white;
+    background-color: black;
+  }
   #main #add #dojo form #start {
     margin-top: 10px;
     font-size: 12px;

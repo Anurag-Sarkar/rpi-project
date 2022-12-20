@@ -37,9 +37,10 @@
             </div>
             <p>{{data}}</p>
             <div id="people">
-                {% for item in data %}
+                {% for item in data %}\
+                
                     {% if item["remark"] == "late"  %}
-                        <div id="names" style="background-color: rgb(255, 163, 102);">
+                        <div id="names" style="background-color: rgb(255, 102, 102);">
                             <p>{{item["name"]}}</p>
                             <p>{{item["entry"]}}</p>
                             <p>{{item["exit"]}}</p>
@@ -47,7 +48,7 @@
                             <p>{{item["remark"]}}</p>
                         </div>
                     {% elif item["remark"] == "holiday" %}
-                        <div id="names" style="background-color: rgb(119, 255, 56);">
+                        <div id="names" style="background-color: rgb(141, 255, 89);">
                             <p>{{item["name"]}}</p>
                             <p>{{item["entry"]}}</p>
                             <p>{{item["exit"]}}</p>

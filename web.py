@@ -298,7 +298,6 @@ def enter():
 
             else:
                 print("user aready in work")
-                lcd.message = "You are already\nLogged"
                 check_holiday = attendence.find_one({"name":cu["name"]})
                 if check_holiday["remark"] == "holiday":
                     halfday = cu["halfday"]
@@ -316,17 +315,19 @@ def enter():
                     lol = attendence.find_one_and_update({"name":cu["name"],"date":date},{ '$set': { "exit" : times}})
                     print(lol,"exited data")
                     print(attendence.find_one({"name":cu["name"]}))
-                    lcd.message = "Bye Bye...\n" + cu["name"]
+                    lcd.message = "Goodbye\n" + cu["name"]
+                else:
+                    lcd.message = "You are already\nLogged"
 
 
  
         else:
             lcd.clear()
-            lcd.message = "Unknown you are"
+            lcd.message = "You are not\n registers"
             print("user not found")
     else:
         lcd.clear()
-        lcd.message = "Clean Sensor" 
+        lcd.message = "Cant recognise\nfingerprint" 
         print("FUCK YOU")
 
     return redirect('/attendence',200,{"success":True})
@@ -346,7 +347,7 @@ def loginuser():
         return redirect("/login")
 
 
-@app.route("/logout",methods=["POST"])
+@app.route("/logout",methods=["GET"])
 def logout():
     session.pop("username",None)
     return redirect("/attendence")
