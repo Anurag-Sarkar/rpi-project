@@ -67,8 +67,9 @@
                     <div id="names">
                             <p>{{item["name"]}}</p>
                             {% set hour = item["entry"].split(':') %}
-                            {% if int(hour[0]) > 12 %}
-                                <p>{{int(hour[0])}}</p>
+                            {% set hour = hour[0] | int %}
+                            {% if hour > 12 %}
+                                <p>{{hour}}</p>
                             {%endif%}
 \                            <p>{{item["exit"]}}</p>
                             <p>{{item["date"]}}</p>
