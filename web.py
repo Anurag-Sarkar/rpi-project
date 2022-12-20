@@ -241,7 +241,11 @@ def index():
         s = attendence.find({"date":date})
         use = []
         for i in s:
-            print(i["entry"].split(":"))
+            temp_entry = i["entry"].split(":")
+            if int(temp_entry[0]) > 12:
+                print("fuck man")
+            else:
+                print("yes man") 
             
             use.append(i)
         return render_template("attendence.html",data=use)
