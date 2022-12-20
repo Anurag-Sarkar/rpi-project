@@ -512,7 +512,7 @@ def admin():
         else:
             return redirect("/login")
     except Exception as err:
-        redirect_to_login()
+        return redirect("/login")
 
 @socket.on("getdata")
 def getname(data):
