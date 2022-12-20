@@ -42,7 +42,7 @@
                     {% if item["remark"] == "late"  %}
                         <div id="names" style="background-color: rgb(255, 102, 102);">
                             <p>{{item["name"]}}</p>
-                            <p>{{item["entry"]}}</p>
+                            <p>{{item["entry"]}}am</p>
                             <p>{{item["exit"]}}</p>
                             <p>{{item["date"]}}</p>
                             <p>{{item["remark"]}}</p>
@@ -56,21 +56,31 @@
                             <p>{{item["remark"]}}</p>
                         </div>
                     {% elif item["remark"] == "extra" %}
-                        <div id="names" style="background-color: rgb(186, 112, 255);">
-                            <p>{{item["name"]}}</p>
-                            <p>{{item["entry"]}}</p>
-                            <p>{{item["exit"]}}</p>
-                            <p>{{item["date"]}}</p>
-                            <p>{{item["remark"]}}</p>
-                        </div>
+                    <div id="names" style="background-color: rgb(186, 112, 255);">
+                        <p>{{item["name"]}}</p>
+                        <p>{{item["entry"]}}</p>
+                        <p>{{item["exit"]}}</p>
+                        <p>{{item["date"]}}</p>
+                        <p>{{item["remark"]}}</p>
+                    </div>
                     {% else %}
-                        <div id="names">
+                    <div id="names">
+                            <p>{{item["name"]}}</p>
+                            {% set hour = item["entry"].split(':') %}
+                            {% if int(hour[0]) > 12 %}
+                                <p>{{int(hour[0])}}</p>
+                            {%endif%}
+\                            <p>{{item["exit"]}}</p>
+                            <p>{{item["date"]}}</p>
+                            <p>{{item["remark"]}}</p>
+                        </div>
+                        <!-- <div id="names">
                             <p>{{item["name"]}}</p>
                             <p>{{item["entry"]}}</p>
                             <p>{{item["exit"]}}</p>
                             <p>{{item["date"]}}</p>
                             <p>{{item["remark"]}}</p>
-                        </div>
+                        </div> -->
                     {% endif %}
                 {% endfor %}    
                 
