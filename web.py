@@ -61,9 +61,6 @@ def print_f(pin):
     if len(list) > 2:
         enter()
         list = []
-    
-def redirect_to_login():
-    return redirect("/login")
 
 def enroll_finger(location):
     """Take a 2 finger images and template it, then store in 'location'"""
@@ -367,7 +364,7 @@ def add():
         else:
             return redirect("/attendence")
     except Exception as err:
-        redirect_to_login()
+        return redirect("/login")
 
 @app.route("/addmember",methods=["POST"])
 def addmember():
@@ -395,7 +392,7 @@ def addmember():
             return redirect("/attendence")
     
     except Exception as err:
-        redirect_to_login()
+        return redirect("/login")
         
 @app.route("/holiday",methods=["GET"])
 def holiday():
@@ -406,7 +403,7 @@ def holiday():
         else:
             return redirect("/attendence")
     except Exception as err:
-        redirect_to_login()
+        return redirect("/login")
         
 
 @app.route("/addingholiday",methods=["POST"])
@@ -445,7 +442,7 @@ def personalholiday():
         else:
             return redirect("/attendence")
     except Exception as err:
-        redirect_to_login()
+        return redirect("/login")
         
 @app.route("/deleteall")
 def delete():
@@ -460,7 +457,7 @@ def delete():
         else:
             return redirect("/attendence")
     except Exception as err:
-        redirect_to_login()
+        return redirect("/login")
             
 
 
@@ -473,7 +470,7 @@ def deleteholiday():
         else:
             return redirect("/attendence")
     except Exception as err:
-        redirect_to_login()
+        return redirect("/login")
         
 
 
@@ -495,7 +492,7 @@ def olddata():
         else:
             return redirect("/attendence")
     except Exception as err:
-        redirect_to_login()
+        return redirect("/login")
         
 @app.route("/profile")
 def profile ():
