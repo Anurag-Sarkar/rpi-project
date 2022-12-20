@@ -460,7 +460,7 @@ def delete():
         return redirect("/login")
             
 @app.route("/delete")
-def delete():
+def deleteone():
     try:
         if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
             finger.read_templates()
