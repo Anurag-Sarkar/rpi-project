@@ -467,6 +467,7 @@ def deleteone():
             for i in range(17):
                 if i not in l:
                     finger.delete_model(i)
+                    print(i)
             print(finger.templates)
             return redirect("/admin")
         else:
