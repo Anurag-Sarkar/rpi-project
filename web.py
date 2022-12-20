@@ -459,6 +459,18 @@ def delete():
     except Exception as err:
         return redirect("/login")
             
+@app.route("/delete")
+def delete():
+    try:
+        if session["username"] == "JGHKUH^%&dMGR%^&^%IUNTV&#$^RB^IuB(R^&#W%^C":
+            finger.read_templates()
+            print(finger.templates)            
+            return redirect("/add")
+        else:
+            return redirect("/attendence")
+    except Exception as err:
+        return redirect("/login")
+            
 
 
 @app.route("/deleteholiday")
