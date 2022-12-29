@@ -37,5 +37,5 @@ document.querySelector("#icon i").addEventListener("click",()=>{
     document.querySelector("#overlap").style.left = "0%"
 })
 document.querySelector("#overlap").addEventListener("click",()=>{
-    document.querySelector("#overlap").style.left = "100%"
+    document.querySelector("#overlap").style.left = "130%"
 })

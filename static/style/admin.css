@@ -17,7 +17,7 @@ html, body {
   min-height: 110vh;
   position: absolute;
   top: 0;
-  left: 100%;
+  left: 130%;
   background-color: rgba(0, 0, 0, 0.87);
   z-index: 99;
   display: flex;
@@ -73,11 +73,11 @@ html, body {
 }
 #main #data {
   margin-top: 100px;
-  width: 100vw;
+  width: 100%;
   min-height: 70%;
   display: flex;
   justify-content: space-between;
-  padding: 0px 50px;
+  padding: 0px 20px;
 }
 #main #data #left {
   width: 40%;
@@ -219,6 +219,21 @@ html, body {
 }
 
 @media (max-width: 600px) {
+  #main #data #right #details #avg p {
+    font-size: 2vmax;
+  }
+  #main #data #right #details #holi p {
+    font-size: 2vmax;
+  }
+  #main #data #right #details #holi #l h2 {
+    font-size: 3vmax;
+  }
+  #main #data #right #details #avg #l h2 {
+    font-size: 3vmax;
+  }
+  #main #data #right #last #dets {
+    font-size: 15px;
+  }
   #data {
     flex-direction: column;
   }
