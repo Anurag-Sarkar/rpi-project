@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,17 +9,15 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/style/attendence.css">
 </head>
+
 <body>
-        <div id="overlay">
-            <div id="button"> 
-                <a href=""><div id="see">Profile</div></a>
-            </div>
-            <i class="ri-close-fill"></i>
-        </div>
     <div id="main">
         <div id="nav">
             <h1>SHERYIANS</h1>
             <div id="button">
+                <a href="/admin">
+                    <div id="see">Admin</div>
+                </a>
 
             </div>
             <i class="ri-menu-4-fill"></i>
@@ -34,119 +33,121 @@
             </div>
             <div id="people">
                 {% for item in data %}
-                    {% if item["exit"] != "-"  %}
-                        {% set hour = item["exit"].split(':') %}
-                        {% set hr = hour[0] | int %}
-                        {% set min = hour[1] | int %}
+                {% if item["exit"] != "-" %}
+                {% set hour = item["exit"].split(':') %}
+                {% set hr = hour[0] | int %}
+                {% set min = hour[1] | int %}
+                {%endif%}
+                {% set chour = item["entry"].split(':') %}
+                {% set chr = chour[0] | int %}
+                {% set cmin = chour[1] | int %}
+                {% if item["remark"] == "late" %}
+                <div id="names" style="background-color: rgb(255, 102, 102);">
+                    <p>{{item["name"]}}</p>
+                    {% if chr > 12%}
+                    {% set chr = chr - 12 %}
+                    <p>{{chr|string + ':' + cmin|string}} pm</p>
+                    {% else%}
+                    <p>{{chr|string + ':' + cmin|string}} am</p>
                     {%endif%}
-                    {% set chour = item["entry"].split(':') %}
-                    {% set chr = chour[0] | int %}
-                    {% set cmin = chour[1] | int %}
-                    {% if item["remark"] == "late"  %}
-                        <div id="names" style="background-color: rgb(255, 102, 102);">
-                            <p>{{item["name"]}}</p>
-                            {% if chr > 12%}
-                                {% set chr = chr - 12 %}
-                                <p>{{chr|string + ':' + cmin|string}} pm</p>
-                            {% else%}
-                                <p>{{chr|string + ':' + cmin|string}} am</p>
-                            {%endif%}
 
-                            {% if item["exit"] != "-"  %}
-                                {% if hr > 12%}
-                                    {% set hr = hr - 12 %}
-                                        <p>{{hr|string + ':' + min|string}} pm</p>
-                                    {% else%}
-                                        <p>{{hr|string + ':' + min|string}} am</p>
-                                {%endif%}
-                            {% else%}
-                                <p>{{item["exit"]}}</p>
-                            {%endif%}
-                            <p>{{item["date"]}}</p>
-                            <p>{{item["remark"]}}</p>
-                        </div>
-                    {% elif item["remark"] == "holiday" %}
-                        <div id="names" style="background-color: rgb(141, 255, 89);">
-                            <p>{{item["name"]}}</p>
-                            {% if chr > 12%}
-                                {% set chr = chr - 12 %}
-                                <p>{{chr|string + ':' + cmin|string}} pm</p>
-                            {% else%}
-                                <p>{{chr|string + ':' + cmin|string}} am</p>
-                            {%endif%}
+                    {% if item["exit"] != "-" %}
+                    {% if hr > 12%}
+                    {% set hr = hr - 12 %}
+                    <p>{{hr|string + ':' + min|string}} pm</p>
+                    {% else%}
+                    <p>{{hr|string + ':' + min|string}} am</p>
+                    {%endif%}
+                    {% else%}
+                    <p>{{item["exit"]}}</p>
+                    {%endif%}
+                    <p>{{item["date"]}}</p>
+                    <p>{{item["remark"]}}</p>
+                </div>
+                {% elif item["remark"] == "holiday" %}
+                <div id="names" style="background-color: rgb(141, 255, 89);">
+                    <p>{{item["name"]}}</p>
+                    {% if chr > 12%}
+                    {% set chr = chr - 12 %}
+                    <p>{{chr|string + ':' + cmin|string}} pm</p>
+                    {% else%}
+                    <p>{{chr|string + ':' + cmin|string}} am</p>
+                    {%endif%}
 
-                            {% if item["exit"] != "-"  %}
-                                {% if hr > 12%}
-                                    {% set hr = hr - 12 %}
-                                        <p>{{hr|string + ':' + min|string}} pm</p>
-                                    {% else%}
-                                        <p>{{hr|string + ':' + min|string}} am</p>
-                                {%endif%}
-                            {% else%}
-                                <p>{{item["exit"]}}</p>
-                            {%endif%}
-                            <p>{{item["date"]}}</p>
-                            <p>{{item["remark"]}}</p>
-                        </div>
-                    {% elif item["remark"] == "extra" %}
-                    <div id="names" style="background-color: rgb(186, 112, 255);">
-                        <p>{{item["name"]}}</p>
-                        {% if chr > 12%}
-                                {% set chr = chr - 12 %}
-                                <p>{{chr|string + ':' + cmin|string}} pm</p>
-                            {% else%}
-                                <p>{{chr|string + ':' + cmin|string}} am</p>
-                            {%endif%}
+                    {% if item["exit"] != "-" %}
+                    {% if hr > 12%}
+                    {% set hr = hr - 12 %}
+                    <p>{{hr|string + ':' + min|string}} pm</p>
+                    {% else%}
+                    <p>{{hr|string + ':' + min|string}} am</p>
+                    {%endif%}
+                    {% else%}
+                    <p>{{item["exit"]}}</p>
+                    {%endif%}
+                    <p>{{item["date"]}}</p>
+                    <p>{{item["remark"]}}</p>
+                </div>
+                {% elif item["remark"] == "extra" %}
+                <div id="names" style="background-color: rgb(186, 112, 255);">
+                    <p>{{item["name"]}}</p>
+                    {% if chr > 12%}
+                    {% set chr = chr - 12 %}
+                    <p>{{chr|string + ':' + cmin|string}} pm</p>
+                    {% else%}
+                    <p>{{chr|string + ':' + cmin|string}} am</p>
+                    {%endif%}
 
-                            {% if item["exit"] != "-"  %}
-                                {% if hr > 12%}
-                                    {% set hr = hr - 12 %}
-                                        <p>{{hr|string + ':' + min|string}} pm</p>
-                                    {% else%}
-                                        <p>{{hr|string + ':' + min|string}} am</p>
-                                {%endif%}
-                            {% else%}
-                                <p>{{item["exit"]}}</p>
-                            {%endif%}
-                        <p>{{item["date"]}}</p>
-                        <p>{{item["remark"]}}</p>
-                    </div>
-                    {% else %}
-                    <div id="names">
-                            <p>{{item["name"]}}</p>
-                            {% if chr > 12%}
-                                {% set chr = chr - 12 %}
-                                <p>{{chr|string + ':' + cmin|string}} pm</p>
-                            {% else%}
-                                <p>{{chr|string + ':' + cmin|string}} am</p>
-                            {%endif%}
+                    {% if item["exit"] != "-" %}
+                    {% if hr > 12%}
+                    {% set hr = hr - 12 %}
+                    <p>{{hr|string + ':' + min|string}} pm</p>
+                    {% else%}
+                    <p>{{hr|string + ':' + min|string}} am</p>
+                    {%endif%}
+                    {% else%}
+                    <p>{{item["exit"]}}</p>
+                    {%endif%}
+                    <p>{{item["date"]}}</p>
+                    <p>{{item["remark"]}}</p>
+                </div>
+                {% else %}
+                <div id="names">
+                    <p>{{item["name"]}}</p>
+                    {% if chr > 12%}
+                    {% set chr = chr - 12 %}
+                    <p>{{chr|string + ':' + cmin|string}} pm</p>
+                    {% else%}
+                    <p>{{chr|string + ':' + cmin|string}} am</p>
+                    {%endif%}
 
-                            {% if item["exit"] != "-"  %}
-                                {% if hr > 12%}
-                                    {% set hr = hr - 12 %}
-                                        <p>{{hr|string + ':' + min|string}} pm</p>
-                                    {% else%}
-                                        <p>{{hr|string + ':' + min|string}} am</p>
-                                {%endif%}
-                            {% else%}
-                                <p>{{item["exit"]}}</p>
-                            {%endif%}
-                            <p>{{item["date"]}}</p>
-                            <p>{{item["remark"]}}</p>
-                        </div>
-                    {% endif %}
-                {% endfor %}    
-                
-            
-            
+                    {% if item["exit"] != "-" %}
+                    {% if hr > 12%}
+                    {% set hr = hr - 12 %}
+                    <p>{{hr|string + ':' + min|string}} pm</p>
+                    {% else%}
+                    <p>{{hr|string + ':' + min|string}} am</p>
+                    {%endif%}
+                    {% else%}
+                    <p>{{item["exit"]}}</p>
+                    {%endif%}
+                    <p>{{item["date"]}}</p>
+                    <p>{{item["remark"]}}</p>
+                </div>
+                {% endif %}
+                {% endfor %}
+
+
+
+            </div>
         </div>
-    </div>
         <div id="footer">
             <p>Developed by Anurag Sarkar</p>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js" integrity="sha512-iWPnCISAd/J+ZacwV2mbNLCaPGRrRo5OS81lKTVPtRg1wGTC20Cfmp5Us5RcbLv42QLdbAWl0MI57yox5VecQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js"
+        integrity="sha512-iWPnCISAd/J+ZacwV2mbNLCaPGRrRo5OS81lKTVPtRg1wGTC20Cfmp5Us5RcbLv42QLdbAWl0MI57yox5VecQg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../static/js/attendence.js"></script>
 </body>
-</html>
 
+</html>

@@ -50,14 +50,17 @@ html, body {
 }
 #main #nav #button {
   display: flex;
-  width: 300px;
   cursor: pointer;
   align-items: center;
   justify-content: space-between;
 }
 #main #nav #button a {
-  color: white;
+  color: black;
+  font-weight: 600;
+  padding: 10px 30px;
+  background-color: white;
   text-decoration: none;
+  border-radius: 30px;
 }
 #main #nav #button a p {
   font-size: 20px;
@@ -164,12 +167,9 @@ html, body {
   #main #nav h1 {
     font-size: 20px;
   }
-  #main #nav #button {
-    display: none;
-  }
-  #main #nav i {
-    font-size: 22px;
-    display: inherit;
+  #main #nav #button a {
+    padding: 5px 20px;
+    font-size: 15px;
   }
   #main #time #heading {
     height: 35px;

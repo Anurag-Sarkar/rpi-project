@@ -45,13 +45,16 @@ html,body{
         background-color: rgb(0, 8, 23);
         #button{
             display: flex;
-            width: 300px;
             cursor: pointer;
             align-items: center;
             justify-content: space-between;
             a{
-                color: white;
+                color: black;
+                font-weight: 600;
+                padding: 10px 30px;
+                background-color: white;
                 text-decoration: none;  
+                border-radius: 30px;
 
                 p{
                     font-size: 20px;
@@ -161,12 +164,9 @@ html,body{
                 h1{
                     font-size: 20px;
             }
-            #button{
-                display: none;
-            }
-            i{
-                font-size: 22px;
-                display: inherit;
+            #button a{
+                padding: 5px 20px;
+                font-size: 15px;
             }
         }
         #time{
