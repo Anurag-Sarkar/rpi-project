@@ -47,7 +47,7 @@ lcd = characterlcd.Character_LCD_Mono(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6,
                                       lcd_d7, lcd_columns, lcd_rows)
 lcd.clear()
 
-lcd.message = "Welcome Asshole"
+lcd.message = "Welcome to\nSHERYIANS"
 
 
 
@@ -167,9 +167,7 @@ app.config["SECRTE"] = "secret"
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 socket = SocketIO(app)
 print("Connection to mongodb")
-
 client = MongoClient("mongodb+srv://anurag:1@cluster0.fqzjmis.mongodb.net/?retryWrites=true&w=majority")
-
 db = client["attendence"]
 user = db["user"]
 attendence = db["attendence"]
