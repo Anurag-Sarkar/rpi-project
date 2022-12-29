@@ -25,11 +25,14 @@ html, body {
 }
 #main #greeting h1 {
   font-weight: 800;
-  font-size: 60px;
+  font-size: 4vmax;
+}
+#main #greeting #icon {
+  display: none;
 }
 #main #greeting #button {
   justify-content: space-between;
-  width: 20%;
+  width: 30vw;
   display: flex;
 }
 #main #greeting #button a {
@@ -38,13 +41,14 @@ html, body {
 }
 #main #greeting #button a p {
   background-color: black;
-  font-size: 23px;
+  font-size: 1.2vmax;
+  margin-right: 20px;
   border-radius: 10px;
   padding: 10px 15px;
 }
 #main #data {
   margin-top: 100px;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -88,7 +92,9 @@ html, body {
   padding: 20px;
   background-color: rgb(237, 237, 237);
   width: 45%;
-  height: 105%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 #main #data #right #details #name {
   margin-bottom: 30px;
@@ -104,8 +110,11 @@ html, body {
   width: 50%;
   text-align: center;
 }
+#main #data #right #details #avg #l h2 {
+  font-size: 2vmax;
+}
 #main #data #right #details #avg p {
-  font-size: 20px;
+  font-size: 1.3vmax;
   font-weight: 500;
 }
 #main #data #right #details #holi {
@@ -117,8 +126,11 @@ html, body {
   width: 50%;
   text-align: center;
 }
+#main #data #right #details #holi #l h2 {
+  font-size: 2vmax;
+}
 #main #data #right #details #holi p {
-  font-size: 20px;
+  font-size: 1.3vmax;
   font-weight: 500;
 }
 #main #data #right #last {
@@ -179,4 +191,26 @@ html, body {
 #l h2 {
   font-size: 30px;
   margin-bottom: 0px;
+}
+
+@media (max-width: 600px) {
+  #data {
+    flex-direction: column;
+  }
+  #main #data #left {
+    width: 100%;
+  }
+  #main #data #right {
+    margin-top: 50px;
+    width: 100%;
+  }
+  #main #greeting #icon {
+    display: initial;
+  }
+  #main #greeting #icon i {
+    font-size: 30px;
+  }
+  #main #greeting #button {
+    display: none;
+  }
 }/*# sourceMappingURL=admin.css.map */

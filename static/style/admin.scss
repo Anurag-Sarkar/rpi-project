@@ -21,18 +21,22 @@ html,body{
         margin-top: 50px;
         h1{
             font-weight: 800;
-            font-size: 60px;
+            font-size: 4vmax;
+        }
+        #icon{
+            display: none;
         }
         #button{
             justify-content: space-between;
-            width: 20%;
+            width: 30vw;
             display: flex;
             a{
                 text-decoration: none;
                 color: white;
                 p{
                     background-color: black;
-                    font-size: 23px;
+                    font-size: 1.2vmax;
+                    margin-right: 20px;
                     border-radius: 10px;
                     padding: 10px 15px;
                 }
@@ -42,7 +46,7 @@ html,body{
     }
     #data{
         margin-top: 100px;
-        width: 100%;
+        width: 100vw;
         height: 100%;
         display: flex;
         justify-content: space-between;
@@ -86,7 +90,7 @@ html,body{
             padding: 20px;            
             background-color: rgb(237, 237, 237);
             width: 45%;
-            height: 105%;
+            height: fit-content;
             #details{
 
                 #name{
@@ -102,9 +106,12 @@ html,body{
                         width: 50%;
                         text-align: center;
                         // background-color: gainsboro;
+                        h2{
+                            font-size: 2vmax;
+                        }
                     }
                     p{
-                        font-size: 20px;
+                        font-size: 1.3vmax;
                         font-weight: 500;
                     }
                 }
@@ -116,9 +123,12 @@ html,body{
                         width: 50%;
                         text-align: center;
                         // background-color: gainsboro;
+                        h2{
+                            font-size: 2vmax;
+                        }
                     }
                     p{
-                        font-size: 20px;
+                        font-size: 1.3vmax;
                         font-weight: 500;
                     }
                 }
@@ -176,4 +186,31 @@ html,body{
         font-size: 30px;
         margin-bottom: 0px;
     }
+}
+
+
+@media (max-width:600px){
+
+    #data{
+        flex-direction: column;
+    }
+    #main #data #left{
+        width: 100%;
+    }
+    #main #data #right{
+        margin-top: 50px;
+        width: 100%;
+
+    }
+    #main #greeting #icon{
+        display: initial;
+    }
+    #main #greeting #icon i{
+        font-size: 30px;
+    }
+    #main #greeting #button{
+        display: none;
+    }
+
+
 }
