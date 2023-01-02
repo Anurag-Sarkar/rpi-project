@@ -171,6 +171,7 @@ client = MongoClient("mongodb+srv://anurag:1@cluster0.fqzjmis.mongodb.net/?retry
 db = client["attendence"]
 user = db["user"]
 attendence = db["attendence"]
+recipt = db["recipt"]
 
 lol = user.find_one({"name":"sheryians coding school"})
 print("dojo find")
@@ -524,7 +525,17 @@ def admin():
             return redirect("/login")
     except Exception as err:
         return redirect("/login")
+#--------------------------------------RECIPT-----------------------------------------------
+@app.route("/recipt")
+def recipt():
+    return render_template("recipt.html")
 
+
+
+
+
+
+#---------------------------------------SOCKET IO---------------------------------------------
 @socket.on("getdata")
 def getname(data):
     print(data)
@@ -623,7 +634,6 @@ def message(data):
         lcd.message = "Finger Exists\nPlace Another finger"
         socket.emit("fingerexists")
 
-# GPIO.add_event_detect(26, GPIO.RISING,callback= , bouncetime=2000)
 
 
 socket.run(app,host="192.168.29.7",port="80",debug=False)

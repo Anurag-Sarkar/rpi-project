@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style/recipt.css">
+</head>
+<body>
+    <form action="">
+        <div id="details">
+
+            <div id="left">
+                <input type="text" placeholder="Name" name="name" id="name" required>
+                <input type="text" placeholder="Phone" name="phone" id="phone" required>
+                <input type="text" disabled value="202211/0002" name="reciptID" id="reciptID" required>
+
+        </div>
+        <div id="right">
+            <input type="date" value="2013-01-08" id="date" name="date" required>
+            <select name="mode" id="mode">
+                <option value="cash">Cash</option>
+                <option value="cheque">Cheque/DD</option>
+                <option value="UPI" selected>Online/UPI</option>
+            </select>
+            <input type="text" placeholder="Ref ID" name="refID" id="refID" required>
+        </div>
+    </div>
+    <div id="course">
+
+        <div id="single_course">
+            <select name="course_name" id="course_name">
+                <option value="Python">Python</option>
+                <option value="Java">Java</option>
+                <option value="MySQL">MySQL</option>
+                <option value="CPT">CPT</option>
+                <option value="React">React</option>
+                <option value="MERN">MERN</option>
+                <option value="C programming">C programming</option>
+                <option value="Front-End">Front-End</option>
+                <option value="Back-end">Back-end</option>
+                <option value="Registration">Registration</option>
+            </select>
+            <p id="price">5,000.00</p>
+            <i class="ri-close-circle-fill"></i>
+        </div>
+        <div id="single_course">
+            <select name="course_name" id="course_name">
+                <option value="Python">Python</option>
+                <option value="Java">Java</option>
+                <option value="MySQL">MySQL</option>
+                <option value="CPT">CPT</option>
+                <option value="React">React</option>
+                <option value="MERN">MERN</option>
+                <option value="C programming">C programming</option>
+                <option value="Front-End">Front-End</option>
+                <option value="Back-end">Back-end</option>
+                <option value="Registration">Registration</option>
+            </select>
+            <p  id="price">5,000.00</p>
+            <i class="ri-close-circle-fill"></i>
+        </div>
+        <div id="single_course">
+            <select name="course_name" id="course_name">
+                <option value="Python">Python</option>
+                <option value="Java">Java</option>
+                <option value="MySQL">MySQL</option>
+                <option value="CPT">CPT</option>
+                <option value="React">React</option>
+                <option value="MERN">MERN</option>
+                <option value="C programming">C programming</option>
+                <option value="Front-End">Front-End</option>
+                <option value="Back-end">Back-end</option>
+                <option value="Registration">Registration</option>
+            </select>
+            <p  id="price">5,000.00</p>
+            <i class="ri-close-circle-fill"></i>
+        </div>
+        <button id="add_course" type="button">Add Course</button>
+    </div>
+    <div id="total">
+        <h1>Total Cost</h1>
+        <p id="gt">15,000.00</p>
+    </div>
+    </form>
+    <button>Old Recipts</button>
+    <script src="../static/js/recipt.js"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+form {
+  width: 60%;
+  margin: auto;
+  height: 100%;
+  padding: 40px;
+}
+form #details {
+  padding: 40px 40px;
+  width: 100%;
+  height: 40%;
+  display: flex;
+}
+form #details #left {
+  padding: 40px;
+  width: 50%;
+  align-items: flex-start;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+form #details #left #name {
+  width: 80%;
+  outline: none;
+  padding: 10px 10px 5px 10px;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+form #details #left #reciptID {
+  padding: 10px 0px 0px 5px;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 20px;
+}
+form #details #left #phone {
+  outline: none;
+  margin-bottom: 20px;
+  padding: 10px 0px 0px 5px;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 20px;
+}
+form #details #right {
+  padding: 40px 40px;
+  width: 50%;
+  align-items: flex-end;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+form #details #right #date {
+  padding: 8px;
+  font-size: 18px;
+  margin-bottom: 30px;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  background-color: rgb(189, 206, 255);
+  border-radius: 5px;
+}
+form #details #right #date::-webkit-calendar-picker-indicator {
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+form #details #right select {
+  margin-bottom: 30px;
+  width: 43%;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  background-color: rgb(189, 206, 255);
+  border-radius: 5px;
+  color: black;
+}
+form #details #right #refID {
+  outline: none;
+  margin-bottom: 20px;
+  padding: 10px 0px 0px 5px;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 20px;
+}
+form #course {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+  padding: 40px 0px;
+  height: 50%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: aliceblue;
+}
+form #course #single_course {
+  margin-bottom: 30px;
+  width: 80%;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+form #course #single_course select {
+  outline: none;
+  width: 70%;
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+}
+form #course #single_course p {
+  font-size: 25px;
+}
+form #course #single_course i {
+  font-size: 25px;
+  color: grey;
+  transition: 0.2s;
+}
+form #course #single_course i:hover {
+  color: black;
+}
+form #course button {
+  padding: 5px 20px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+form #course button:active {
+  transform: scale(0.95);
+}
+form #total {
+  display: flex;
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 100px;
+}
+form #total p {
+  font-size: 30px;
+}/*# sourceMappingURL=recipt.css.map */
