@@ -11,6 +11,8 @@ from subprocess import Popen, PIPE
 import board
 import digitalio
 import adafruit_character_lcd.character_lcd as characterlcd
+from threading import Timer
+
 
 time.sleep(5)
 
@@ -49,6 +51,9 @@ lcd.clear()
 
 lcd.message = "Welcome to\nSHERYIANS"
 
+
+def defaultt():
+    lcd.message = 'Press The button\nto interact'
 
 
 
@@ -103,6 +108,8 @@ def enroll_finger(location):
                 print("Could not identify features")
                 lcd.clear()
                 lcd.message = "Clean sensor\n or finger"
+                t = Timer(10, defaultt)  
+                t.start()
  
 
 
@@ -289,6 +296,8 @@ def enter():
                 print("found user")
                 lcd.clear()
                 lcd.message = "Welcome...\n" + cu["name"]
+                t = Timer(10, defaultt)  
+                t.start()
                 data = {
                     "name":cu["name"],
                     "date":date,
@@ -297,6 +306,7 @@ def enter():
                     "remark":remark
                 }
                 attendence.insert_one(data)
+
 
 
             else:
@@ -318,19 +328,27 @@ def enter():
                     lol = attendence.find_one_and_update({"name":cu["name"],"date":date},{ '$set': { "exit" : times}})
                     print(lol,"exited data")
                     print(attendence.find_one({"name":cu["name"]}))
+                    lcd.clear()
                     lcd.message = "Goodbye\n" + cu["name"]
+                    t = Timer(10, defaultt)  
+                    t.start()
                 else:
                     lcd.message = "You are already\nLogged"
-
+                    t = Timer(10, defaultt)  
+                    t.start()
 
  
         else:
             lcd.clear()
             lcd.message = "You are not\n registers"
             print("user not found")
+            t = Timer(10, defaultt)  
+            t.start()
     else:
         lcd.clear()
         lcd.message = "Cant recognise\nfingerprint" 
+        t = Timer(10, defaultt)  
+        t.start()
         print("FUCK YOU")
 
     return redirect('/attendence',200,{"success":True})
@@ -624,7 +642,8 @@ def message(data):
             print("Add fingerprint------------------------------") 
             lcd.clear() 
             lcd.message = "Added Fingerprint"
-  
+            t = Timer(10, defaultt)  
+            t.start()
             socket.emit("pass")
         else:    
             print("Cant add fingerprint----------------------------")   
@@ -632,6 +651,8 @@ def message(data):
     else:
         lcd.clear()
         lcd.message = "Finger Exists\nPlace Another finger"
+        t = Timer(10, defaultt)  
+        t.start()
         socket.emit("fingerexists")
 
 
