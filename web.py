@@ -53,6 +53,7 @@ lcd.message = "Welcome to\nSHERYIANS"
 
 
 def defaultt():
+    lcd.clear()
     lcd.message = 'Press The button\nto interact'
 
 
